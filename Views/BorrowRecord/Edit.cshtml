@@ -1,0 +1,68 @@
+@model LibraryManagementSystem.Models.BorrowRecord
+
+@*
+    Reception/Admin loan-correction form (BorrowRecordController.Edit).
+    Unlike Create, every field is editable here (including ReturnDate and
+    FineAmount), since this exists specifically so staff can fix
+    data-entry mistakes or backdate loans for testing without touching
+    the database directly.
+*@
+
+@{
+    ViewData["Title"] = "Edit Borrow Record";
+}
+
+<h1>Edit Borrow Record</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ItemId" class="control-label">Item</label>
+                <select asp-for="ItemId" class="form-control" asp-items="ViewBag.ItemId"></select>
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BorrowerId" class="control-label">Borrower</label>
+                <select asp-for="BorrowerId" class="form-control" asp-items="ViewBag.BorrowerId"></select>
+                <span asp-validation-for="BorrowerId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BorrowDate" class="control-label">Borrow Date</label>
+                <input asp-for="BorrowDate" type="date" class="form-control" />
+                <span asp-validation-for="BorrowDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DueDate" class="control-label">Due Date</label>
+                <input asp-for="DueDate" type="date" class="form-control" />
+                <span asp-validation-for="DueDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ReturnDate" class="control-label">Return Date</label>
+                <input asp-for="ReturnDate" type="date" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                <small class="form-text text-muted">Leave blank if the item hasn't been returned yet.</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FineAmount" class="control-label">Fine Amount ($)</label>
+                <input asp-for="FineAmount" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="FineAmount" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
