@@ -1,10 +1,21 @@
 @model LibraryManagementSystem.Controllers.ManagerDashboardViewModel
 
 @*
-    Manager's read-only statistics dashboard (ManagerController.Index).
-    Three cards cover the three categories the assignment brief requires:
-    item status stats, borrowing stats, and fine stats. No edit actions
-    anywhere on this page - Manager views data here, they don't change it.
+Manager's read-only statistics dashboard (ManagerController.Index).
+
+```
+Three cards cover:
+1. Item status statistics
+2. Borrowing statistics
+3. Fine statistics
+
+Export buttons:
+- Inventory CSV
+- Inventory PDF
+- Borrowing CSV
+- Fines CSV
+```
+
 *@
 
 @{
@@ -14,70 +25,157 @@
 <h1>Manager Statistics</h1>
 
 <div class="row mb-4">
+
+    ```
+    <!-- ITEM STATUS CARD -->
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+
                 <h5 class="card-title">Item Status</h5>
-                <p class="text-muted">@Model.TotalItems total items</p>
+
+                <p class="text-muted">
+                    @Model.TotalItems total items
+                </p>
+
                 <ul class="list-group list-group-flush">
+
                     @foreach (var s in Model.ItemStatusCounts)
                     {
                         <li class="list-group-item d-flex justify-content-between">
                             <span>@s.Status</span>
-                            <span class="badge bg-secondary">@s.Count</span>
+                            <span class="badge bg-secondary">
+                                @s.Count
+                            </span>
                         </li>
                     }
+
                 </ul>
+
+                <!-- Inventory export buttons -->
+                <div class="mt-3">
+
+                    <a asp-action="ExportInventoryCsv"
+                       class="btn btn-sm btn-outline-secondary me-1">
+                        Export Inventory CSV
+                    </a>
+
+                    <a asp-action="ExportInventoryPdf"
+                       class="btn btn-sm btn-outline-secondary">
+                        Export Inventory PDF
+                    </a>
+
+                </div>
+
             </div>
         </div>
     </div>
 
+
+    <!-- BORROWING CARD -->
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+
                 <h5 class="card-title">Borrowing</h5>
+
                 <ul class="list-group list-group-flush">
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total borrows (all time)</span>
-                        <span class="badge bg-secondary">@Model.TotalBorrows</span>
+                        <span class="badge bg-secondary">
+                            @Model.TotalBorrows
+                        </span>
                     </li>
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Currently out</span>
-                        <span class="badge bg-warning text-dark">@Model.ActiveBorrows</span>
+                        <span class="badge bg-warning text-dark">
+                            @Model.ActiveBorrows
+                        </span>
                     </li>
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Overdue</span>
-                        <span class="badge bg-danger">@Model.OverdueBorrows</span>
+                        <span class="badge bg-danger">
+                            @Model.OverdueBorrows
+                        </span>
                     </li>
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Returned on time</span>
-                        <span class="badge bg-success">@Model.ReturnedOnTime</span>
+                        <span class="badge bg-success">
+                            @Model.ReturnedOnTime
+                        </span>
                     </li>
+
                 </ul>
+
+                <!-- Borrowing export button -->
+                <div class="mt-3">
+
+                    <a asp-action="ExportBorrowingCsv"
+                       class="btn btn-sm btn-outline-secondary">
+                        Export Borrowing CSV
+                    </a>
+
+                </div>
+
             </div>
         </div>
     </div>
 
+
+    <!-- FINES CARD -->
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+
                 <h5 class="card-title">Fines</h5>
+
                 <ul class="list-group list-group-flush">
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total issued</span>
-                        <span>@Model.TotalFinesIssued.ToString("C")</span>
+                        <span>
+                            @Model.TotalFinesIssued.ToString("C")
+                        </span>
                     </li>
+
                     @* Estimated, not stored - see ManagerController for why. *@
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>Outstanding (estimated, still accruing)</span>
-                        <span class="text-danger">@Model.OutstandingFines.ToString("C")</span>
+                        <span>
+                            Outstanding (estimated, still accruing)
+                        </span>
+
+                        <span class="text-danger">
+                            @Model.OutstandingFines.ToString("C")
+                        </span>
                     </li>
+
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Collected (on return)</span>
-                        <span class="text-success">@Model.CollectedFines.ToString("C")</span>
+
+                        <span class="text-success">
+                            @Model.CollectedFines.ToString("C")
+                        </span>
                     </li>
+
                 </ul>
+
+                <!-- Fines export button -->
+                <div class="mt-3">
+
+                    <a asp-action="ExportFinesCsv"
+                       class="btn btn-sm btn-outline-secondary">
+                        Export Fines CSV
+                    </a>
+
+                </div>
+
             </div>
         </div>
     </div>
+    ```
+
 </div>

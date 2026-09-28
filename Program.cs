@@ -1,48 +1,57 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Models;
+using LibraryManagementSystem.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
-// Application entry point and service configuration. Uses the minimal
-// hosting model (top-level statements) introduced in modern ASP.NET Core -
-// there is no separate Startup.cs file.
+QuestPDF.Settings.License =
+    QuestPDF.Infrastructure.LicenseType.Community;
+
+// Create the application builder
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
+// ------------------------------------------------------------
+// SERVICES
+// ------------------------------------------------------------
 
-// Registers MVC controllers and Razor views (Controllers + Views folders).
+// MVC controllers + Razor views
 builder.Services.AddControllersWithViews();
 
-// Registers the EF Core database context, backed by SQL Server, using the
-// connection string configured in appsettings.json.
+// Entity Framework Core + SQL Server
 builder.Services.AddDbContext<LibraryDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
-// ASP.NET Core Identity configuration.
-// Registers UserManager<ApplicationUser>, SignInManager<ApplicationUser>, and
-// RoleManager<IdentityRole>, all backed by LibraryDbContext, giving the app
-// login/roles support (Admin/Reception/Manager/Member) without a separate
-// authentication database.
+// ASP.NET Core Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-    // Relaxed password rules for assignment/development convenience.
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 6;
 })
-    .AddEntityFrameworkStores<LibraryDbContext>()
-    .AddDefaultTokenProviders();
+.AddEntityFrameworkStores<LibraryDbContext>()
+.AddDefaultTokenProviders();
 
-// Points Identity's authentication cookie at our own custom login/access-denied
-// pages (AccountController) instead of the default scaffolded Identity UI routes.
+// Identity cookie configuration
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
+// Notification service
+builder.Services.AddScoped<NotificationService>();
+
+// ------------------------------------------------------------
+// BUILD APPLICATION
+// ------------------------------------------------------------
+
 var app = builder.Build();
 
-// Pipeline setup
+// ------------------------------------------------------------
+// HTTP REQUEST PIPELINE
+// ------------------------------------------------------------
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -53,29 +62,31 @@ else
     app.UseHsts();
 }
 
+// Redirect HTTP requests to HTTPS
 app.UseHttpsRedirection();
+
+// Allow CSS, JavaScript and images from wwwroot
 app.UseStaticFiles();
 
+// Enable routing
 app.UseRouting();
 
-// Authentication MUST be called before Authorization, so that User.Identity
-// is populated before any [Authorize] attribute checks run.
+// Enable Identity authentication
 app.UseAuthentication();
+
+// Enable role-based authorization
 app.UseAuthorization();
 
-// Default MVC route: /Controller/Action/OptionalId, falling back to
-// HomeController.Index when no controller/action is specified in the URL.
+// ------------------------------------------------------------
+// DEFAULT MVC ROUTE
+// ------------------------------------------------------------
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Seed database roles, staff test accounts, and sample catalogue data on
-// every startup. Wrapped in its own scope since SeedData.InitializeAsync
-// needs scoped services (DbContext, UserManager, RoleManager) that aren't
-// available directly from the top-level builder.
-using (var scope = app.Services.CreateScope())
-{
-    await SeedData.InitializeAsync(scope.ServiceProvider);
-}
+// ------------------------------------------------------------
+// START THE WEB SERVER
+// ------------------------------------------------------------
 
 app.Run();
