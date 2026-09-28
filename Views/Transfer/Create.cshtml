@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Transfer an Item";
+}
+
+<h1>Transfer an Item</h1>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label>Item</label>
+                <select name="itemId" class="form-control" asp-items="ViewBag.ItemId">
+                    <option value="">-- Select an item --</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Destination Branch</label>
+                <select name="toBranchId" class="form-control" asp-items="ViewBag.ToBranchId">
+                    <option value="">-- Select a branch --</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Start Transfer</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div></div>

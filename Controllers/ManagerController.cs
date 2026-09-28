@@ -1,35 +1,23 @@
+using LibraryManagementSystem.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LibraryManagementSystem.Data;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using System.Reflection.Metadata;
+using System.Text;
 
 namespace LibraryManagementSystem.Controllers
 {
-    /// 
-    /// Read-only statistics dashboard for the Manager role. Covers the three
-    /// categories the assignment brief requires: item status stats,
-    /// borrowing stats, and fine stats. Deliberately has no CRUD actions -
-    /// a Manager views data here, they don't edit it.
-    /// 
     [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
-        /// EF Core database context, injected via dependency injection.
         private readonly LibraryDbContext _context;
+        public ManagerController(LibraryDbContext context) => _context = context;
 
-        /// Creates the controller with its required database context.
-        public ManagerController(LibraryDbContext context)
-        {
-            _context = context;
-        }
-
-        /// 
-        /// GET: Manager - runs every statistic query and assembles them into
-        /// a single view model for the dashboard.
-        /// 
         public async Task<IActionResult> Index()
         {
-            // Item status breakdown (available/borrowed/damaged/destroy)
             var itemStatusCounts = await _context.Items
                 .GroupBy(i => i.Status)
                 .Select(g => new StatusCount { Status = g.Key, Count = g.Count() })
@@ -37,33 +25,21 @@ namespace LibraryManagementSystem.Controllers
 
             var totalItems = itemStatusCounts.Sum(s => s.Count);
 
-            // Borrowing stats
             var totalBorrows = await _context.BorrowRecords.CountAsync();
             var activeBorrows = await _context.BorrowRecords.CountAsync(r => r.ReturnDate == null);
-            var overdueBorrows = await _context.BorrowRecords
-                .CountAsync(r => r.ReturnDate == null && r.DueDate < DateTime.Now);
-            var returnedOnTime = await _context.BorrowRecords
-                .CountAsync(r => r.ReturnDate != null && r.ReturnDate <= r.DueDate);
+            var overdueBorrows = await _context.BorrowRecords.CountAsync(r => r.ReturnDate == null && r.DueDate < DateTime.Now);
+            var returnedOnTime = await _context.BorrowRecords.CountAsync(r => r.ReturnDate != null && r.ReturnDate <= r.DueDate);
 
-            // Fine stats
-            var totalFinesIssued = await _context.BorrowRecords
-                .Where(r => r.FineAmount > 0)
-                .SumAsync(r => r.FineAmount);
-            var collectedFines = await _context.BorrowRecords
-                .Where(r => r.FineAmount > 0 && r.ReturnDate != null)
-                .SumAsync(r => r.FineAmount);
+            var totalFinesIssued = await _context.BorrowRecords.Where(r => r.FineAmount > 0).SumAsync(r => r.FineAmount);
+            var collectedFines = await _context.BorrowRecords.Where(r => r.FineAmount > 0 && r.ReturnDate != null).SumAsync(r => r.FineAmount);
 
-            // Projected fines: overdue items not yet returned don't have FineAmount set
-            // yet (that only happens on return), so this estimates what's currently
-            // accruing using the same $1/day rate as ReturnItem.
             var overdueActiveRecords = await _context.BorrowRecords
                 .Where(r => r.ReturnDate == null && r.DueDate < DateTime.Now)
                 .ToListAsync();
-
             var outstandingFines = overdueActiveRecords
                 .Sum(r => (decimal)(DateTime.Now - r.DueDate).Days * BorrowRecordController.DailyFineRate);
 
-            var viewModel = new ManagerDashboardViewModel
+            return View(new ManagerDashboardViewModel
             {
                 ItemStatusCounts = itemStatusCounts,
                 TotalItems = totalItems,
@@ -74,50 +50,133 @@ namespace LibraryManagementSystem.Controllers
                 TotalFinesIssued = totalFinesIssued,
                 OutstandingFines = outstandingFines,
                 CollectedFines = collectedFines
-            };
+            });
+        }
 
-            return View(viewModel);
+        // GET: Manager/ExportBorrowingCsv
+        public async Task<IActionResult> ExportBorrowingCsv()
+        {
+            var records = await _context.BorrowRecords
+                .Include(r => r.Item).Include(r => r.Borrower)
+                .ToListAsync();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Item,Borrower,BorrowDate,DueDate,ReturnDate,FineAmount");
+            foreach (var r in records)
+            {
+                sb.AppendLine($"{r.Item?.Name},{r.Borrower?.FullName},{r.BorrowDate:yyyy-MM-dd},{r.DueDate:yyyy-MM-dd},{r.ReturnDate:yyyy-MM-dd},{r.FineAmount}");
+            }
+
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", $"borrowing-report-{DateTime.Now:yyyyMMdd-HHmm}.csv");
+        }
+
+        // GET: Manager/ExportFinesCsv
+        public async Task<IActionResult> ExportFinesCsv()
+        {
+            var records = await _context.BorrowRecords
+                .Include(r => r.Item).Include(r => r.Borrower)
+                .Where(r => r.FineAmount > 0)
+                .ToListAsync();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Item,Borrower,DueDate,ReturnDate,FineAmount,Status");
+            foreach (var r in records)
+            {
+                var status = r.ReturnDate == null ? "Outstanding" : "Collected";
+                sb.AppendLine($"{r.Item?.Name},{r.Borrower?.FullName},{r.DueDate:yyyy-MM-dd},{r.ReturnDate:yyyy-MM-dd},{r.FineAmount},{status}");
+            }
+
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", $"fines-audit-{DateTime.Now:yyyyMMdd-HHmm}.csv");
+        }
+
+        // GET: Manager/ExportInventoryCsv
+        public async Task<IActionResult> ExportInventoryCsv()
+        {
+            var items = await _context.Items.Include(i => i.Branch).ToListAsync();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Name,LibraryCode,Status,Branch");
+            foreach (var i in items)
+            {
+                sb.AppendLine($"{i.Name},{i.LibraryCode},{i.Status},{i.Branch?.Code}");
+            }
+
+            return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", $"inventory-health-{DateTime.Now:yyyyMMdd-HHmm}.csv");
+        }
+
+        // GET: Manager/ExportInventoryPdf — example PDF export using QuestPDF.
+        // Duplicate this pattern for ExportBorrowingPdf / ExportFinesPdf.
+        public async Task<IActionResult> ExportInventoryPdf()
+        {
+            var items = await _context.Items.Include(i => i.Branch).ToListAsync();
+            var generatedAt = DateTime.Now;
+
+            var document = QuestPDF.Fluent.Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Size(PageSizes.A4);
+                    page.Margin(30);
+                    page.Header().Text("Inventory Health Report").FontSize(18).Bold();
+
+                    page.Content().Table(table =>
+                    {
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.RelativeColumn(3);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
+                        });
+
+                        table.Header(header =>
+                        {
+                            header.Cell().Text("Name").Bold();
+                            header.Cell().Text("Library Code").Bold();
+                            header.Cell().Text("Status").Bold();
+                            header.Cell().Text("Branch").Bold();
+                        });
+
+                        foreach (var i in items)
+                        {
+                            table.Cell().Text(i.Name);
+                            table.Cell().Text(i.LibraryCode);
+                            table.Cell().Text(i.Status);
+                            table.Cell().Text(i.Branch?.Code ?? "-");
+                        }
+                    });
+
+                    page.Footer().AlignCenter().Text(txt =>
+                    {
+                        txt.Span($"Generated by {User.Identity?.Name} on {generatedAt:yyyy-MM-dd HH:mm} — page ");
+                        txt.CurrentPageNumber();
+                        txt.Span(" of ");
+                        txt.TotalPages();
+                    });
+                });
+            });
+
+            var bytes = document.GeneratePdf();
+            return File(bytes, "application/pdf", $"inventory-health-{generatedAt:yyyyMMdd-HHmm}.pdf");
         }
     }
 
-    /// Simple item-status-to-count pairing, used to render the item status breakdown on the dashboard.
     public class StatusCount
     {
-        /// The status value being counted (e.g. "Available").
         public string Status { get; set; } = string.Empty;
-
-        /// How many items currently have this status.
         public int Count { get; set; }
     }
 
-    /// Aggregates every statistic ManagerController.Index calculates, so the view has a single strongly-typed model to bind to.
     public class ManagerDashboardViewModel
     {
-        /// Item counts grouped by status.
         public List<StatusCount> ItemStatusCounts { get; set; } = new();
-
-        /// Total number of items in the catalogue, across all statuses.
         public int TotalItems { get; set; }
-
-        /// Total loans ever created, active and completed combined.
         public int TotalBorrows { get; set; }
-
-        /// Loans currently out (not yet returned).
         public int ActiveBorrows { get; set; }
-
-        /// Loans currently out and past their due date.
         public int OverdueBorrows { get; set; }
-
-        /// Loans that were returned on or before their due date.
         public int ReturnedOnTime { get; set; }
-
-        /// Sum of every fine ever charged on a completed return.
         public decimal TotalFinesIssued { get; set; }
-
-        /// Estimated fine total currently accruing on active overdue loans (not yet charged, since fines are only finalized on return).
         public decimal OutstandingFines { get; set; }
-
-        /// Sum of fines actually charged and finalized on completed returns.
         public decimal CollectedFines { get; set; }
     }
 }
