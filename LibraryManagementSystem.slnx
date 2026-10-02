@@ -1,6 +1,0 @@
-<Solution>
-  <Folder Name="/Data/">
-    <File Path="LibraryDbContext.cs" />
-  </Folder>
-  <Project Path="LibraryManagementSystem.csproj" />
-</Solution>
