@@ -1,0 +1,11 @@
+@{
+    var tab = ViewData["Tab"] as string ?? "loans";
+    string A(string k) => tab == k ? "active" : "";
+}
+<div class="tabs">
+    <a class="@A("loans")" href="/Me">Loans</a>
+    <a class="@A("res")" href="/Me/Reservations">Reservations</a>
+    <a class="@A("fines")" href="/Me/Fines">Fines</a>
+    <a class="@A("notif")" href="/Me/Notifications">Notifications</a>
+    <a class="@A("prefs")" href="/Me/Profile">Profile &amp; preferences</a>
+</div>

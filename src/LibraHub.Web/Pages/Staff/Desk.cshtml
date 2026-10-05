@@ -1,0 +1,106 @@
+@page
+@model LibraHub.Pages.Staff.DeskModel
+@{ ViewData["Title"] = "Desk — Check-out"; ViewData["Nav"] = "desk"; var t = Model.Tab; }
+<div class="tabs">
+    <a class="@(t=="checkout"?"active":"")" href="/Staff/Desk?tab=checkout">Check-out</a>
+    <a class="@(t=="checkin"?"active":"")" href="/Staff/Desk?tab=checkin">Check-in</a>
+    <a class="@(t=="renew"?"active":"")" href="/Staff/Desk?tab=renew">Renew</a>
+</div>
+<partial name="_Flash" />
+
+@if (t == "checkout")
+{
+    <div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+        <div>
+            <div class="card">
+                <h3>Step 1 · Identify the patron</h3>
+                <form method="post" asp-page-handler="Find" class="row">
+                    <input name="Card" placeholder="⌕ Scan library card or type code… LC-2048-7731" class="grow" value="@Model.Card" />
+                    <button class="btn btn-primary" type="submit">Find</button>
+                </form>
+                @if (Model.Patron != null)
+                {
+                    <div class="row spread" style="margin-top:.8rem;padding:.8rem;background:#F8FAFC;border-radius:10px">
+                        <div><strong>@Model.Patron.FullName</strong> · @Model.Patron.CardNumber<div class="small muted">Loans @Model.Summary!.Loans / @Model.Summary.Limit · Holds @Model.Summary.Holds</div></div>
+                        @if (Model.Summary.FineCents > 0) { <span class="badge b-amber">Fine @Fmt.Money(Model.Summary.FineCents) due</span> }
+                    </div>
+                    @if (Model.Summary.FineBlocked) { <div class="alert alert-error" style="margin-top:.6rem">Fines exceed the block threshold — collect or waive at Staff › Fines before check-out.</div> }
+                }
+            </div>
+            <div class="card">
+                <h3>Step 2 · Scan items</h3>
+                <form method="post" asp-page-handler="Scan" class="row">
+                    <input name="ItemCode" placeholder="⌕ Scan item code… BK-100777" class="grow" autofocus />
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </form>
+                @if (Model.Err != null) { <div class="alert alert-error" style="margin-top:.6rem">@Model.Err</div> }
+                @if (Model.Basket.Count > 0)
+                {
+                    <div class="table-wrap" style="margin-top:.8rem"><table>
+                        <thead><tr><th>Code</th><th>Title</th><th>Branch</th><th>Due date</th><th>Status</th><th></th></tr></thead>
+                        <tbody>
+                        @foreach (var b in Model.Basket)
+                        {
+                            <tr class="@(b.Ok?"":"hl")"><td class="mono">@b.Code</td><td>@b.Title</td><td>@b.Branch</td>
+                                <td>@(b.Due != null ? Fmt.Day(b.Due.Value) : "—")</td>
+                                <td><partial name="_Badge" model="b.Status" /></td>
+                                <td><form method="post" asp-page-handler="Remove"><input type="hidden" name="itemId" value="@b.ItemId" /><button class="btn btn-sm" type="submit">✕</button></form></td></tr>
+                        }
+                        </tbody></table></div>
+                }
+                @if (Model.Warning != null)
+                {
+                    <div class="alert alert-warn" style="margin-top:.6rem">@Model.Warning
+                        @if (Model.OfferTransfer) { <a href="/Staff/Transfers">Create transfer</a> }</div>
+                }
+            </div>
+        </div>
+        <div class="card">
+            <h3>Summary</h3>
+            <p>Items ready: <strong>@Model.Basket.Count(b=>b.Ok)</strong> · Blocked: <strong>@Model.Basket.Count(b=>!b.Ok)</strong><br />
+                Loan period: <strong>14 days</strong></p>
+            <form method="post" asp-page-handler="Complete">
+                <div class="checks">
+                    <label><input type="checkbox" name="ReceiptEmail" checked="@Model.ReceiptEmail" /> Send receipt by Email</label>
+                    <label><input type="checkbox" name="ReceiptSms" checked="@Model.ReceiptSms" /> SMS</label>
+                </div>
+                @if (Model.Summary is { FineCents: > 0 })
+                { <div class="alert alert-warn">Outstanding fine of @Fmt.Money(Model.Summary.FineCents) — collect or waive before check-out.</div> }
+                <button class="btn btn-primary btn-block btn-lg" style="margin-top:.6rem" type="submit" disabled="@(Model.Basket.Count(b=>b.Ok)==0)">Complete check-out (@Model.Basket.Count(b=>b.Ok))</button>
+            </form>
+            <form method="post" asp-page-handler="Clear" style="margin-top:.5rem"><button class="btn btn-block" type="submit">Clear</button></form>
+        </div>
+    </div>
+}
+else if (t == "checkin")
+{
+    <div class="card" style="max-width:560px">
+        <h3>Check-in</h3>
+        <form method="post" asp-page-handler="CheckIn" class="row">
+            <input name="CheckInCode" placeholder="⌕ Scan item code…" class="grow" autofocus />
+            <button class="btn btn-primary" type="submit">Return</button>
+        </form>
+        <label class="checks" style="font-weight:400;margin-top:.6rem"><input type="checkbox" name="MarkDamaged" /> Mark as damaged on return</label>
+    </div>
+}
+else
+{
+    <div class="card" style="max-width:640px">
+        <h3>Renew</h3>
+        <form method="post" asp-page-handler="RenewFind" class="row">
+            <input name="RenewCard" placeholder="⌕ Scan library card…" class="grow" />
+            <button class="btn btn-primary" type="submit">Find</button>
+        </form>
+        @if (Model.Patron != null)
+        {
+            <h4 style="margin-top:1rem">@Model.Patron.FullName's loans</h4>
+            <div class="table-wrap"><table><thead><tr><th>Item</th><th>Due</th><th></th></tr></thead><tbody>
+            @foreach (var l in Model.RenewLoans)
+            {
+                <tr><td>@l.Item.Title</td><td>@Fmt.Day(l.DueAt)</td>
+                    <td><form method="post" asp-page-handler="RenewOne"><input type="hidden" name="loanId" value="@l.Id" /><input type="hidden" name="card" value="@Model.Patron.CardNumber" /><button class="btn btn-sm" type="submit">Renew</button></form></td></tr>
+            }
+            </tbody></table></div>
+        }
+    </div>
+}

@@ -1,0 +1,19 @@
+@page
+@model LibraHub.Pages.Staff.SwitchBranchModel
+
+<h2>Branch switch</h2>
+
+@if (!string.IsNullOrEmpty(Model.Err))
+{
+    <div class="alert alert-danger">@Model.Err</div>
+}
+else if (!string.IsNullOrEmpty(Model.Msg))
+{
+    <div class="alert alert-success">@Model.Msg</div>
+}
+else
+{
+    <div class="alert alert-info">Use the staff header to switch branches.</div>
+}
+
+<p><a asp-page="/Staff/Index">Back to staff</a></p>

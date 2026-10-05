@@ -1,0 +1,24 @@
+@page
+@model LibraHub.Pages.Me.ProfileModel
+@{ ViewData["Title"] = "Profile & preferences"; ViewData["Nav"] = "me"; ViewData["Tab"] = "prefs"; }
+<div class="container">
+    <h1>Hi @Model.Patron.FullName.Split(' ')[0]</h1>
+    <partial name="Me/_MeTabs" />
+    <partial name="_Flash" />
+    <div class="card" style="max-width:640px">
+        <h3>Profile &amp; preferences</h3>
+        <p><strong>Name:</strong> @Model.Patron.FullName<br /><strong>Email:</strong> @Model.Patron.Email<br /><strong>Library card:</strong> @Model.Patron.CardNumber</p>
+        <form method="post">
+            <label for="mob">Mobile (for SMS)</label>
+            <input id="mob" name="Mobile" value="@Model.Mobile" placeholder="0400 000 000" />
+            <table style="margin-top:1rem"><thead><tr><th>Notify me when</th><th>Email</th><th>SMS</th></tr></thead>
+            <tbody>
+                <tr><td>Item borrowed (receipt)</td><td><input type="checkbox" name="BorrowEmail" checked="@Model.BorrowEmail" /></td><td><input type="checkbox" name="BorrowSms" checked="@Model.BorrowSms" /></td></tr>
+                <tr><td>Due soon</td><td><input type="checkbox" name="DueEmail" checked="@Model.DueEmail" /></td><td><input type="checkbox" name="DueSms" checked="@Model.DueSms" /></td></tr>
+                <tr><td>Overdue</td><td><input type="checkbox" name="OverdueEmail" checked="@Model.OverdueEmail" /></td><td><input type="checkbox" name="OverdueSms" checked="@Model.OverdueSms" /></td></tr>
+                <tr><td>Hold ready</td><td><input type="checkbox" name="HoldEmail" checked="@Model.HoldEmail" /></td><td><input type="checkbox" name="HoldSms" checked="@Model.HoldSms" /></td></tr>
+            </tbody></table>
+            <button class="btn btn-primary" style="margin-top:1rem" type="submit">Save preferences</button>
+        </form>
+    </div>
+</div>

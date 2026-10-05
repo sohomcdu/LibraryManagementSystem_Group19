@@ -1,0 +1,55 @@
+@page
+@model LibraHub.Pages.Admin.Import.CsvModel
+@{ ViewData["Title"] = "Import data"; ViewData["Nav"] = "import"; }
+<div class="tabs">
+    <a class="active" href="/Admin/Import/Csv">CSV upload</a>
+    <a href="/Admin/Import/Provider">Metadata provider (mock)</a>
+    <a href="/Admin/Import/History">Import history</a>
+</div>
+<partial name="_Flash" />
+<div class="grid" style="grid-template-columns:340px 1fr;align-items:start">
+    <div>
+        <div class="card">
+            <form method="post" asp-page-handler="Validate" enctype="multipart/form-data">
+                <div class="dropzone">
+                    <p><strong>Drop CSV here</strong> or <label style="display:inline;color:var(--teal);cursor:pointer">browse<input type="file" name="File" accept=".csv" style="display:none" onchange="this.form.querySelector('#fname').textContent=this.files[0]?.name||''" /></label></p>
+                    <p class="small muted" id="fname">@Model.FileName</p>
+                </div>
+                <h3 style="margin-top:1rem">Options</h3>
+                <label for="db">Default branch</label>
+                <select id="db" name="DefaultBranchId">@foreach (var b in Model.Branches){<option value="@b.Value" selected="@(b.Value==Model.DefaultBranchId.ToString())">@b.Text</option>}</select>
+                <label for="pol">If ISBN already exists</label>
+                <select id="pol" name="Policy">
+                    <option value="Skip">Skip</option><option value="Update">Update</option><option value="Fail">Fail</option>
+                </select>
+                <button class="btn btn-primary btn-block" style="margin-top:1rem" type="submit">Validate file</button>
+            </form>
+            <a class="btn btn-block" style="margin-top:.6rem" href="/Admin/Import/Csv?handler=Template">⇓ Download CSV template</a>
+        </div>
+    </div>
+    <div class="card">
+        <h3>Validation preview</h3>
+        @if (Model.Preview == null) { <p class="muted">Upload and validate a CSV file to see a row-by-row preview here.</p> }
+        else
+        {
+            <div class="table-wrap"><table><thead><tr><th>Row</th><th>Title</th><th>Author</th><th>ISBN</th><th>Category</th><th>Branch</th><th>Result</th></tr></thead><tbody>
+            @foreach (var r in Model.Preview.Rows.Take(30))
+            {
+                <tr><td>@r.Line</td><td>@r.Title</td><td>@r.Author</td><td class="mono">@r.Isbn</td><td>@r.Category</td><td>@r.BranchCode</td>
+                    <td>
+                        @if (r.State == RowState.Ok) { <span class="badge b-green">OK</span> }
+                        else if (r.State == RowState.Warning) { <span class="badge b-amber">Warning</span><div class="small">@string.Join("; ", r.Messages)</div> }
+                        else { <span class="badge b-red">Error</span><div class="small">@string.Join("; ", r.Messages)</div> }
+                    </td></tr>
+            }
+            </tbody></table></div>
+            <div class="row spread" style="margin-top:.8rem">
+                <span>@Model.Preview.Valid valid · @Model.Preview.Warnings warnings · @Model.Preview.Errors errors</span>
+                <div class="row">
+                    <a class="btn" href="/Admin/Import/Csv?handler=Errors">⇓ Download error report</a>
+                    <form method="post" asp-page-handler="Commit"><button class="btn btn-primary" type="submit">Import @Model.Preview.Rows.Count(r=>r.WillImport) rows</button></form>
+                </div>
+            </div>
+        }
+    </div>
+</div>

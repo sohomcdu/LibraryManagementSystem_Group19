@@ -1,0 +1,86 @@
+@inject LibraHub.Infrastructure.BranchContext Branches
+@{
+    var nav = ViewData["Nav"] as string ?? "";
+    var current = await Branches.CurrentAsync();
+    var all = await Branches.AllAsync();
+    var holdsBadge = await Branches.HoldsBadgeAsync();
+    var trBadge = await Branches.TransfersBadgeAsync();
+    var role = User.RoleOf()?.ToString() ?? "";
+    // Prefer explicit role checks in order of precedence so Admin always sees ADMIN CONSOLE
+    string console;
+    if (User.IsInRole("Admin")) console = "ADMIN CONSOLE";
+    else if (User.IsInRole("Manager")) console = "MANAGER CONSOLE";
+    else console = "RECEPTION CONSOLE";
+    string Act(string k) => nav == k ? "active" : "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(ViewData["Title"] ?? "Staff") · LibraHub</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<div class="shell">
+    <aside class="sidebar">
+        <a class="brand" href="/Staff" style="color:#fff;font-weight:700;font-size:1.3rem;justify-content:flex-start;gap:.6rem;border:0"><span class="logo"></span>LibraHub</a>
+        <div class="grp">@console</div>
+        @* Role-specific staff links *@
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="/Staff" class="@Act("dash")">⌂&nbsp; Dashboard</a>
+            <a href="/Staff/Items" class="@Act("items")">▤&nbsp; Items</a>
+            <a href="/Staff/Transfers" class="@Act("transfers")"><span>⇆&nbsp; Branch transfers</span>@if (trBadge > 0) { <span class="count">@trBadge</span> }</a>
+            <a href="/Staff/Fines" class="@Act("fines")">$&nbsp; Fines</a>
+            <div class="grp">ADMINISTRATION</div>
+            <a href="/Admin/Import/Csv" class="@Act("import")">⇪&nbsp; Import data</a>
+            <a href="/Admin/ApiKeys" class="@Act("apikeys")">⚿&nbsp; API keys</a>
+        }
+        else if (User.IsInRole("Reception"))
+        {
+            <a href="/Staff" class="@Act("dash")">⌂&nbsp; Dashboard</a>
+            <a class="nav-link" asp-page="/Kiosk/Activate">🖥Kiosk</a>
+            <a href="/Staff/Desk" class="@Act("desk")">⇄&nbsp; Desk: check-out / in</a>
+            <a href="/Staff/Items" class="@Act("items")">▤&nbsp; Items</a>
+            <a href="/Staff/Holds" class="@Act("holds")"><span>◷&nbsp; Holds &amp; waitlist</span>@if (holdsBadge > 0) { <span class="count">@holdsBadge</span> }</a>
+            <a href="/Staff/Notifications" class="@Act("notif")">✉&nbsp; Notifications</a>
+            <a href="/Staff/Fines" class="@Act("fines")">$&nbsp; Fines</a>
+        }
+        else if (User.IsInRole("Manager"))
+        {
+            <a href="/Staff" class="@Act("dash")">⌂&nbsp; Dashboard</a>
+            <a href="/Staff/Fines" class="@Act("fines")">$&nbsp; Fines</a>
+            <a href="/Reports/Borrowing" class="@Act("reports")">▦&nbsp; Reports</a>
+        }
+        <div class="grp">PUBLIC SITE</div>
+        <a href="/Catalogue">↗&nbsp; Catalogue</a>
+        <a href="/Branches">⌖&nbsp; Branches &amp; hours</a>
+    </aside>
+    <div class="main">
+        <div class="main-top">
+            <h1>@ViewData["Title"]</h1>
+            <div class="row">
+                <form method="post" asp-page="/Staff/SwitchBranch" class="branch-switch">
+                    <input type="hidden" name="returnUrl" value="@(Context.Request.Path + Context.Request.QueryString)" />
+                    @if (Branches.CanSwitch)
+                    {
+                        <label for="branchSel" class="sr-only">Branch</label>
+                        <select id="branchSel" name="id" onchange="this.form.submit()">
+                            @foreach (var b in all) { <option value="@b.Id" selected="@(b.Id == current.Id)">⌖ @b.Name</option> }
+                        </select>
+                    }
+                    else { <span class="pill" style="background:#fff;color:var(--ink);border:1px solid var(--line)">⌖ @current.Name</span> }
+                </form>
+                <span class="who"><span class="avatar">@Fmt.Initials(User.DisplayName())</span>@User.DisplayName() · @role
+                    <form method="post" asp-page="/Account/Logout" style="display:inline"><button class="btn btn-sm" type="submit">Sign out</button></form>
+            </div>
+        </div>
+        <div class="content">
+            @{ await Html.RenderPartialAsync("_Flash"); }
+            @RenderBody()
+        </div>
+    </div>
+</div>
+</body>
+</html>

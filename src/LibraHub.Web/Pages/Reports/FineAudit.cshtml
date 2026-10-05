@@ -1,0 +1,31 @@
+@page
+@model LibraHub.Pages.Reports.FineAuditModel
+@{ ViewData["Title"] = "Reports"; ViewData["Nav"] = "reports"; var r = Model.R; }
+<partial name="Reports/_Tabs" />
+<partial name="Reports/_FilterBar" />
+<div class="grid g4">
+    <div class="kpi"><div class="l">Fines issued</div><div class="v">@Fmt.Money(r.Issued)</div><div class="s">@r.Rows.Count fines</div></div>
+    <div class="kpi"><div class="l">Collected</div><div class="v">@Fmt.Money(r.Collected)</div><div class="s">@(r.Issued==0?0:Math.Round(100.0*r.Collected/r.Issued))%</div></div>
+    <div class="kpi"><div class="l">Outstanding</div><div class="v">@Fmt.Money(r.Outstanding)</div><div class="s">@r.Rows.Count(x=>x.Status==FineStatus.Outstanding) patrons</div></div>
+    <div class="kpi"><div class="l">Waived</div><div class="v">@Fmt.Money(r.Waived)</div><div class="s">@r.Rows.Count(x=>x.Status==FineStatus.Waived) fines</div></div>
+</div>
+<div class="grid g2" style="margin-top:1rem">
+    <div class="card">
+        <h3>Audit ledger</h3>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Patron</th><th>Item</th><th>Days late</th><th>Amount</th><th>Status</th><th>Desk</th></tr></thead><tbody>
+        @foreach (var row in r.Rows.Take(30))
+        { <tr><td>@Fmt.Day(row.Date)</td><td>@row.Patron</td><td>@row.Item</td><td>@row.DaysLate</td><td>@Fmt.Money(row.AmountCents)</td>
+            <td><span class="badge @(row.Status==FineStatus.Outstanding?"b-amber":row.Status==FineStatus.Waived?"b-grey":"b-green")">@row.Status</span></td><td>@row.Desk</td></tr> }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Revenue by branch</h3>
+        <div class="chart">
+            @{ var byBranch = r.Rows.GroupBy(x=>x.Desk=="—"?"Other":x.Desk.Split('-')[0]).ToList(); }
+            <p class="muted small">(desk-level detail; grouped by first token)</p>
+        </div>
+    </div>
+</div>
+<div class="alert @(r.Reconciled?"alert-ok":"alert-error")" style="margin-top:1rem">
+    @(r.Reconciled ? "✓ " : "✗ ")Reconciliation: collected + outstanding + waived @(r.Reconciled?"equals":"does NOT equal") total issued (@Fmt.Money(r.Issued)).
+</div>

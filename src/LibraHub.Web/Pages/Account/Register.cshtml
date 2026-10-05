@@ -1,0 +1,31 @@
+@page
+@model LibraHub.Pages.Account.RegisterModel
+@{ ViewData["Title"] = "Register"; ViewData["Nav"] = "me"; }
+<div class="container auth-grid">
+    <div class="card">
+        <h2>Sign in</h2>
+        <p class="muted">Already have an account?</p>
+        <a class="btn btn-block" href="/Account/Login">Go to sign in</a>
+    </div>
+    <div class="card">
+        <h2>Create a patron account</h2>
+        <partial name="_Flash" />
+        <form method="post">
+            <div class="grid g2">
+                <div><label for="fn">Full name</label><input id="fn" name="FullName" value="@Model.FullName" required /></div>
+                <div><label for="mob">Mobile (for SMS)</label><input id="mob" name="Mobile" value="@Model.Mobile" placeholder="0400 000 000" /></div>
+            </div>
+            <label for="em">Email</label><input id="em" name="Email" type="email" value="@Model.Email" required />
+            <label for="pw">Password (min 8 chars)</label><input id="pw" name="Password" type="password" minlength="8" required />
+            <div class="card" style="background:#F8FAFC;margin-top:1rem">
+                <strong>How should we notify you?</strong>
+                <div class="checks" style="margin-top:.4rem">
+                    <label><input type="checkbox" name="NotifyEmail" value="true" checked /> Email</label>
+                    <label><input type="checkbox" name="NotifySms" value="true" /> SMS</label>
+                    <span class="muted small">— Borrowed, Due soon, Overdue, Hold ready</span>
+                </div>
+            </div>
+            <button class="btn btn-accent btn-block btn-lg" style="margin-top:1rem" type="submit">Create account &amp; get my library card</button>
+        </form>
+    </div>
+</div>

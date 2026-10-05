@@ -1,0 +1,140 @@
+@page
+@model LibraHub.Pages.Admin.Import.ProviderModel
+@{
+    ViewData["Title"] = "Import data";
+    ViewData["Nav"] = "import";
+}
+<div class="tabs">
+    <a href="/Admin/Import/Csv">CSV upload</a>
+    <a class="active" href="/Admin/Import/Provider">Metadata provider (mock)</a>
+    <a href="/Admin/Import/History">Import history</a>
+</div>
+<partial name="_Flash" />
+
+<div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+    <div>
+        <div class="card">
+            <form method="post" asp-page-handler="Search" class="row">
+                <input name="Query" value="@Model.Query" placeholder="Search ISBN or title: software engineering" class="grow" />
+                <span class="btn" style="background:#F8FAFC">@Model.ProviderName</span>
+                <button class="btn btn-primary" type="submit">Search provider</button>
+            </form>
+        </div>
+
+        @if (Model.Results.Count > 0)
+        {
+            <form method="post" asp-page-handler="Import">
+                <div class="card">
+                    <h3>Results (@Model.Results.Count)</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Cover</th>
+                                    <th>Title / Author</th>
+                                    <th>ISBN</th>
+                                    <th>Year</th>
+                                    <th>Category mapping</th>
+                                    <th>Branch</th>
+                                    <th>Copies</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var r in Model.Results)
+                                {
+                                    <tr>
+                                        <td><input type="checkbox" name="Selected" value="@r.Isbn" /></td>
+                                        <td>
+                                            <partial name="_Cover" model="@((ImportService.CoverFor(r.Title), "mid"))" />
+                                        </td>
+                                        <td>
+                                            <strong>@r.Title</strong>
+                                            <div class="small muted">@r.Author</div>
+                                        </td>
+                                        <td class="mono">@r.Isbn</td>
+                                        <td>@r.Year</td>
+                                        <td>
+                                            <select name="CategoryFor[@r.Isbn]">
+                                                @foreach (var c in Model.Categories)
+                                                {
+                                                    <option value="@c.Value">@c.Text</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid g2" style="max-width:420px;margin-top:.6rem">
+                        <div>
+                            <label for="br">Branch</label>
+                            <select id="br" name="BranchId">
+                                @foreach (var b in Model.Branches)
+                                {
+                                    <option value="@b.Value" selected="@(b.Value == Model.BranchId.ToString())">@b.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cp">Copies each</label>
+                            <input id="cp" name="Copies" type="number" min="1" max="10" value="@Model.Copies" />
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="margin-top:1rem" type="submit">
+                        Import selected (<span id="cnt">0</span>)
+                    </button>
+                </div>
+            </form>
+        }
+        else if (Model.Query != null)
+        {
+            <div class="card">
+                <p class="muted">No matches in the demo provider catalogue.</p>
+            </div>
+        }
+
+        <p class="small muted">
+            Preview metadata is fetched from the mock JSON provider — no internet call is made.
+            Map the provider's subject to a local category. Choose branch and number of copies.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Recent import jobs</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job</th>
+                        <th>Source</th>
+                        <th>Rows</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var j in Model.Recent)
+                    {
+                        <tr>
+                            <td>#@j.Id</td>
+                            <td>@j.Source</td>
+                            <td>@j.TotalRows</td>
+                            <td>@j.Imported ok · @j.Skipped skipped</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('input[name="Selected"]').forEach(c => c.addEventListener('change', () => {
+        document.getElementById('cnt').textContent = document.querySelectorAll('input[name="Selected"]:checked').length;
+    }));
+</script>

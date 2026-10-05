@@ -1,0 +1,35 @@
+@page
+@model LibraHub.Pages.Account.LoginModel
+@{ ViewData["Title"] = "Sign in"; ViewData["Nav"] = "me"; }
+<div class="container auth-grid">
+    <div class="card">
+        <h2>Sign in</h2>
+        <partial name="_Flash" />
+        <form method="post" asp-page-handler="Password">
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <label for="email">Email</label>
+            <input id="email" name="Email" type="email" value="@Model.Email" required autocomplete="username" />
+            <label for="pw">Password</label>
+            <input id="pw" name="Password" type="password" value="" required autocomplete="current-password" />
+            <label class="checks" style="font-weight:400"><input type="checkbox" name="RememberMe" value="true" checked="@Model.RememberMe" /> Remember me</label>
+            <p class="right"><a href="/Account/Forgot">Forgot password?</a></p>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <p class="hr-or">— or —</p>
+        <form method="post" asp-page-handler="Card">
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <label for="card">Library card number &amp; PIN</label>
+            <div class="row">
+                <input id="card" name="Card" type="text" placeholder="LC-2048-7731" style="flex:2" autocomplete="off" />
+                <input name="Pin" type="password" placeholder="PIN" style="flex:1" autocomplete="off" />
+            </div>
+            <button class="btn btn-block" style="margin-top:.6rem" type="submit">Sign in with card</button>
+        </form>
+        <p class="small muted">Use the credentials provided for your assigned project demonstration account.</p>
+    </div>
+    <div class="card">
+        <h2>New to LibraHub?</h2>
+        <p class="muted">Create a free patron account to borrow, reserve and track your loans across all three branches.</p>
+        <a class="btn btn-accent btn-block" href="/Account/Register">Create a patron account</a>
+    </div>
+</div>

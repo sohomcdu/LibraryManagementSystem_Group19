@@ -1,0 +1,11 @@
+@* Expects the page model to be an AppPageModel (Flash / FlashError / Msg / Err). *@
+@{
+    var pm = ViewContext.ViewData.Model as AppPageModel;
+}
+@if (pm != null)
+{
+    @if (!string.IsNullOrEmpty(pm.Flash)) { <div class="alert alert-ok" role="status">@pm.Flash</div> }
+    @if (!string.IsNullOrEmpty(pm.Msg)) { <div class="alert alert-ok" role="status">@pm.Msg</div> }
+    @if (!string.IsNullOrEmpty(pm.FlashError)) { <div class="alert alert-error" role="alert">@pm.FlashError</div> }
+    @if (!string.IsNullOrEmpty(pm.Err)) { <div class="alert alert-error" role="alert">@pm.Err</div> }
+}

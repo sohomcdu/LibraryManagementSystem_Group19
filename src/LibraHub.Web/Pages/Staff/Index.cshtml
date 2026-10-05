@@ -1,0 +1,46 @@
+@page
+@model LibraHub.Pages.Staff.IndexModel
+@{ ViewData["Title"] = "Dashboard"; ViewData["Nav"] = "dash"; var diff = Model.LoansToday - Model.LoansYesterday; }
+<div class="grid g5">
+    <div class="kpi"><div class="l">Loans today</div><div class="v">@Model.LoansToday</div><div class="s">@(diff>=0?"+":"")@diff vs yesterday</div></div>
+    <div class="kpi"><div class="l">Returns today</div><div class="v">@Model.ReturnsToday</div></div>
+    <div class="kpi"><div class="l">Overdue items</div><div class="v">@Model.OverdueItems</div><div class="s">across this branch</div></div>
+    <div class="kpi"><div class="l">Holds ready</div><div class="v">@Model.HoldsReady</div><div class="s">waiting for pickup</div></div>
+    <div class="kpi"><div class="l">Transfers</div><div class="v">@Model.TransfersOpen</div><div class="s">in progress</div></div>
+</div>
+<div class="row" style="margin:1rem 0">
+    <a class="btn btn-primary" href="/Staff/Desk">Open desk (check-out / in)</a>
+    <a class="btn" href="/Staff/Items/Add">Add item</a>
+    <a class="btn" href="/Staff/Transfers">New transfer</a>
+</div>
+<div class="grid g2">
+    <div class="card">
+        <h3>Overdue items</h3>
+        <div class="table-wrap"><table><thead><tr><th>Item</th><th>Patron</th><th>Days</th><th>Action</th></tr></thead><tbody>
+        @foreach (var (loanId, item, patron, days) in Model.Overdue)
+        {
+            <tr><td>@item.Title</td><td>@patron.FullName</td><td><span class="badge b-red">Overdue @days</span></td>
+                <td><form method="post" action="/Staff/Notifications?handler=Remind"><input type="hidden" name="loanId" value="@loanId" /><button class="btn btn-sm" type="submit">Remind</button></form></td></tr>
+        }
+        @if (Model.Overdue.Count == 0) { <tr><td colspan="4" class="muted">None 🎉</td></tr> }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Holds ready for pickup</h3>
+        <div class="table-wrap"><table><thead><tr><th>Item</th><th>Patron</th><th>Collect by</th></tr></thead><tbody>
+        @foreach (var r in Model.Ready) { <tr><td>@r.TitleText</td><td>@r.Patron.FullName</td><td>@(r.ExpiresAt.HasValue ? Fmt.Day(r.ExpiresAt.Value) : "-")</td></tr> }
+        @if (Model.Ready.Count == 0) { <tr><td colspan="3" class="muted">None</td></tr> }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Incoming transfers</h3>
+        <div class="table-wrap"><table><thead><tr><th>Item</th><th>From</th><th>Status</th></tr></thead><tbody>
+        @foreach (var t in Model.Incoming) { <tr><td>@t.Item.Title</td><td>@t.FromBranch.Name.Replace(" Library","").Replace(" Branch","")</td><td><span class="badge @(t.Status==TransferStatus.Dispatched?"b-purple":"b-grey")">@t.Status</span></td></tr> }
+        @if (Model.Incoming.Count == 0) { <tr><td colspan="3" class="muted">None</td></tr> }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Recent notifications (simulated)</h3>
+        @foreach (var n in Model.Recent) { <div class="notif"><span class="badge b-blue">@n.Channel</span> @n.Type · @Fmt.Time(n.CreatedAt)</div> }
+    </div>
+</div>

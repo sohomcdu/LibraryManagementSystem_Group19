@@ -1,0 +1,28 @@
+@page
+@model LibraHub.Pages.Kiosk.AccountModel
+@{ ViewData["Title"] = "My account"; }
+<div class="row spread">
+    <h1>My account · @Model.Patron!.FullName</h1>
+    <form method="post" asp-page-handler="SignOut"><button class="btn" type="submit">Sign out</button></form>
+</div>
+<div class="grid g3">
+    <div class="kpi" style="border-top:4px solid #2563EB"><div class="l">On loan</div><div class="v">@Model.Loans.Count</div><div class="s">@Model.Loans.Count(l=>l.DueAt.Date<=Clock.Today) due today</div></div>
+    <div class="kpi" style="border-top:4px solid #16A34A"><div class="l">Holds ready</div><div class="v">@(Model.NextHold!=null?1:0)</div><div class="s">@(Model.NextHold!=null ? $"{Model.NextHold.TitleText} · {Model.NextHold.PickupBranch.Name.Replace(" Library","").Replace(" Branch","")}" : "—")</div></div>
+    <div class="kpi" style="border-top:4px solid #D97706"><div class="l">Fines due</div><div class="v">@Fmt.Money(Model.FineCents)</div><div class="s">pay at any desk</div></div>
+</div>
+<div class="card">
+    <h3>Due dates</h3>
+    <div class="table-wrap"><table><thead><tr><th>Item</th><th>Due</th><th>Status</th></tr></thead><tbody>
+    @foreach (var l in Model.Loans)
+    {
+        var days = (l.DueAt.Date - Clock.Today).Days;
+        <tr><td>@l.Item.Title</td><td>@(days==0?"Today":Fmt.Day(l.DueAt))</td>
+            <td>@if (days<0){<span class="badge b-red">Overdue</span>} else if(days<=2){<span class="badge b-amber">Due soon</span>} else {<text>@days days left</text>}</td></tr>
+    }
+    @if (Model.Loans.Count == 0) { <tr><td colspan="3" class="muted">No items on loan.</td></tr> }
+    </tbody></table></div>
+</div>
+<div class="row" style="justify-content:space-between;margin-top:1rem">
+    <a class="btn btn-lg" href="/Kiosk/Index">‹ Back</a>
+    <a class="btn btn-primary btn-lg" href="/Kiosk/Checkout">Check out items</a>
+</div>

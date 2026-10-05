@@ -1,0 +1,48 @@
+@page
+@model LibraHub.Pages.Reports.InventoryModel
+@{ ViewData["Title"] = "Reports"; ViewData["Nav"] = "reports"; var r = Model.R;
+   var colors = new Dictionary<ItemStatus,string>{{ItemStatus.Available,"#16A34A"},{ItemStatus.Borrowed,"#2563EB"},{ItemStatus.Reserved,"#D97706"},{ItemStatus.Damaged,"#DC2626"},{ItemStatus.InTransit,"#7C3AED"}};
+   var total = r.ByStatus.Values.Sum(); double acc = 0;
+}
+<partial name="Reports/_Tabs" />
+<partial name="Reports/_FilterBar" />
+<div class="grid g2">
+    <div class="card">
+        <h3>Items by status</h3>
+        <div class="row" style="align-items:center;gap:2rem">
+            <svg viewBox="0 0 120 120" width="160" height="160">
+                @foreach (var kv in r.ByStatus)
+                {
+                    var frac = total==0?0:(double)kv.Value/total; var start = acc*360; acc += frac; var end = acc*360;
+                    var large = (end-start)>180?1:0;
+                    var x1=60+50*Math.Sin(start*Math.PI/180); var y1=60-50*Math.Cos(start*Math.PI/180);
+                    var x2=60+50*Math.Sin(end*Math.PI/180); var y2=60-50*Math.Cos(end*Math.PI/180);
+                    if (frac>0) { <path d="M60,60 L@x1.ToString("0.#"),@y1.ToString("0.#") A50,50 0 @large,1 @x2.ToString("0.#"),@y2.ToString("0.#") Z" fill="@colors[kv.Key]" /> }
+                }
+                <circle cx="60" cy="60" r="28" fill="#fff" />
+            </svg>
+            <div>
+                <div style="font-size:1.8rem;font-weight:700;color:var(--navy)">@total.ToString("N0")</div><div class="muted small">items</div>
+                <ul class="donut-legend" style="margin-top:.6rem">
+                @foreach (var kv in r.ByStatus) { <li><span class="dot" style="background:@colors[kv.Key]"></span>@Fmt.StatusText(kv.Key) @kv.Value.ToString("N0")</li> }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h3>Health by branch</h3>
+        <div class="table-wrap"><table><thead><tr><th>Branch</th><th>Items</th><th>Damaged</th><th>Overdue</th><th>Idle 12 M</th><th>Health</th></tr></thead><tbody>
+        @foreach (var b in r.Branches)
+        { <tr><td>@b.Branch.Replace(" Library","").Replace(" Branch","")</td><td>@b.Items.ToString("N0")</td><td>@b.Damaged</td><td>@b.Overdue</td><td>@b.Idle</td>
+            <td><span class="badge @(b.Good?"b-green":"b-amber")">@(b.Good?"Good":"Watch")</span></td></tr> }
+        </tbody></table></div>
+    </div>
+</div>
+<div class="card">
+    <h3>Damaged items awaiting repair</h3>
+    <div class="table-wrap"><table><thead><tr><th>Code</th><th>Title</th><th>Branch</th><th>Since</th></tr></thead><tbody>
+    @foreach (var d in r.Damaged.Take(10))
+    { <tr><td class="mono">@d.Code</td><td>@d.Title</td><td>@d.CurrentBranch.Name.Replace(" Library","").Replace(" Branch","")</td><td>@Fmt.Day(d.CreatedAt)</td></tr> }
+    @if (r.Damaged.Count == 0) { <tr><td colspan="4" class="muted">None</td></tr> }
+    </tbody></table></div>
+</div>

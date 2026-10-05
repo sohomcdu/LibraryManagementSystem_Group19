@@ -1,0 +1,50 @@
+@page "{id:int}"
+@model LibraHub.Pages.Staff.Items.EditModel
+@{ ViewData["Title"] = $"Items › Edit {Model.Item.Code}"; ViewData["Nav"] = "items"; }
+<div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+    <div class="card">
+        <h3>Edit item</h3>
+        <partial name="_Flash" />
+        <form method="post" asp-page-handler="Save" asp-route-id="@Model.Item.Id">
+            <input type="hidden" name="Version" value="@Model.Version" />
+            <div class="grid g2">
+                <div><label for="code">Library code (barcode)</label><input id="code" value="@Model.Item.Code" disabled /></div>
+                <div><label for="isbn">ISBN</label><input id="isbn" value="@Isbn.Display(Model.Item.Isbn)" disabled /></div>
+            </div>
+            <div class="grid g2">
+                <div><label for="ti">Title</label><input id="ti" name="Title" value="@Model.Title" required /></div>
+                <div><label for="au">Author</label><input id="au" name="Author" value="@Model.Author" required /></div>
+            </div>
+            <div class="grid g2">
+                <div><label for="cat">Category</label><select id="cat" name="CategoryId">@foreach (var c in Model.Categories){<option value="@c.Value" selected="@c.Selected">@c.Text</option>}</select></div>
+                <div><label for="yr">Publication year</label><input id="yr" name="Year" type="number" value="@Model.Year" /></div>
+            </div>
+            <div class="grid g2">
+                <div><label for="hb">Home branch</label><select id="hb" name="HomeBranchId">@foreach (var b in Model.Branches){<option value="@b.Value" selected="@b.Selected">@b.Text</option>}</select></div>
+                <div><label for="cur">Current location</label><input id="cur" value="@Model.Item.CurrentBranch.Name (read-only)" disabled /></div>
+            </div>
+            <div class="grid g2">
+                <div><label for="st">Status</label>
+                    <select id="st" name="Status">
+                        @foreach (var s in Enum.GetValues<ItemStatus>())
+                        { <option value="@s" selected="@(Model.Status==s.ToString())" disabled="@(s!=Model.Item.Status && !(Model.Item.Status==ItemStatus.Available && s==ItemStatus.Damaged))">@Fmt.StatusText(s)</option> }
+                    </select></div>
+                <div><label for="cov">Cover image URL</label><input id="cov" placeholder="https://..." disabled /></div>
+            </div>
+            <label for="desc">Description</label><textarea id="desc" name="Description" rows="3">@Model.Description</textarea>
+            @if (Model.Item.Status == ItemStatus.Available)
+            { <div class="alert alert-warn">Changing status to <strong>Damaged</strong> keeps waitlists open; holds are notified only when the item is Available again.</div> }
+            <div class="row spread" style="margin-top:1rem">
+                <div><button class="btn btn-primary" type="submit">Save changes</button> <a class="btn" href="/Staff/Items">Cancel</a></div>
+                <form method="post" asp-page-handler="Retire" asp-route-id="@Model.Item.Id" onsubmit="return confirm('Retire this item permanently?')" style="display:inline">
+                    <button class="btn btn-danger" type="submit">Retire item</button></form>
+            </div>
+        </form>
+    </div>
+    <div class="card">
+        <h3>Movement history</h3>
+        @foreach (var h in Model.History)
+        { <div class="notif"><strong>@h.Text</strong><div class="small muted">@Fmt.Day(h.At) @(h.By != null ? "· " + h.By : "")</div></div> }
+        @if (Model.History.Count == 0) { <p class="muted small">No history yet.</p> }
+    </div>
+</div>

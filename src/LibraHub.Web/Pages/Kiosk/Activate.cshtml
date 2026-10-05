@@ -1,0 +1,29 @@
+@page
+@model LibraHub.Pages.Kiosk.ActivateModel
+@{ Layout = null; ViewData["Title"] = "Activate kiosk"; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Activate kiosk</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="kiosk">
+    <header class="k-top"><span class="brand"><span class="logo"></span>LibraHub Kiosk</span></header>
+    <div class="k-main">
+        <div class="card" style="max-width:420px;margin:3rem auto">
+            <h1 style="font-size:1.6rem">Activate this kiosk</h1>
+            <partial name="_Flash" />
+            <form method="post">
+                <label for="e">Device email</label>
+                <input id="e" name="Email" value="@Model.Email" autocomplete="username" required />
+                <label for="p">Device password</label>
+                <input id="p" name="Password" type="password" value="" autocomplete="current-password" required />
+                <button class="btn btn-primary btn-block btn-lg" style="margin-top:1rem" type="submit">Activate</button>
+            </form>
+            <p class="small muted" style="margin-top:1rem">This page is for authorised library kiosk devices only.</p>
+        </div>
+    </div>
+</body>
+</html>

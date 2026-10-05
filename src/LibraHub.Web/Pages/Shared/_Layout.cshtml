@@ -1,0 +1,95 @@
+@inject LibraHub.Data.AppDbContext Db
+@using Microsoft.EntityFrameworkCore
+@{
+    var nav = ViewData["Nav"] as string ?? "";
+    var central = await Db.Branches.AsNoTracking().OrderBy(b => b.Id).FirstAsync();
+    var hours = BranchHours.For(central, Clock.Now);
+    var user = User.Identity?.IsAuthenticated == true;
+    var isPatron = User.IsInRole("Patron");
+    var isStaff = User.IsInRole("Reception") || User.IsInRole("Manager") || User.IsInRole("Admin");
+    var isKiosk = User.IsInRole("Kiosk");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(ViewData["Title"] ?? "LibraHub") · LibraHub</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="topbar">
+    <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('topnav').classList.toggle('open')">☰</button>
+    <a class="brand" href="/">
+        <span class="logo"></span>
+        <span>LibraHub</span>
+    </a>
+    <nav class="topnav" id="topnav" aria-label="Main">
+        @* Minimal top nav per role: anonymous users see no top links (Sign in is on top-right);
+           patrons see My Library; staff see Staff console. *@
+        @if (!user)
+        {
+            @* no top links for anonymous users *@
+        }
+        else if (isPatron)
+        {
+            <a href="/Me" class="@(nav == "me" ? "active" : "")">My Library</a>
+        }
+        else if (isStaff)
+        {
+            <a href="/Staff" class="@(nav == "staff" ? "active" : "")">Staff console</a>
+        }
+    </nav>
+    <div class="top-right">
+        <span class="pill @(hours.Open ? "" : "closed")">@BranchHours.Pill(central, Clock.Now)</span>
+        @if (user)
+        {
+            <details class="userbox">
+                <summary><span class="avatar">@Fmt.Initials(User.DisplayName())</span><span>@User.DisplayName() ▾</span></summary>
+                <div class="drop">
+                    @if (isPatron)
+                    {
+                        <a href="/Me">My Library</a>
+                        <a href="/Me/Reservations">My reservations</a>
+                        <a href="/Me/Fines">My fines</a>
+                        <a href="/Me/Notifications">My notifications</a>
+                        <a href="/Me/Profile">Profile &amp; preferences</a>
+                    }
+                    @if (isStaff)
+                    {
+                        <a href="/Staff">Staff console</a>
+                    }
+
+                    @* Branch switcher form for staff users; posts to /Staff/SwitchBranch with antiforgery token *@
+                    @if (isStaff)
+                    {
+                        <form method="post" asp-page="/Staff/SwitchBranch" style="margin-top:.5rem">
+                            <label for="switchBranch" class="small muted">Switch branch</label>
+                            <select id="switchBranch" name="id">
+                                @foreach (var b in await Db.Branches.AsNoTracking().OrderBy(b => b.Id).ToListAsync())
+                                {
+                                    <option value="@b.Id">@b.Name</option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-sm">Switch</button>
+                        </form>
+                    }
+                    @* kiosk links intentionally removed from user menu *@
+                    <form method="post" asp-page="/Account/Logout">
+                        <button type="submit">Sign out</button>
+                    </form>
+                </div>
+            </details>
+        }
+        else
+        {
+            <a class="btn btn-outline-light" href="/Account/Login">Sign in</a>
+        }
+    </div>
+</header>
+<main id="main">
+    @RenderBody()
+</main>
+</body>
+</html>

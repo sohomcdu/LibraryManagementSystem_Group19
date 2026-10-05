@@ -1,0 +1,18 @@
+@page
+@model LibraHub.Pages.Branches.IndexModel
+@{ ViewData["Title"] = "Branches & hours"; ViewData["Nav"] = "branches"; }
+<div class="container">
+    <h1>Branches &amp; hours</h1>
+    <div class="grid g3">
+        @foreach (var b in Model.Branches)
+        {
+            var h = BranchHours.For(b, Clock.Now);
+            <div class="card">
+                <h3>@b.Name <span class="badge @(h.Open ? "b-green" : "b-grey")">@(h.Open ? "Open" : "Closed")</span></h3>
+                <p class="muted">@b.Code · Opens @b.OpensAt.ToString("h:mm tt") – closes @b.ClosesAt.ToString("h:mm tt")</p>
+                <p class="small">Closed: @(string.IsNullOrEmpty(b.ClosedDays) ? "—" : b.ClosedDays)</p>
+                <a class="btn btn-sm" href="/Catalogue?branch=@b.Id">Browse this branch's catalogue</a>
+            </div>
+        }
+    </div>
+</div>

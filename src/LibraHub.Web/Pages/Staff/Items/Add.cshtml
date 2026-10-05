@@ -1,0 +1,27 @@
+@page
+@model LibraHub.Pages.Staff.Items.AddModel
+@{ ViewData["Title"] = "Items › Add item"; ViewData["Nav"] = "items"; }
+<div class="card" style="max-width:640px">
+    <partial name="_Flash" />
+    <form method="post">
+        <div class="grid g2">
+            <div><label for="ti">Title</label><input id="ti" name="Title" value="@Model.Title" required /></div>
+            <div><label for="au">Author</label><input id="au" name="Author" value="@Model.Author" required /></div>
+        </div>
+        <label for="sub">Subtitle (optional)</label><input id="sub" name="Subtitle" value="@Model.Subtitle" />
+        <div class="grid g2">
+            <div><label for="isbn">ISBN</label><input id="isbn" name="Isbn" value="@Model.Isbn" placeholder="978-..." required /></div>
+            <div><label for="pub">Publisher</label><input id="pub" name="Publisher" value="@Model.Publisher" /></div>
+        </div>
+        <div class="grid g2">
+            <div><label for="cat">Category</label><select id="cat" name="CategoryId">@foreach (var c in Model.Categories){<option value="@c.Value" selected="@(c.Value==Model.CategoryId.ToString())">@c.Text</option>}</select></div>
+            <div><label for="yr">Year</label><input id="yr" name="Year" type="number" value="@Model.Year" /></div>
+        </div>
+        <div class="grid g2">
+            <div><label for="br">Home / current branch</label><select id="br" name="BranchId">@foreach (var b in Model.Branches){<option value="@b.Value" selected="@(b.Value==Model.BranchId.ToString())">@b.Text</option>}</select></div>
+            <div><label for="cp">Copies</label><input id="cp" name="Copies" type="number" min="1" max="20" value="@Model.Copies" /></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:1rem" type="submit">Add item</button>
+        <a class="btn" href="/Staff/Items">Cancel</a>
+    </form>
+</div>

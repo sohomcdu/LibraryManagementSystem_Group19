@@ -1,0 +1,44 @@
+@page
+@model LibraHub.Pages.Staff.NotificationsModel
+@{ ViewData["Title"] = "Notification dashboard"; ViewData["Nav"] = "notif"; }
+<div class="grid g4">
+    <div class="kpi"><div class="l">Borrow</div><div class="v">@Model.CountBorrow</div><div class="s">last @Model.Days days</div></div>
+    <div class="kpi"><div class="l">Due soon</div><div class="v">@Model.CountDue</div></div>
+    <div class="kpi"><div class="l">Overdue</div><div class="v">@Model.CountOverdue</div></div>
+    <div class="kpi"><div class="l">Hold available</div><div class="v">@Model.CountHold</div></div>
+</div>
+<partial name="_Flash" />
+<form method="get" class="row" style="margin:1rem 0">
+    <select name="Type" data-autosubmit><option value="">Type: All</option>
+        @foreach (var t in Enum.GetValues<NotificationType>()) { <option value="@t" selected="@(Model.Type==t.ToString())">@t</option> }</select>
+    <select name="Channel" data-autosubmit><option value="">Channel: All</option><option selected="@(Model.Channel=="Email")">Email</option><option selected="@(Model.Channel=="Sms")">Sms</option></select>
+    <select name="Days" data-autosubmit><option value="1" selected="@(Model.Days==1)">Last 1 day</option><option value="7" selected="@(Model.Days==7)">Last 7 days</option><option value="30" selected="@(Model.Days==30)">Last 30 days</option></select>
+    <span class="grow"></span>
+    <label class="checks" style="font-weight:400"><input type="checkbox" onclick="this.form.action='?handler=Console&amp;on='+this.checked;this.form.method='post';this.form.submit()" checked="@Model.ConsoleLogging" /> Console logging</label>
+    <form method="post" asp-page-handler="Scan" style="display:inline"><button class="btn btn-accent" type="submit">▶ Run due-soon &amp; overdue scan now</button></form>
+</form>
+<div class="grid" style="grid-template-columns:1fr 320px">
+    <div class="card">
+        <div class="table-wrap"><table><thead><tr><th>Time</th><th>Patron</th><th>Channel</th><th>Type</th><th>Subject / preview</th><th>Status</th><th></th></tr></thead><tbody>
+        @foreach (var n in Model.Rows)
+        {
+            <tr class="@(n==Model.Selected?"hl":"")"><td>@Fmt.Time(n.CreatedAt)</td><td>@(n.Patron?.FullName ?? n.Recipient)</td>
+                <td><span class="badge b-blue">@n.Channel</span></td><td>@n.Type</td>
+                <td>@(n.Subject != "—" ? n.Subject : n.Body)</td>
+                <td><span class="badge @(n.Status==SendStatus.SimulatedSent?"b-green":"b-red")">@(n.Status==SendStatus.SimulatedSent?"Simulated sent":"Simulated failed")</span></td>
+                <td><a class="btn btn-sm" href="?View=@n.Id&Type=@Model.Type&Channel=@Model.Channel&Days=@Model.Days">View</a></td></tr>
+        }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Message preview</h3>
+        @if (Model.Selected != null)
+        {
+            <p class="small muted">To: @(Model.Selected.Patron?.FullName ?? Model.Selected.Recipient), @Model.Selected.Recipient · @Model.Selected.Channel</p>
+            <p><strong>@Model.Selected.Subject</strong></p>
+            <div class="card" style="background:#F8FAFC">@Model.Selected.Body</div>
+            <p class="small muted" style="margin-top:.6rem">Logged to NotificationLog and console. No real message is sent.</p>
+        }
+        else { <p class="muted small">Select a row to preview.</p> }
+    </div>
+</div>

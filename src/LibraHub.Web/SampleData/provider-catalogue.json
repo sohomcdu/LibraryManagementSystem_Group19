@@ -1,0 +1,18 @@
+[
+  { "isbn": "9780062315007", "title": "The Alchemist", "author": "Paulo Coelho", "publisher": "HarperOne", "year": 2014, "pages": 208, "language": "English",
+    "description": "A shepherd boy follows his dream across the desert in search of treasure.", "subjects": ["Fiction", "Adventure"] },
+  { "isbn": "9780143127741", "title": "The Martian", "author": "Andy Weir", "publisher": "Broadway Books", "year": 2014, "pages": 369, "language": "English",
+    "description": "An astronaut stranded on Mars must improvise to survive until rescue.", "subjects": ["Fiction", "Science"] },
+  { "isbn": "9781982137274", "title": "The 7 Habits of Highly Effective People", "author": "Stephen R. Covey", "publisher": "Simon & Schuster", "year": 2020, "pages": 464, "language": "English",
+    "description": "A principle-centred approach to personal and professional effectiveness.", "subjects": ["Self-Help"] },
+  { "isbn": "9780316769488", "title": "The Catcher in the Rye", "author": "J. D. Salinger", "publisher": "Little, Brown", "year": 1991, "pages": 277, "language": "English",
+    "description": "A teenager narrates a few days of wandering New York City.", "subjects": ["Fiction"] },
+  { "isbn": "9780743273565", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "publisher": "Scribner", "year": 2004, "pages": 180, "language": "English",
+    "description": "A portrait of ambition and excess in Jazz Age America.", "subjects": ["Fiction"] },
+  { "isbn": "9780061120084", "title": "To Kill a Mockingbird", "author": "Harper Lee", "publisher": "Harper Perennial", "year": 2006, "pages": 336, "language": "English",
+    "description": "A young girl watches her father defend a man in a racially charged trial.", "subjects": ["Fiction"] },
+  { "isbn": "9780060850524", "title": "Brave New World", "author": "Aldous Huxley", "publisher": "Harper Perennial", "year": 2006, "pages": 288, "language": "English",
+    "description": "A dystopia of engineered contentment and social conditioning.", "subjects": ["Fiction", "Science"] },
+  { "isbn": "9780679783268", "title": "Pride and Prejudice (Modern Library)", "author": "Jane Austen", "publisher": "Modern Library", "year": 2000, "pages": 352, "language": "English",
+    "description": "Elizabeth Bennet navigates manners, marriage and misjudgement.", "subjects": ["Fiction", "History"] }
+]

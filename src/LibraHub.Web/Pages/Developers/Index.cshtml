@@ -1,0 +1,21 @@
+@page
+@model LibraHub.Pages.Developers.IndexModel
+@{ ViewData["Title"] = "Developers"; ViewData["Nav"] = "dev"; }
+<div class="container">
+    <h1>LibraHub public API</h1>
+    <p class="muted">Read-only JSON endpoints for community apps. Ask a library Admin for a key (Admin › API keys).</p>
+    <div class="card">
+        <h3>Authentication</h3>
+        <p>Send your key on every request as the <code>X-Api-Key</code> header.</p>
+        <pre class="code">curl -H "X-Api-Key: lh_your_key_here" https://your-library.example/api/v1/items?q=dune</pre>
+        <p class="small muted">Rate limit: 60 requests/minute per key (HTTP 429 + <code>Retry-After</code> when exceeded). All endpoints are GET-only (405 otherwise). A revoked or missing key returns 401.</p>
+    </div>
+    <div class="card">
+        <h3>GET /api/v1/items</h3>
+        <p>Search the catalogue. Query params: <code>q</code>, <code>branch</code> (CEN/NTH/RIV), <code>category</code>, <code>status</code>, <code>page</code>, <code>pageSize</code> (max 100).</p>
+        <pre class="code">GET /api/v1/items?q=clean+code&branch=CEN&page=1&pageSize=20</pre>
+    </div>
+    <div class="card"><h3>GET /api/v1/items/{id}</h3><p>One title with per-branch availability.</p></div>
+    <div class="card"><h3>GET /api/v1/categories</h3><p>All catalogue categories.</p></div>
+    <div class="card"><h3>GET /api/v1/status</h3><p>Service health and per-branch open/closed state.</p></div>
+</div>

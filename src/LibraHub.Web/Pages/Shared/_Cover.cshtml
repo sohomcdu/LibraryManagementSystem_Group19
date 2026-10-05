@@ -1,0 +1,113 @@
+@model object
+@{
+    // Accept either the new CoverViewModel or legacy tuples (2- or 3-item) for backwards compatibility.
+    var vm = Model as LibraHub.Pages.Shared.ViewModels.CoverViewModel;
+    if (vm == null)
+    {
+        // Match a 3-item ValueTuple<string,string,string>
+        if (Model is System.ValueTuple<string, string, string> t3)
+        {
+            // ensure non-null size for constructor (silence nullable analyzer)
+            vm = new LibraHub.Pages.Shared.ViewModels.CoverViewModel(t3.Item1, (t3.Item2 ?? "mid")!, t3.Item3);
+        }
+        // Match a 2-item ValueTuple<string,string>
+        else if (Model is System.ValueTuple<string, string> t2)
+        {
+            // Some callers pass (colors, size) and others pass (colors, category).
+            // Heuristically detect common size tokens; otherwise treat second item as Category.
+            var second = (t2.Item2 ?? "").Trim().ToLowerInvariant();
+            if (second == "big" || second == "mid" || second == "small")
+            {
+                // ensure size is non-null when passed to constructor
+                vm = new LibraHub.Pages.Shared.ViewModels.CoverViewModel(t2.Item1, (t2.Item2 ?? "mid")!, null);
+            }
+            else
+            {
+                vm = new LibraHub.Pages.Shared.ViewModels.CoverViewModel(t2.Item1, "mid", t2.Item2);
+            }
+        }
+    else
+    {
+        // Attempt to adapt common domain/view types (TitleRow, Item, etc.) by reflection
+        string? colors = null;
+        string size = "mid";
+        string? category = null;
+        var mdl = Model;
+        var t = mdl?.GetType();
+        if (t != null)
+        {
+        // Local array of candidate color property names
+        var colorNames = new[] { "CoverColors", "Colors", "CoverColour", "CoverColourString" };
+            foreach (var cn in colorNames)
+            {
+                var p = t.GetProperty(cn);
+                if (p != null)
+                {
+                    colors = p.GetValue(mdl) as string;
+                    if (!string.IsNullOrEmpty(colors)) break;
+                }
+            }
+
+            var sizeProp = t.GetProperty("Size");
+            if (sizeProp != null) size = (sizeProp.GetValue(mdl) as string) ?? size;
+
+            // category might be string or an object with Name; try several common property names
+            var catProps = new[] { "Category", "CategoryName", "CategoryTitle", "Cat", "CatName", "Genre", "Type" };
+            foreach (var cp in catProps)
+            {
+                var prop = t.GetProperty(cp);
+                if (prop == null) continue;
+                var cv = prop.GetValue(mdl);
+                if (cv is string s) { category = s; break; }
+                if (cv != null)
+                {
+                    var nameProp = cv.GetType().GetProperty("Name");
+                    if (nameProp != null) { category = nameProp.GetValue(cv) as string; break; }
+                    // sometimes category object may have Title or DisplayName
+                    var titleProp = cv.GetType().GetProperty("Title") ?? cv.GetType().GetProperty("DisplayName");
+                    if (titleProp != null) { category = titleProp.GetValue(cv) as string; break; }
+                }
+            }
+        }
+
+        vm = new LibraHub.Pages.Shared.ViewModels.CoverViewModel(colors, size, category);
+    }
+    }
+
+    var c = (vm.Colors ?? "#12324A,#0F766E").Split(',');
+    var cls = vm.Size == "big" ? "cover big" : vm.Size == "mid" ? "cover mid" : "cover";
+    var cat = (vm.Category ?? "").Trim().ToLowerInvariant();
+    // Simplified policy: treat only music and toy categories specially; every other category is a book for cover icon purposes.
+    string icon;
+    if (cat.Contains("music") || cat.Contains("audio") || cat.Contains("sound"))
+    {
+        icon = "music";
+    }
+    else if (cat.Contains("toy") || cat.Contains("toys") || cat.Contains("game") || cat.Contains("puzzle"))
+    {
+        icon = "toy";
+    }
+    else
+    {
+        // All other categories (including design, fiction, science, etc.) show the book icon.
+        icon = "book";
+    }
+}
+<span class="@cls cover-@icon" style="background:linear-gradient(160deg,@c[0],@(c.Length > 1 ? c[1] : c[0]))" aria-hidden="true" data-cat="@vm.Category">
+    @* category-specific simple SVG icons *@
+    @if (icon == "music")
+    {
+        <svg viewBox="0 0 24 24" class="cover-icon" aria-hidden="true"><path fill="white" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    }
+    else if (icon == "toy")
+    {
+        <svg viewBox="0 0 24 24" class="cover-icon" aria-hidden="true"><path fill="white" d="M12 2a4 4 0 0 0-4 4 4 4 0 1 0 4-4zm6 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM6 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+    }
+    else
+    {
+        @* Book icon: three horizontal lines to represent text on a cover *@
+        <svg viewBox="0 0 24 24" class="cover-icon" aria-hidden="true">
+            <path fill="white" d="M5 6h14v2H5zM5 11h14v2H5zM5 16h14v2H5z" />
+        </svg>
+    }
+</span>

@@ -1,0 +1,54 @@
+@page
+@model LibraHub.Pages.Staff.Items.IndexModel
+@{ ViewData["Title"] = "Items"; ViewData["Nav"] = "items"; await Model.LoadListAsync(); var pages = Math.Max(1,(int)Math.Ceiling(Model.Total/(double)LibraHub.Pages.Staff.Items.IndexModel.PageSize)); }
+<form method="get" class="row" style="margin-bottom:1rem">
+    <input name="Q" value="@Model.Q" placeholder="⌕ Search code, title, author, ISBN" class="grow" style="min-width:220px" />
+    <select name="Branch"><option value="">Branch: All</option>@foreach (var b in Model.Branches){<option value="@b.Value" selected="@b.Selected">@b.Text</option>}</select>
+    <select name="Status"><option value="">Status: Any</option>
+        @foreach (var s in Enum.GetValues<ItemStatus>()) { <option value="@s" selected="@(Model.Status==s.ToString())">@Fmt.StatusText(s)</option> }</select>
+    <select name="Category"><option value="">Category: Any</option>@foreach (var c in Model.Categories){<option value="@c.Value" selected="@c.Selected">@c.Text</option>}</select>
+    <button class="btn" type="submit">Search</button>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn" href="/Admin/Import/Csv">⇪ Import</a>
+    }
+    <a class="btn btn-primary" href="/Staff/Items/Add">+ Add item</a>
+</form>
+<partial name="_Flash" />
+<form method="post">
+<input type="hidden" name="Q" value="@Model.Q" /><input type="hidden" name="Branch" value="@Model.Branch" /><input type="hidden" name="Status" value="@Model.Status" /><input type="hidden" name="Category" value="@Model.Category" /><input type="hidden" name="p" value="@Model.PageNo" />
+<div class="row spread" style="margin-bottom:.6rem">
+    <span><span id="selCount">0</span> selected</span>
+    <div class="row">
+        <select name="ToBranch" style="width:auto"><option value="">Transfer to…</option>
+            @foreach (var b in Model.Branches) { <option value="@b.Value">@b.Text</option> }</select>
+        <button class="btn btn-sm" type="submit" formaction="?handler=Transfer">Transfer selected</button>
+        <button class="btn btn-sm" type="submit" formaction="?handler=Damaged">Mark damaged</button>
+    </div>
+</div>
+<div class="table-wrap"><table>
+    <thead><tr><th></th><th>Code</th><th>Title</th><th>Category</th><th>Branch</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+    @foreach (var i in Model.Rows)
+    {
+        <tr><td><input type="checkbox" name="Selected" value="@i.Id" class="rowchk" /></td>
+            <td class="mono">@i.Code</td><td><strong>@i.Title</strong><div class="small muted">@i.Author</div></td>
+            <td>@i.Category.Name</td><td>@i.CurrentBranch.Name.Replace(" Library","").Replace(" Branch","")</td>
+            <td><partial name="_Badge" model="i.Status" /></td>
+            <td class="row" style="gap:.4rem"><a class="btn btn-sm" href="/Staff/Items/Edit/@i.Id">Edit</a>
+                @if (i.Status == ItemStatus.Available) { <a class="btn btn-sm" href="/Staff/Transfers?code=@i.Code">Transfer</a> }
+                @if (i.Status == ItemStatus.Damaged) { <button class="btn btn-sm" type="submit" formaction="?handler=Repair" formmethod="post" name="id" value="@i.Id">Repair done</button> }
+            </td></tr>
+    }
+    </tbody></table></div>
+</form>
+<p class="small muted">Showing @((Model.PageNo-1)*20+1)–@Math.Min(Model.PageNo*20, Model.Total) of @Model.Total</p>
+@if (pages > 1)
+{
+    <nav class="pager">@for (int p=1;p<=pages;p++){ if(p==Model.PageNo){<span class="cur">@p</span>} else {<a href="?Q=@Model.Q&Branch=@Model.Branch&Status=@Model.Status&Category=@Model.Category&p=@p">@p</a>} }</nav>
+}
+<script>
+document.querySelectorAll('.rowchk').forEach(c=>c.addEventListener('change',()=>{
+    document.getElementById('selCount').textContent = document.querySelectorAll('.rowchk:checked').length;
+}));
+</script>

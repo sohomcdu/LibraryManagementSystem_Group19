@@ -1,0 +1,30 @@
+@page
+@model LibraHub.Pages.Admin.ApiKeysModel
+@{ ViewData["Title"] = "API keys"; ViewData["Nav"] = "apikeys"; }
+<partial name="_Flash" />
+<div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+    <div class="card">
+        <h3>Issued keys</h3>
+        <div class="table-wrap"><table><thead><tr><th>Name</th><th>Prefix</th><th>Status</th><th>Uses</th><th>Rejected</th><th>Last used</th><th></th></tr></thead><tbody>
+        @foreach (var k in Model.Keys)
+        {
+            <tr><td>@k.Name</td><td class="mono">@k.Prefix…</td><td><span class="badge @(k.Active?"b-green":"b-red")">@(k.Active?"Active":"Revoked")</span></td>
+                <td>@k.UsageCount</td><td>@k.RejectedCount</td><td>@(k.LastUsedAt != null ? Fmt.Relative(k.LastUsedAt.Value) : "never")</td>
+                <td>@if (k.Active) { <form method="post" asp-page-handler="Revoke"><input type="hidden" name="id" value="@k.Id" /><button class="btn btn-sm btn-danger" type="submit">Revoke</button></form> }</td></tr>
+        }
+        </tbody></table></div>
+    </div>
+    <div class="card">
+        <h3>Create a new key</h3>
+        @if (Model.JustCreatedPlain != null)
+        {
+            <div class="alert alert-ok">@Model.Msg</div>
+            <pre class="code">@Model.JustCreatedPlain</pre>
+        }
+        <form method="post" asp-page-handler="Create">
+            <label for="nm">Name</label><input id="nm" name="NewName" placeholder="Community reading app" required />
+            <button class="btn btn-primary btn-block" style="margin-top:.8rem" type="submit">Create key</button>
+        </form>
+        <p class="small muted" style="margin-top:.6rem">Keys are shown once. Rate limit 60 req/min. See the <a href="/Developers">Developers</a> page for usage.</p>
+    </div>
+</div>
