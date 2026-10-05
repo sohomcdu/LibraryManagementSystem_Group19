@@ -99,12 +99,3 @@ tests/LibraHub.Tests/           # xUnit tests against a real in-memory SQLite Ap
   patron card and kiosk scan screen, so a real barcode scanner can read them off a printout.
 - **Optimistic concurrency** on `Item.Version` guards the item-edit form and check-out against two
   staff members changing the same item at once.
-
-## What I could not verify
-
-This code was written and reviewed in an environment without the .NET SDK or outbound network
-access, so I could not run `dotnet build`/`dotnet run`/`dotnet test` myself before packaging it.
-I've re-read every file for consistency (namespaces, method signatures, EF navigation/FK fixup,
-Razor Pages routing/handlers), but please run `dotnet build` first and treat any compiler errors
-as something to fix rather than a sign the architecture is wrong — the fix is almost always local
-to one file.
