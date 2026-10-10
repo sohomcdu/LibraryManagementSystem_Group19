@@ -1,9 +1,0 @@
-@{
-    var nav = ViewData["Nav"] as string;
-    var qs = (ViewContext.ViewData.Model as LibraHub.Pages.Reports.ReportPageBase)?.Qs() ?? "";
-}
-<div class="tabs">
-    <a class="@(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Borrowing")==true?"active":"")" href="/Reports/Borrowing?@qs">Borrowing statistics</a>
-    <a class="@(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("FineAudit")==true?"active":"")" href="/Reports/FineAudit?@qs">Fine revenue audit</a>
-    <a class="@(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Inventory")==true?"active":"")" href="/Reports/Inventory?@qs">Inventory health</a>
-</div>
