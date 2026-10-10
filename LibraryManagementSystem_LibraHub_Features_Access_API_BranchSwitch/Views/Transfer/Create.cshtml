@@ -1,0 +1,140 @@
+@model LibraryManagementSystem.Models.TransferRequestFormViewModel
+@{
+    ViewData["Title"] = "Request a Branch Transfer";
+}
+
+<section class="lh-section-head">
+    <div>
+        <div class="lh-eyebrow">Branch circulation</div>
+        <h1>Request a branch transfer</h1>
+        <p>Filter the source branch inventory, search by item ID, library code or name, and select the exact copies for the Manager to review.</p>
+    </div>
+</section>
+
+<div class="card p-4 mb-4">
+    <h2 class="h5">Find available inventory</h2>
+    <form asp-action="Create" method="get" class="row align-items-end">
+        <div class="col-md-4 mb-3">
+            <label asp-for="ItemCategory" class="form-label"></label>
+            <select asp-for="ItemCategory" name="itemCategory" class="form-select">
+                <option value="">-- Select a category --</option>
+                <option value="Book">Books</option>
+                <option value="Music">Music</option>
+                <option value="Toy">Toys</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="FromBranchId" class="form-label"></label>
+            <select asp-for="FromBranchId" name="fromBranchId" class="form-select" asp-items="ViewBag.FromBranchId">
+                <option value="0">-- Select source --</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="ToBranchId" class="form-label"></label>
+            <select asp-for="ToBranchId" name="toBranchId" class="form-select" asp-items="ViewBag.ToBranchId">
+                <option value="0">-- Select destination --</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-outline-primary">Show available items</button>
+        </div>
+    </form>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.ItemCategory) && Model.FromBranchId > 0)
+{
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="ItemCategory" />
+        <input type="hidden" asp-for="FromBranchId" />
+        <input type="hidden" asp-for="ToBranchId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+            <div>
+                <h2 class="h5 mb-1">Available copies</h2>
+                <span class="text-secondary">@Model.AvailableItems.Count copies available at the selected source branch.</span>
+            </div>
+            <span class="badge text-bg-primary fs-6">Selected: <span id="selectedCount">0</span></span>
+        </div>
+
+        @if (Model.AvailableItems.Count > 0)
+        {
+            <div class="input-group mb-3">
+                <span class="input-group-text" aria-hidden="true">⌕</span>
+                <input id="itemSearch" type="search" class="form-control" placeholder="Filter by item ID, library code or name" aria-label="Filter available items" />
+                <button id="selectVisible" type="button" class="btn btn-outline-secondary">Select visible</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead><tr><th scope="col">Select</th><th scope="col">Item ID</th><th scope="col">Library code</th><th scope="col">Name</th><th scope="col">Category details</th></tr></thead>
+                    <tbody id="availableItems">
+                        @foreach (var item in Model.AvailableItems)
+                        {
+                            var details = item switch
+                            {
+                                LibraryManagementSystem.Models.Book book => $"{book.Author} · {book.Genre}",
+                                LibraryManagementSystem.Models.Music music => music.Artist,
+                                LibraryManagementSystem.Models.Toy toy => $"{toy.Type} · age {toy.MinimumAge}+",
+                                _ => string.Empty
+                            };
+                            <tr data-search="@($"{item.Id} {item.LibraryCode} {item.Name}".ToLowerInvariant())">
+                                <td><input class="form-check-input item-choice" type="checkbox" name="SelectedItemIds" value="@item.Id" aria-label="Select @item.Name (item ID @item.Id)" checked="@Model.SelectedItemIds.Contains(item.Id)" /></td>
+                                <td>@item.Id</td>
+                                <td>@item.LibraryCode</td>
+                                <td>@item.Name</td>
+                                <td>@details</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">There are no available copies in this category at the selected source branch.</div>
+        }
+        <span asp-validation-for="SelectedItemIds" class="text-danger d-block mb-3"></span>
+        <p class="text-secondary">The requested quantity is the number of copies selected above. Selected stock is not reserved until the Manager approves the request.</p>
+        <button type="submit" class="btn btn-primary" disabled="@(Model.AvailableItems.Count == 0)">Send selected items to Manager</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+}
+
+@section Scripts {
+    <script>
+        (() => {
+            const search = document.getElementById("itemSearch");
+            const rows = Array.from(document.querySelectorAll("#availableItems tr"));
+            const choices = Array.from(document.querySelectorAll(".item-choice"));
+            const count = document.getElementById("selectedCount");
+            const selectVisible = document.getElementById("selectVisible");
+
+            const updateCount = () => {
+                if (count) {
+                    count.textContent = String(choices.filter(choice => choice.checked).length);
+                }
+            };
+
+            if (search) {
+                search.addEventListener("input", () => {
+                    const term = search.value.trim().toLowerCase();
+                    rows.forEach(row => {
+                        row.hidden = !row.dataset.search.includes(term);
+                    });
+                });
+            }
+
+            choices.forEach(choice => choice.addEventListener("change", updateCount));
+            if (selectVisible) {
+                selectVisible.addEventListener("click", () => {
+                    rows.filter(row => !row.hidden).forEach(row => {
+                        row.querySelector(".item-choice").checked = true;
+                    });
+                    updateCount();
+                });
+            }
+            updateCount();
+        })();
+    </script>
+}

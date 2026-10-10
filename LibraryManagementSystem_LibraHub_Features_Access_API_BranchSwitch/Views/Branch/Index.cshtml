@@ -1,0 +1,27 @@
+@model IEnumerable<LibraryManagementSystem.Models.Branch>
+@{
+    ViewData["Title"] = "Branch management";
+    var isAdmin = User.IsInRole("Admin");
+}
+<section class="branch-page-hero">
+    <span class="lh-eyebrow">Administration</span>
+    <h1>Branch management</h1>
+    <p>Manage library branches, addresses, availability and service desk details.</p>
+    @if (isAdmin) { <a asp-action="Create" class="btn btn-light">＋ Add branch</a> }
+</section>
+<div class="branch-directory-grid">
+@foreach (var b in Model)
+{
+    <article class="branch-directory-card">
+        <div class="branch-card-art"><span>⌖</span><small>@b.Code</small></div>
+        <div class="branch-card-content">
+            <div class="branch-card-status"><span class="status-pill available">● Active branch</span>@if (isAdmin && !b.IsActive) { <span class="status-pill damaged">Inactive</span> }</div>
+            <h2>@b.Name</h2>
+            <p class="branch-address">@(string.IsNullOrWhiteSpace(b.Address) ? "Address to be confirmed" : b.Address)</p>
+            <div class="branch-card-meta"><span>▣ @(b.Desks?.Count(d => d.IsActive) ?? 0) active service desks</span><span>▤ Multi-format collection</span></div>
+            @if (isAdmin) { <div class="branch-admin-actions"><a asp-action="Edit" asp-route-id="@b.Id">Edit details</a><a asp-action="Delete" asp-route-id="@b.Id">Remove</a></div> }
+        </div>
+    </article>
+}
+</div>
+@if (!Model.Any()) { <div class="catalogue-empty"><span class="empty-icon">⌖</span><h3>No active branches listed</h3><p>Please check back later or contact the library team.</p></div> }

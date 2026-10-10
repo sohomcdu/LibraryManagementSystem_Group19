@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryManagementSystem.csproj": {}
+    "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj": {}
   },
   "projects": {
-    "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryManagementSystem.csproj": {
+    "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryManagementSystem.csproj",
+        "projectUniqueName": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj",
         "projectName": "LibraryManagementSystem",
-        "projectPath": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\arkas\\.nuget\\packages\\",
-        "outputPath": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\obj\\",
+        "projectPath": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\Nazmul\\.nuget\\packages\\",
+        "outputPath": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\arkas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nazmul\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +59,7 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[10.0.11, )"
+              "version": "[10.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
@@ -68,7 +69,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.11, )"
+              "version": "[10.0.0, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2026.9.1, )"
             }
           },
           "imports": [
@@ -90,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

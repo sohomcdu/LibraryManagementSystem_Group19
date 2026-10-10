@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\",
+  "WorkspaceRootPath": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\bachelor cs s2 2026\\distributive development\\librarymanagementsystem\\views\\search\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:views\\search\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\distributed development\\librarymanagementsystem_librahub_features_access_api_branchswitch\\librarymanagementsystem_librahub_features_access_api_branchswitch\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\bachelor cs s2 2026\\distributive development\\librarymanagementsystem\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\distributed development\\librarymanagementsystem_librahub_features_access_api_branchswitch\\librarymanagementsystem_librahub_features_access_api_branchswitch\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\bachelor cs s2 2026\\distributive development\\librarymanagementsystem\\librarydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:librarydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\distributed development\\librarymanagementsystem_librahub_features_access_api_branchswitch\\librarymanagementsystem_librahub_features_access_api_branchswitch\\models\\borrowrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:models\\borrowrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\bachelor cs s2 2026\\distributive development\\librarymanagementsystem\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|d:\\distributed development\\librarymanagementsystem_librahub_features_access_api_branchswitch\\librarymanagementsystem_librahub_features_access_api_branchswitch\\librarymanagementsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E4E7692D-7697-29B1-0BCC-078270F13D10}|LibraryManagementSystem.csproj|solutionrelative:librarymanagementsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,57 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Views\\Search\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Search\\Index.cshtml",
-              "ToolTip": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Views\\Search\\Index.cshtml",
-              "RelativeToolTip": "Views\\Search\\Index.cshtml",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAwwFUAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-10T04:20:09.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Models\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "Models\\ApplicationUser.cs",
-              "ToolTip": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Models\\ApplicationUser.cs",
-              "RelativeToolTip": "Models\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
+              "Title": "Item.cs",
+              "DocumentMoniker": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "Models\\Item.cs",
+              "ToolTip": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Models\\Item.cs",
+              "RelativeToolTip": "Models\\Item.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwCEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T05:39:40.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-09T05:14:21.164Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LibraryDbContext.cs",
-              "DocumentMoniker": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryDbContext.cs",
-              "RelativeDocumentMoniker": "LibraryDbContext.cs",
-              "ToolTip": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\LibraryDbContext.cs",
-              "RelativeToolTip": "LibraryDbContext.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAUwBAAAAAfAAAAAAAAAA==",
+              "Title": "BorrowRecord.cs",
+              "DocumentMoniker": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Models\\BorrowRecord.cs",
+              "RelativeDocumentMoniker": "Models\\BorrowRecord.cs",
+              "ToolTip": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Models\\BorrowRecord.cs",
+              "RelativeToolTip": "Models\\BorrowRecord.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T05:31:25.055Z"
+              "WhenOpened": "2026-10-09T05:13:57.548Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "D:\\Bachelor CS S2 2026\\Distributive Development\\LibraryManagementSystem\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "Title": "LibraryManagementSystem.csproj",
+              "DocumentMoniker": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj",
+              "RelativeDocumentMoniker": "LibraryManagementSystem.csproj",
+              "ToolTip": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem.csproj",
+              "RelativeToolTip": "LibraryManagementSystem.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-09T05:13:41.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Controllers\\ManagerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ManagerController.cs",
+              "ToolTip": "D:\\Distributed Development\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\\Controllers\\ManagerController.cs",
+              "RelativeToolTip": "Controllers\\ManagerController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAABYAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T05:31:19.46Z"
+              "WhenOpened": "2026-10-09T05:10:36.996Z",
+              "EditorCaption": ""
             }
           ]
         }

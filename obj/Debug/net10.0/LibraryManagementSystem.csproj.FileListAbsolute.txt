@@ -1,256 +1,275 @@
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\appsettings.Development.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\appsettings.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.staticwebassets.runtime.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.staticwebassets.endpoints.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.exe
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.deps.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.runtimeconfig.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\LibraryManagementSystem.pdb
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Azure.Core.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Azure.Identity.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Humanizer.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Build.Framework.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Data.SqlClient.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Data.Sqlite.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Identity.Client.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Identity.Client.Broker.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Identity.Client.Extensions.Msal.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.Identity.Client.NativeInterop.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.SqlServer.Server.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Mono.TextTemplating.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\Newtonsoft.Json.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\SQLitePCLRaw.batteries_v2.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\SQLitePCLRaw.core.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\SQLitePCLRaw.provider.e_sqlite3.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.ClientModel.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.CodeDom.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Composition.AttributedModel.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Composition.Convention.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Composition.Hosting.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Composition.Runtime.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Composition.TypedParts.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Configuration.ConfigurationManager.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Memory.Data.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\System.Security.Cryptography.ProtectedData.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\cs\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\de\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\es\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\fr\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\it\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ja\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ko\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pl\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\pt-BR\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\ru\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\tr\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-x64\native\libmsalruntime.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\osx-arm64\native\msalruntime_arm64.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\osx-x64\native\msalruntime.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-arm64\native\msalruntime_arm64.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x64\native\msalruntime.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x86\native\msalruntime_x86.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\browser-wasm\nativeassets\net9.0\e_sqlite3.a
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-arm\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-arm64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-armel\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-mips64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-musl-riscv64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-riscv64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-s390x\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-x64\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\linux-x86\native\libe_sqlite3.so
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-arm64\native\e_sqlite3.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.csproj.AssemblyReference.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\rpswa.dswa.cache.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.AssemblyInfoInputs.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.AssemblyInfo.cs
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.csproj.CoreCompileInputs.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.MvcApplicationPartsAssemblyInfo.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.RazorAssemblyInfo.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.RazorAssemblyInfo.cs
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\rjimswa.dswa.cache.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\scopedcss\bundle\LibraryManagementSystem.styles.css
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\wadqovfpf4-{0}-b9sayid5wm-b9sayid5wm.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\xcjc30fb65-{0}-61n19gt1b8-61n19gt1b8.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\ce6dsg7zx7-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\v6rmf15oqo-{0}-bqjiyaj88i-bqjiyaj88i.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\nzyz2gt15u-{0}-c2jlpeoesf-c2jlpeoesf.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\h3lve93v4k-{0}-erw9l3u2r3-erw9l3u2r3.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\0dnd6psr47-{0}-aexeepp0ev-aexeepp0ev.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\48q58uaplf-{0}-d7shbmvgxk-d7shbmvgxk.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\6vql7cp1oz-{0}-ausgxo2sd3-ausgxo2sd3.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\7kch590mfu-{0}-k8d9w2qqmf-k8d9w2qqmf.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\w6nmvf7lpo-{0}-cosvhxvwiu-cosvhxvwiu.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\e0h06qe7w4-{0}-ub07r2b239-ub07r2b239.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\slg1z5iqx4-{0}-fvhpjtyr6v-fvhpjtyr6v.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\wbai1znijq-{0}-b7pk76d08c-b7pk76d08c.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\hn1y70nbg6-{0}-fsbi9cje9m-fsbi9cje9m.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\61sy35llcz-{0}-rzd6atqjts-rzd6atqjts.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\ubev7xf9rx-{0}-ee0r1s7dh0-ee0r1s7dh0.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\9by66a9cyt-{0}-dxx9fxp4il-dxx9fxp4il.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\xki0llcl5u-{0}-jd9uben2k1-jd9uben2k1.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\5sjkd8v3af-{0}-khv3u5hwcm-khv3u5hwcm.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\sttq7lfqij-{0}-r4e9w2rdcm-r4e9w2rdcm.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\ylogtw3agy-{0}-lcd1t2u6c8-lcd1t2u6c8.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\w1bhk93y9c-{0}-c2oey78nd0-c2oey78nd0.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\8jtgloskcl-{0}-tdbxkamptv-tdbxkamptv.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\rr1eza2l7n-{0}-j5mq2jizvt-j5mq2jizvt.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\k3cod5jedh-{0}-06098lyss8-06098lyss8.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\e6yxhs526m-{0}-nvvlpmu67g-nvvlpmu67g.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\095a2bgfu7-{0}-s35ty4nyc5-s35ty4nyc5.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\yyoj9x95m1-{0}-pj5nd1wqec-pj5nd1wqec.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\6kyzd4v9xt-{0}-46ein0sx1k-46ein0sx1k.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\nenagptr5c-{0}-v0zj4ognzu-v0zj4ognzu.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\vx5w6hvkqh-{0}-37tfw0ft22-37tfw0ft22.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\uncllkyx1o-{0}-hrwsygsryq-hrwsygsryq.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\mka8qzt1nx-{0}-pk9g2wxc8p-pk9g2wxc8p.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\i59bag74gu-{0}-ft3s53vfgj-ft3s53vfgj.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\g0wg1vd260-{0}-6cfz1n2cew-6cfz1n2cew.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\p0yn34gy1n-{0}-6pdc2jztkx-6pdc2jztkx.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\6pxspyl0xn-{0}-493y06b0oq-493y06b0oq.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\3tsqz164v5-{0}-iovd86k7lj-iovd86k7lj.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\rn81bfpk4y-{0}-vr1egmr9el-vr1egmr9el.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\01j4jo0oxh-{0}-kbrnm935zg-kbrnm935zg.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\ui09ozhqhr-{0}-jj8uyg4cgr-jj8uyg4cgr.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\fvfnxdsuoz-{0}-y7v9cxd14o-y7v9cxd14o.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\h1yfpdlr7c-{0}-notf2xhcfb-notf2xhcfb.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\4qzk46gtft-{0}-h1s4sie4z3-h1s4sie4z3.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\veoxs9fwgw-{0}-63fj8s7r0e-63fj8s7r0e.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\p2mm8jc0id-{0}-0j3bgjxly4-0j3bgjxly4.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\iwsvs23gh5-{0}-4v8eqarkd7-4v8eqarkd7.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\m090teew8n-{0}-356vix0kms-356vix0kms.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\4it3lyohil-{0}-83jwlth58m-83jwlth58m.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\tvm47nswoy-{0}-mrlpezrjn3-mrlpezrjn3.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\jf42z3gydw-{0}-lzl9nlhx6b-lzl9nlhx6b.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\zc11wa78ho-{0}-ag7o75518u-ag7o75518u.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\h18jw8233k-{0}-x0q3zqp4vz-x0q3zqp4vz.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\r0zlb9exxs-{0}-0i3buxo5is-0i3buxo5is.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\e5czglvqc0-{0}-o1o13a6vjx-o1o13a6vjx.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\nyompuke09-{0}-ttgo8qnofa-ttgo8qnofa.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\cp8dznmfec-{0}-2z0ns9nrw6-2z0ns9nrw6.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\ctrjexz30o-{0}-muycvpuwrr-muycvpuwrr.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\hd7dxbmtj2-{0}-87fc7y1x7t-87fc7y1x7t.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\hypctmtzul-{0}-mlv21k5csn-mlv21k5csn.gz
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\staticwebassets.build.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\staticwebassets.build.json.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\staticwebassets.development.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\staticwebassets.build.endpoints.json
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\swae.build.ex.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryM.4D120AE7.Up2Date
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\refint\LibraryManagementSystem.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.pdb
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\LibraryManagementSystem.genruntimeconfig.cache
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\ref\LibraryManagementSystem.dll
-D:\Bachelor CS S2 2026\Distributive Development\LibraryManagementSystem\obj\Debug\net10.0\compressed\y8q87p7n4e-{0}-k2c0erptgu-k2c0erptgu.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\appsettings.Development.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\appsettings.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\QuestPDF.Fonts.Lato.br
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.staticwebassets.runtime.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.staticwebassets.endpoints.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.exe
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Azure.Core.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Azure.Identity.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Humanizer.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Build.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Build.Framework.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Build.Tasks.Core.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Build.Utilities.Core.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Data.SqlClient.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Data.Sqlite.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Identity.Client.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.NET.StringTools.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Microsoft.SqlServer.Server.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Mono.TextTemplating.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\Newtonsoft.Json.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\QuestPDF.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\SQLitePCLRaw.batteries_v2.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\SQLitePCLRaw.core.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.ClientModel.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.CodeDom.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Composition.AttributedModel.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Composition.Convention.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Composition.Hosting.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Composition.Runtime.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Composition.TypedParts.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Configuration.ConfigurationManager.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Formats.Nrbf.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Memory.Data.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Reflection.MetadataLoadContext.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Resources.Extensions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Security.Cryptography.ProtectedData.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Security.Permissions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\System.Windows.Extensions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\cs\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\de\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\es\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\fr\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\it\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ja\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ko\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pl\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\pt-BR\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\ru\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\tr\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-arm64\native\libQuestPdfSkia.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-arm64\native\libqpdf.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libQuestPdfSkia.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libqpdf.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-x64\native\libQuestPdfSkia.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-x64\native\libqpdf.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-arm64\native\libQuestPdfSkia.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-arm64\native\libqpdf.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-x64\native\libQuestPdfSkia.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-x64\native\libqpdf.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-arm64\native\QuestPdfSkia.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-arm64\native\qpdf.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x64\native\QuestPdfSkia.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x64\native\qpdf.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x86\native\QuestPdfSkia.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x86\native\qpdf.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\browser-wasm\nativeassets\net9.0\e_sqlite3.a
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-riscv64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-riscv64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\runtimes\win\lib\net9.0\System.Windows.Extensions.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.csproj.AssemblyReference.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.AssemblyInfoInputs.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.AssemblyInfo.cs
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.csproj.CoreCompileInputs.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.MvcApplicationPartsAssemblyInfo.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.RazorAssemblyInfo.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.RazorAssemblyInfo.cs
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\rjimswa.dswa.cache.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\scopedcss\bundle\LibraryManagementSystem.styles.css
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\xcjc30fb65-{0}-61n19gt1b8-61n19gt1b8.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\ce6dsg7zx7-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\v6rmf15oqo-{0}-bqjiyaj88i-bqjiyaj88i.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\nzyz2gt15u-{0}-c2jlpeoesf-c2jlpeoesf.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\h3lve93v4k-{0}-erw9l3u2r3-erw9l3u2r3.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\0dnd6psr47-{0}-aexeepp0ev-aexeepp0ev.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\48q58uaplf-{0}-d7shbmvgxk-d7shbmvgxk.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\6vql7cp1oz-{0}-ausgxo2sd3-ausgxo2sd3.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\7kch590mfu-{0}-k8d9w2qqmf-k8d9w2qqmf.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\w6nmvf7lpo-{0}-cosvhxvwiu-cosvhxvwiu.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\e0h06qe7w4-{0}-ub07r2b239-ub07r2b239.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\slg1z5iqx4-{0}-fvhpjtyr6v-fvhpjtyr6v.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\wbai1znijq-{0}-b7pk76d08c-b7pk76d08c.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\hn1y70nbg6-{0}-fsbi9cje9m-fsbi9cje9m.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\61sy35llcz-{0}-rzd6atqjts-rzd6atqjts.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\ubev7xf9rx-{0}-ee0r1s7dh0-ee0r1s7dh0.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\9by66a9cyt-{0}-dxx9fxp4il-dxx9fxp4il.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\xki0llcl5u-{0}-jd9uben2k1-jd9uben2k1.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\5sjkd8v3af-{0}-khv3u5hwcm-khv3u5hwcm.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\sttq7lfqij-{0}-r4e9w2rdcm-r4e9w2rdcm.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\ylogtw3agy-{0}-lcd1t2u6c8-lcd1t2u6c8.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\w1bhk93y9c-{0}-c2oey78nd0-c2oey78nd0.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\8jtgloskcl-{0}-tdbxkamptv-tdbxkamptv.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\rr1eza2l7n-{0}-j5mq2jizvt-j5mq2jizvt.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\k3cod5jedh-{0}-06098lyss8-06098lyss8.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\e6yxhs526m-{0}-nvvlpmu67g-nvvlpmu67g.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\095a2bgfu7-{0}-s35ty4nyc5-s35ty4nyc5.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\yyoj9x95m1-{0}-pj5nd1wqec-pj5nd1wqec.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\6kyzd4v9xt-{0}-46ein0sx1k-46ein0sx1k.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\nenagptr5c-{0}-v0zj4ognzu-v0zj4ognzu.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\vx5w6hvkqh-{0}-37tfw0ft22-37tfw0ft22.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\uncllkyx1o-{0}-hrwsygsryq-hrwsygsryq.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\mka8qzt1nx-{0}-pk9g2wxc8p-pk9g2wxc8p.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\i59bag74gu-{0}-ft3s53vfgj-ft3s53vfgj.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\g0wg1vd260-{0}-6cfz1n2cew-6cfz1n2cew.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\p0yn34gy1n-{0}-6pdc2jztkx-6pdc2jztkx.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\6pxspyl0xn-{0}-493y06b0oq-493y06b0oq.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\3tsqz164v5-{0}-iovd86k7lj-iovd86k7lj.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\rn81bfpk4y-{0}-vr1egmr9el-vr1egmr9el.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\01j4jo0oxh-{0}-kbrnm935zg-kbrnm935zg.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\ui09ozhqhr-{0}-jj8uyg4cgr-jj8uyg4cgr.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\fvfnxdsuoz-{0}-y7v9cxd14o-y7v9cxd14o.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\h1yfpdlr7c-{0}-notf2xhcfb-notf2xhcfb.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\4qzk46gtft-{0}-h1s4sie4z3-h1s4sie4z3.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\veoxs9fwgw-{0}-63fj8s7r0e-63fj8s7r0e.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\p2mm8jc0id-{0}-0j3bgjxly4-0j3bgjxly4.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\y8q87p7n4e-{0}-k2c0erptgu-k2c0erptgu.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\iwsvs23gh5-{0}-4v8eqarkd7-4v8eqarkd7.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\m090teew8n-{0}-356vix0kms-356vix0kms.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\4it3lyohil-{0}-83jwlth58m-83jwlth58m.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\tvm47nswoy-{0}-mrlpezrjn3-mrlpezrjn3.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\jf42z3gydw-{0}-lzl9nlhx6b-lzl9nlhx6b.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\zc11wa78ho-{0}-ag7o75518u-ag7o75518u.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\h18jw8233k-{0}-x0q3zqp4vz-x0q3zqp4vz.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\r0zlb9exxs-{0}-0i3buxo5is-0i3buxo5is.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\e5czglvqc0-{0}-o1o13a6vjx-o1o13a6vjx.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\nyompuke09-{0}-ttgo8qnofa-ttgo8qnofa.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\cp8dznmfec-{0}-2z0ns9nrw6-2z0ns9nrw6.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\ctrjexz30o-{0}-muycvpuwrr-muycvpuwrr.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\hd7dxbmtj2-{0}-87fc7y1x7t-87fc7y1x7t.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\hypctmtzul-{0}-mlv21k5csn-mlv21k5csn.gz
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\staticwebassets.build.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\staticwebassets.build.json.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\staticwebassets.development.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\swae.build.ex.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryM.4D120AE7.Up2Date
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\refint\LibraryManagementSystem.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.pdb
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.deps.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.runtimeconfig.json
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\bin\Debug\net10.0\LibraryManagementSystem.pdb
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\LibraryManagementSystem.genruntimeconfig.cache
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\ref\LibraryManagementSystem.dll
+D:\Distributed Development\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\LibraryManagementSystem_LibraHub_Features_Access_API_BranchSwitch\obj\Debug\net10.0\compressed\wadqovfpf4-{0}-apzx7iycx7-apzx7iycx7.gz
