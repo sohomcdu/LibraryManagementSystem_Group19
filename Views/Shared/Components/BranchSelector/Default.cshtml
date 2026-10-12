@@ -1,0 +1,11 @@
+@model LibraryManagementSystem.Models.BranchSelectorViewModel
+@if (Model.Branches.Count > 0)
+{
+<form asp-controller="Branch" asp-action="Switch" method="post" class="d-flex align-items-center gap-2 lh-branch-switch">
+    <label for="branchSwitch" class="small text-light d-none d-xxl-inline">Branch</label>
+    <select id="branchSwitch" name="branchCode" class="form-select form-select-sm" aria-label="Current branch" onchange="this.form.submit()">
+      @foreach (var branch in Model.Branches) { <option value="@branch.Code" selected="@(branch.Code == Model.SelectedCode)">@branch.Name</option> }
+    </select>
+    <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+</form>
+}

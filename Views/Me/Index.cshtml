@@ -1,0 +1,34 @@
+@model LibraryManagementSystem.Models.MeDashboardViewModel
+@{
+    ViewData["Title"] = "My Library";
+}
+<section class="me-hero">
+    <div><span class="lh-eyebrow">Your library, in one place</span>
+        <h1>Hello, @Model.Borrower.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()!</h1>
+        <p>Keep track of loans, holds and library updates.</p>
+    </div>
+</section>
+<section class="me-stat-grid" aria-label="Account summary">
+    <article class="me-stat"><span class="me-stat-icon loans-icon">▤</span><span class="me-stat-label">Active loans</span><strong>@Model.ActiveLoans.Count</strong><small>Items currently borrowed</small></article>
+    <article class="me-stat"><span class="me-stat-icon holds-icon">◷</span><span class="me-stat-label">Active holds</span><strong>@Model.Reservations.Count</strong><small>Waiting or ready for pickup</small></article>
+    <article class="me-stat"><span class="me-stat-icon overdue-icon">!</span><span class="me-stat-label">Overdue items</span><strong>@Model.OverdueLoanCount</strong><small>Check return dates below</small></article>
+    <article class="me-stat"><span class="me-stat-icon fines-icon">$</span><span class="me-stat-label">Estimated outstanding</span><strong>@Model.EstimatedOutstandingFines.ToString("C")</strong><small>Estimate at $1.00 per overdue day</small></article>
+</section>
+<div class="me-content-grid">
+    <section class="me-panel">
+        <div class="me-panel-heading"><div><span class="lh-eyebrow">Borrowing</span><h2>My active loans</h2></div><span class="result-count">@Model.ActiveLoans.Count items</span></div>
+        @if (!Model.ActiveLoans.Any()) { <div class="me-empty"><span>▤</span><strong>No active loans yet</strong><p>Find something interesting in the catalogue.</p><a asp-controller="Search" asp-action="Index">Explore the collection →</a></div> }
+        else { <div class="me-list">@foreach (var loan in Model.ActiveLoans) { var overdue = loan.DueDate < DateTime.Now; <article class="me-list-row"><span class="me-list-icon">▤</span><div class="me-list-main"><strong>@(loan.Item?.Name ?? "Library item")</strong><small>@(loan.Item?.Branch?.Name ?? "Branch not assigned") · Borrowed @loan.BorrowDate.ToString("d MMM yyyy")</small></div><div class="me-list-end"><span class="status-pill @(overdue ? "damaged" : "available")">@(overdue ? "Overdue" : "Due")</span><strong>@loan.DueDate.ToString("d MMM yyyy")</strong></div></article> } </div> }
+    </section>
+    <section class="me-panel">
+        <div class="me-panel-heading"><div><span class="lh-eyebrow">Queue status</span><h2>My holds</h2></div><a class="clear-filters" asp-controller="Reservation" asp-action="Index">View all</a></div>
+        @if (!Model.Reservations.Any()) { <div class="me-empty"><span>◷</span><strong>No active holds</strong><p>Join a waitlist if an item is borrowed.</p></div> }
+        else { <div class="me-list">@foreach (var hold in Model.Reservations) { <article class="me-list-row"><span class="me-list-icon hold">◷</span><div class="me-list-main"><strong>@(hold.Item?.Name ?? "Library item")</strong><small>Requested @hold.RequestedDate.ToString("d MMM yyyy")</small></div><div class="me-list-end"><span class="status-pill @(hold.Status == "Ready" ? "available" : "reserved")">@hold.Status</span>@if (hold.PickupExpiresAt.HasValue) { <small>Collect by @hold.PickupExpiresAt.Value.ToString("d MMM")</small> }</div></article> } </div> }
+    </section>
+</div>
+<section class="me-panel me-notifications-panel">
+    <div class="me-panel-heading"><div><span class="lh-eyebrow">Latest updates</span><h2>Notifications</h2></div><span class="result-count">@Model.Notifications.Count recent</span></div>
+    @if (!Model.Notifications.Any()) { <p class="text-muted mb-0">No notifications have been logged for your account yet.</p> }
+    else { <div class="me-list">@foreach (var note in Model.Notifications) { <article class="me-list-row"><span class="me-list-icon notification">✉</span><div class="me-list-main"><strong>@note.Subject</strong><small>@note.Body</small></div><div class="me-list-end"><span class="status-pill other">@note.Type</span><small>@note.SentAt.ToString("d MMM, h:mm tt")</small></div></article> }</div> }
+</section>
+<p class="me-fine-note">Outstanding fine estimates use the same daily rate as the borrowing desk. Staff-confirmed charges in your borrowing record take precedence.</p>

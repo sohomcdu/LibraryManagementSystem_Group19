@@ -1,0 +1,50 @@
+@model KioskActivationViewModel
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment HostEnvironment
+@{ ViewData["Title"] = "Activate kiosk"; }
+<div class="row justify-content-center py-4">
+  <div class="col-md-6 col-lg-5">
+    <div class="card p-4 p-lg-5">
+      <div class="lh-eyebrow mb-2">Shared terminal security</div>
+      <h1 class="h2">Activate this kiosk</h1>
+      <p class="text-secondary">A registered kiosk-device account activates the shared terminal. Visitors can browse the catalogue without activating the device; the device credentials are not a patron login.</p>
+      <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+      <form asp-action="Activate" method="post">
+        <label asp-for="Email" class="form-label">Device email</label>
+        <input asp-for="Email" class="form-control form-control-lg" autocomplete="username" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <label asp-for="Password" class="form-label mt-3">Device password</label>
+        <input asp-for="Password" class="form-control form-control-lg" type="password" autocomplete="current-password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <button class="btn btn-primary btn-lg w-100 mt-4" type="submit"><span class="lh-icon">▣</span>Activate kiosk</button>
+      </form>
+      @if (HostEnvironment.IsDevelopment())
+      {
+        <section class="alert alert-info mt-4 mb-0" aria-labelledby="demoKioskHeading">
+          <h2 id="demoKioskHeading" class="h6 fw-bold">Demo kiosk accounts · Development only</h2>
+          <p class="small mb-2">Choose a branch account to fill the activation form. Password for each device: <code>Password123!</code></p>
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary demo-kiosk-fill" data-email="kiosk.central@librahub.local">Central Library · kiosk.central@librahub.local</button>
+            <button type="button" class="btn btn-sm btn-outline-primary demo-kiosk-fill" data-email="kiosk.northside@librahub.local">Northside Branch · kiosk.northside@librahub.local</button>
+            <button type="button" class="btn btn-sm btn-outline-primary demo-kiosk-fill" data-email="kiosk.riverside@librahub.local">Riverside Branch · kiosk.riverside@librahub.local</button>
+          </div>
+        </section>
+      }
+      <div class="d-flex flex-wrap gap-3 mt-3"><a asp-controller="Search" asp-action="Index">Browse catalogue</a><a asp-controller="Home" asp-action="Index">← Return to library site</a></div>
+    </div>
+
+    @section Scripts {
+      @if (HostEnvironment.IsDevelopment())
+      {
+        <script>
+          document.querySelectorAll(".demo-kiosk-fill").forEach(function (button) {
+              button.addEventListener("click", function () {
+                  document.getElementById("Email").value = button.dataset.email;
+                  document.getElementById("Password").value = "Password123!";
+                  document.getElementById("Password").focus();
+              });
+          });
+        </script>
+      }
+    }
+  </div>
+</div>

@@ -1,0 +1,94 @@
+@*
+    Login form (AccountController.Login). Works for every role - Admin,
+    Reception, Manager, and Member all sign in through this same page;
+    the role attached to their account determines what they can access
+    afterward via [Authorize(Roles = "...")] on each controller.
+*@
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment HostEnvironment
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+      <section class="auth-card">
+        <div class="auth-heading">
+            <span class="auth-icon" aria-hidden="true">↗</span>
+            <span class="lh-eyebrow">Welcome back</span>
+            <h1>Sign in to your library</h1>
+            <p>Use your library account details to continue to your personal library.</p>
+        </div>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger auth-feedback" role="alert" aria-live="assertive" tabindex="-1">
+                <strong>We couldn't sign you in.</strong>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+
+        <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="auth-form">
+            <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email address</label>
+                <input id="loginEmail" type="email" name="email" value="@ViewData["Email"]" class="form-control" autocomplete="email" inputmode="email" autocapitalize="none" required autofocus aria-describedby="loginEmailHint" />
+                <div id="loginEmailHint" class="form-text">Use the email address linked to your library account.</div>
+            </div>
+            <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <div class="auth-password-field">
+                    <input id="loginPassword" type="password" name="password" class="form-control" autocomplete="current-password" required />
+                    <button type="button" class="auth-password-toggle" aria-controls="loginPassword" aria-label="Show password" aria-pressed="false">Show</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit">Sign in</button>
+        </form>
+        @if (HostEnvironment.IsDevelopment())
+        {
+            <section class="alert alert-info mt-4 mb-0" aria-labelledby="demoAccountsHeading">
+                <h2 id="demoAccountsHeading" class="h6 fw-bold">Demo accounts · Development only</h2>
+                <p class="small mb-2">Choose an account to fill the sign-in form. These shared demo credentials are for local testing only.</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless align-middle mb-2">
+                        <thead>
+                            <tr><th scope="col">Role</th><th scope="col">Email</th><th scope="col">Password</th><th scope="col"><span class="visually-hidden">Action</span></th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Member</th><td><code>member@library.local</code></td><td><code>Member@12345</code></td><td><button type="button" class="btn btn-sm btn-outline-primary demo-account-fill" data-email="member@library.local" data-password="Member@12345">Use</button></td></tr>
+                            <tr><th scope="row">Reception</th><td><code>reception@library.local</code></td><td><code>Reception@12345</code></td><td><button type="button" class="btn btn-sm btn-outline-primary demo-account-fill" data-email="reception@library.local" data-password="Reception@12345">Use</button></td></tr>
+                            <tr><th scope="row">Admin</th><td><code>admin@library.local</code></td><td><code>Admin@12345</code></td><td><button type="button" class="btn btn-sm btn-outline-primary demo-account-fill" data-email="admin@library.local" data-password="Admin@12345">Use</button></td></tr>
+                            <tr><th scope="row">Manager</th><td><code>manager@library.local</code></td><td><code>Manager@12345</code></td><td><button type="button" class="btn btn-sm btn-outline-primary demo-account-fill" data-email="manager@library.local" data-password="Manager@12345">Use</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        }
+        <div class="auth-switch">New to the library? <a asp-controller="Account" asp-action="Register">Create an account</a></div>
+      </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll(".auth-password-toggle").forEach(function (button) {
+            button.addEventListener("click", function () {
+                const password = document.getElementById(button.getAttribute("aria-controls"));
+                const showing = password.type === "password";
+                password.type = showing ? "text" : "password";
+                button.textContent = showing ? "Hide" : "Show";
+                button.setAttribute("aria-label", showing ? "Hide password" : "Show password");
+                button.setAttribute("aria-pressed", String(showing));
+            });
+        });
+
+        document.querySelectorAll(".demo-account-fill").forEach(function (button) {
+            button.addEventListener("click", function () {
+                document.getElementById("loginEmail").value = button.dataset.email;
+                document.getElementById("loginPassword").value = button.dataset.password;
+                document.getElementById("loginEmail").focus();
+            });
+        });
+    </script>
+}

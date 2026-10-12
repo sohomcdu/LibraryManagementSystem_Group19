@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+<section class="home-hero">
+    <div class="home-hero-copy">
+        <span class="lh-eyebrow">YOUR LIBRARY, YOUR WAY</span>
+        <h1>Welcome to<br /><em>LibraHub.</em></h1>
+        <p>Looking for a good read, new music, or something fun? Search our collection and discover what your library has to offer.</p>
+        <form class="home-search" asp-controller="Search" asp-action="Index" method="get" role="search">
+            <label class="visually-hidden" for="homeCatalogueQuery">Search the catalogue</label>
+            <div class="home-search-field"><span aria-hidden="true">⌕</span><input id="homeCatalogueQuery" type="search" name="query" class="form-control" placeholder="Search books, music and more" /></div>
+            <button type="submit" class="btn btn-primary">Search catalogue</button>
+        </form>
+        <div class="home-hero-actions"><span class="home-browse-note">Browse freely—no account needed.</span></div>
+    </div>
+</section>
+<section class="home-section-heading"><div><span class="lh-eyebrow">Start exploring</span><h2>More than bookshelves.</h2><p>One catalogue, several collections, and helpful tools for every visitor.</p></div></section>
+<div class="home-feature-grid">
+    <a asp-controller="Search" asp-action="Index" asp-route-itemType="Book" class="home-feature home-feature-book"><span class="home-feature-icon">▤</span><div><h3>Books</h3><p>Stories, learning and new perspectives.</p></div><span class="home-feature-arrow">↗</span></a>
+    <a asp-controller="Search" asp-action="Index" asp-route-itemType="Music" class="home-feature home-feature-music"><span class="home-feature-icon">♫</span><div><h3>Music</h3><p>Discover artists and recordings.</p></div><span class="home-feature-arrow">↗</span></a>
+    <a asp-controller="Search" asp-action="Index" asp-route-itemType="Toy" class="home-feature home-feature-toy"><span class="home-feature-icon">♧</span><div><h3>Toys & games</h3><p>Play, puzzles and family fun.</p></div><span class="home-feature-arrow">↗</span></a>
+</div>
+<section class="home-member-callout">
+    <div>
+        <span class="lh-eyebrow">Make it yours</span>
+        <h2>Keep your library life in sync.</h2>
+        <p>Members can request available items, join waitlists and view current loans and notifications.</p>
+    </div>
+    @if (User.IsInRole("Member"))
+    {
+        <div class="home-member-actions"><a asp-controller="Me" asp-action="Index" class="btn btn-primary">Open My Library →</a></div>
+    }
+    else if (User.IsInRole("Admin") || User.IsInRole("Reception"))
+    {
+        <div class="home-member-actions"><a asp-controller="Staff" asp-action="Index" class="btn btn-primary">@(User.IsInRole("Admin") ? "Open administration →" : "Open Reception workspace →")</a></div>
+    }
+    else if (User.IsInRole("Manager"))
+    {
+        <div class="home-member-actions"><a asp-controller="Manager" asp-action="Index" class="btn btn-primary">Open reports →</a></div>
+    }
+</section>

@@ -1,0 +1,119 @@
+@model LibraryManagementSystem.Models.TransferIndexViewModel
+@{
+    ViewData["Title"] = "Branch Transfers";
+}
+
+<section class="lh-section-head d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <div>
+        <div class="lh-eyebrow">Branch circulation</div>
+        <h1>Branch transfers</h1>
+        <p>Request category transfers and track manager decisions and items in transit.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Request a transfer</a>
+</section>
+
+@if (TempData["Success"] is string success)
+{
+    <div class="alert alert-success" role="status">@success</div>
+}
+@if (TempData["Error"] is string error)
+{
+    <div class="alert alert-danger" role="alert">@error</div>
+}
+
+<h2 class="h4 mt-4">Transfer requests</h2>
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead><tr><th>Category</th><th>Quantity</th><th>From</th><th>To</th><th>Requested</th><th>Requested by</th><th>Status</th></tr></thead>
+        <tbody>
+            @if (Model.Requests.Count == 0)
+            {
+                <tr><td colspan="7" class="text-secondary">No transfer requests yet.</td></tr>
+            }
+            @foreach (var request in Model.Requests)
+            {
+                <tr>
+                    <td>
+                        @(request.ItemCategory switch { "Book" => "Books", "Music" => "Music", "Toy" => "Toys", _ => request.ItemCategory })
+                        @if (request.RequestedItems.Count > 0)
+                        {
+                            <ul class="small mb-0 ps-3 mt-1">
+                                @foreach (var selected in request.RequestedItems)
+                                {
+                                    <li>@(selected.Item?.Name ?? $"Item ID {selected.ItemId}") — @(selected.Item?.LibraryCode ?? "N/A")</li>
+                                }
+                            </ul>
+                        }
+                    </td>
+                    <td>@request.Quantity</td>
+                    <td>@(request.FromBranch?.Name ?? "N/A")</td>
+                    <td>@(request.ToBranch?.Name ?? "N/A")</td>
+                    <td>@request.RequestedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@request.RequestedBy</td>
+                    <td>
+                        @if (request.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">Awaiting Manager</span>
+                        }
+                        else if (request.Status == "Approved")
+                        {
+                            <span class="badge bg-success">Approved</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(request.ReviewedBy))
+                        {
+                            <small class="d-block text-secondary">by @request.ReviewedBy</small>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(request.DecisionNote))
+                        {
+                            <small class="d-block text-secondary">@request.DecisionNote</small>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h2 class="h4 mt-5">Items in transit</h2>
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead><tr><th>Item</th><th>From</th><th>To</th><th>Started</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+            @if (Model.Transfers.Count == 0)
+            {
+                <tr><td colspan="6" class="text-secondary">No approved transfers are in transit.</td></tr>
+            }
+            @foreach (var transfer in Model.Transfers)
+            {
+                <tr>
+                    <td>@(transfer.Item?.Name ?? "N/A")</td>
+                    <td>@(transfer.FromBranch?.Code ?? "N/A")</td>
+                    <td>@(transfer.ToBranch?.Code ?? "N/A")</td>
+                    <td>@transfer.InitiatedDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        @if (transfer.Status == "InTransit")
+                        {
+                            <span class="badge bg-warning text-dark">In transit</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Received (@transfer.ReceivedDate?.ToString("yyyy-MM-dd"))</span>
+                        }
+                    </td>
+                    <td>
+                        @if (transfer.Status == "InTransit")
+                        {
+                            <form asp-action="Receive" asp-route-id="@transfer.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-outline-success">Mark received</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
