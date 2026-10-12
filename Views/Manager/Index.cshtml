@@ -6,47 +6,120 @@
 }
 
 <section class="manager-dashboard-hero">
-    <div>
+    <div class="manager-dashboard-heading">
         <span class="lh-eyebrow">Library overview</span>
         <h1>Manager dashboard</h1>
-        <p>Inventory, borrowing, and branch performance at a glance.</p>
+        <p>A clear view of branch activity, inventory, and open work.</p>
     </div>
-    <div class="manager-branch-context">
-        <span>Selected branch</span>
-        <strong>@Model.BranchName</strong>
-        @if (!string.IsNullOrWhiteSpace(Model.BranchCode))
-        {
-            <small>@Model.BranchCode · Change branch using the selector above</small>
-        }
+    <div class="manager-dashboard-context">
+        <div class="manager-context-item">
+            <span>Selected branch</span>
+            <strong>@Model.BranchName</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.BranchCode))
+            {
+                <small>@Model.BranchCode · Change using the branch selector</small>
+            }
+        </div>
+        <div class="manager-context-item">
+            <span>Reporting period</span>
+            <strong>Current snapshot</strong>
+            <small>Borrowing trend: @Model.TrendStartDate.ToString("MMM yyyy")–@DateTime.Today.ToString("MMM yyyy")</small>
+        </div>
     </div>
+    <a asp-action="Workload" class="btn btn-outline-primary manager-report-link">Workload &amp; backlog report <span aria-hidden="true">→</span></a>
 </section>
 
 <section class="manager-kpi-grid" aria-label="Selected branch key statistics">
-    <article class="manager-kpi">
-        <span class="manager-kpi-label">Total inventory</span>
-        <strong>@Model.TotalItems</strong>
-        <small>Items at @Model.BranchName</small>
+    <a class="manager-kpi manager-kpi-overdue" asp-action="Workload">
+        <span class="manager-kpi-label">Overdue loans</span>
+        <strong>@Model.OverdueBorrows</strong>
+        <small>Open the workload report →</small>
+    </a>
+    <a class="manager-kpi manager-kpi-transfers" asp-controller="Transfer" asp-action="Requests">
+        <span class="manager-kpi-label">Pending transfer requests</span>
+        <strong>@Model.PendingTransferRequests</strong>
+        <small>Waiting for your stock review →</small>
+    </a>
+    <article class="manager-kpi manager-kpi-borrowed">
+        <span class="manager-kpi-label">Currently borrowed</span>
+        <strong>@Model.BorrowedItems</strong>
+        <small>@Model.ActiveBorrows active loans</small>
     </article>
     <article class="manager-kpi manager-kpi-available">
         <span class="manager-kpi-label">Available</span>
         <strong>@Model.AvailableItems</strong>
         <small>@availableShare% of this branch's inventory</small>
     </article>
-    <article class="manager-kpi manager-kpi-borrowed">
-        <span class="manager-kpi-label">Currently borrowed</span>
-        <strong>@Model.BorrowedItems</strong>
-        <small>@Model.ActiveBorrows active loans</small>
+    <article class="manager-kpi">
+        <span class="manager-kpi-label">Total inventory</span>
+        <strong>@Model.TotalItems</strong>
+        <small>Items at @Model.BranchName</small>
     </article>
-    <article class="manager-kpi manager-kpi-overdue">
-        <span class="manager-kpi-label">Overdue loans</span>
-        <strong>@Model.OverdueBorrows</strong>
-        <small>Require follow-up</small>
-    </article>
-    <a class="manager-kpi manager-kpi-transfers" asp-controller="Transfer" asp-action="Requests">
-        <span class="manager-kpi-label">Pending transfer requests</span>
-        <strong>@Model.PendingTransferRequests</strong>
-        <small>Waiting for your stock review →</small>
-    </a>
+</section>
+
+<section class="manager-panel manager-attention-panel" aria-labelledby="attentionHeading">
+    <div class="manager-panel-heading">
+        <div>
+            <span class="lh-eyebrow">Priority follow-up</span>
+            <h2 id="attentionHeading">Needs attention</h2>
+        </div>
+        <a asp-action="Workload" class="manager-panel-link">Open workload report <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="manager-attention-grid">
+        <section class="manager-attention-group manager-attention-overdue" aria-labelledby="overdueHeading">
+            <div class="manager-attention-title">
+                <h3 id="overdueHeading">Overdue loans</h3>
+                <span class="manager-attention-count">@Model.OverdueBorrows</span>
+            </div>
+            @if (Model.OverdueLoanAttention.Count == 0)
+            {
+                <p class="manager-attention-empty">No overdue loans at this branch.</p>
+            }
+            else
+            {
+                <ul class="manager-attention-list">
+                    @foreach (var loan in Model.OverdueLoanAttention)
+                    {
+                        <li>
+                            <div><strong>@loan.Description</strong><small>@loan.Reference · Due @loan.Date.ToString("d MMM yyyy")</small></div>
+                            <span class="manager-age-badge is-overdue">@loan.AgeDays d overdue</span>
+                        </li>
+                    }
+                </ul>
+                @if (Model.OverdueBorrows > Model.OverdueLoanAttention.Count)
+                {
+                    <p class="manager-attention-more">Showing @Model.OverdueLoanAttention.Count of @Model.OverdueBorrows overdue loans.</p>
+                }
+            }
+        </section>
+
+        <section class="manager-attention-group manager-attention-transit" aria-labelledby="transitHeading">
+            <div class="manager-attention-title">
+                <h3 id="transitHeading">Transfers in transit over 3 days</h3>
+                <span class="manager-attention-count">@Model.AgingTransferCount</span>
+            </div>
+            @if (Model.AgingTransferAttention.Count == 0)
+            {
+                <p class="manager-attention-empty">No aging transfers at this branch.</p>
+            }
+            else
+            {
+                <ul class="manager-attention-list">
+                    @foreach (var transfer in Model.AgingTransferAttention)
+                    {
+                        <li>
+                            <div><strong>@transfer.Description</strong><small>@transfer.Reference · Started @transfer.Date.ToString("d MMM yyyy")</small></div>
+                            <span class="manager-age-badge is-transit">@transfer.AgeDays d in transit</span>
+                        </li>
+                    }
+                </ul>
+                @if (Model.AgingTransferCount > Model.AgingTransferAttention.Count)
+                {
+                    <p class="manager-attention-more">Showing @Model.AgingTransferAttention.Count of @Model.AgingTransferCount aging transfers.</p>
+                }
+            }
+        </section>
+    </div>
 </section>
 
 <div class="manager-dashboard-grid">
@@ -144,7 +217,7 @@
 
     <section class="manager-panel">
         <div class="manager-panel-heading">
-            <div><span class="lh-eyebrow">Six-month activity</span><h2>Borrowing trend</h2></div>
+            <div><span class="lh-eyebrow">Six-month activity</span><h2>Borrowing trend</h2><p class="manager-chart-caption">Items checked out per month</p></div>
             <span class="manager-panel-total">@Model.TotalBorrows all-time borrows</span>
         </div>
         <div class="manager-trend-chart" role="img" aria-label="Monthly borrow count for the last six months at @Model.BranchName">
