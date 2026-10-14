@@ -4,6 +4,7 @@
 }
 
 <h1>Data Importer</h1>
+<p class="text-secondary">Bulk-add books, music or toys from a CSV file. The importer recognises the file type from its header row. If any row has an error, nothing is saved and the errors are listed.</p>
 
 @if (TempData["ImportError"] != null)
 {
@@ -14,21 +15,60 @@
     <div class="alert alert-success">@TempData["ImportSuccess"]</div>
 }
 
-<form asp-action="Upload" method="post" enctype="multipart/form-data" class="mb-4">
-    <div class="form-group mb-2">
-        <label>CSV file</label>
-        <input type="file" name="file" accept=".csv" class="form-control" required />
+<div class="row g-4 mb-4">
+    <div class="col-lg-5">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data" class="card p-4 h-100">
+            <h2 class="h5">Upload a CSV file</h2>
+            <div class="form-group mb-3">
+                <label class="form-label" for="file">CSV file</label>
+                <input type="file" id="file" name="file" accept=".csv" class="form-control" required />
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="duplicatePolicy">If an item is already in the catalogue</label>
+                <select id="duplicatePolicy" name="duplicatePolicy" class="form-select">
+                    <option value="Skip">Skip it</option>
+                    <option value="Add">Add it again as extra copies</option>
+                    <option value="Fail">Stop the import</option>
+                </select>
+                <small class="text-secondary">Books match on ISBN, music on title and artist, toys on title.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload &amp; Import</button>
+        </form>
     </div>
-    <div class="form-group mb-2">
-        <label>Duplicate policy</label>
-        <select name="duplicatePolicy" class="form-control">
-            <option value="Skip">Skip</option>
-            <option value="Update">Update</option>
-            <option value="Fail">Fail</option>
-        </select>
+    <div class="col-lg-7">
+        <section class="card p-4 h-100">
+            <h2 class="h5">File formats</h2>
+            <div class="table-responsive">
+                <table class="table table-sm align-middle mb-2">
+                    <thead><tr><th>Type</th><th>Header row</th><th>Template</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Books</td>
+                            <td><code>Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode,Description</code></td>
+                            <td><a asp-action="Template" asp-route-type="books">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Music</td>
+                            <td><code>Title,Artist,ReleaseYear,BranchCode,Copies,LibraryCode,Description</code></td>
+                            <td><a asp-action="Template" asp-route-type="music">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Toys</td>
+                            <td><code>Title,Type,MinimumAge,BranchCode,Copies,LibraryCode,Description</code></td>
+                            <td><a asp-action="Template" asp-route-type="toys">Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="small text-secondary mb-0">
+                <li><strong>Required:</strong> Title and BranchCode (CEN, NTH or RIV), plus Author and ISBN for books, Artist for music, and Type for toys.</li>
+                <li><strong>LibraryCode:</strong> leave it blank to generate the next free code (BK-1xxx books, MU-2xxx music, TY-3xxx toys). If you give a code, set Copies to 1, because every copy needs its own code.</li>
+                <li><strong>Toy Type</strong> must be Board Game, Puzzle, Building Blocks, Action Figure, Plush, Educational or Outdoor.</li>
+                <li>Values containing commas must be wrapped in double quotes, e.g. <code>"The Lion, the Witch and the Wardrobe"</code>.</li>
+            </ul>
+        </section>
     </div>
-    <button type="submit" class="btn btn-primary">Upload &amp; Import</button>
-</form>
+</div>
 
 <h4>Past Imports</h4>
 <table class="table table-striped">

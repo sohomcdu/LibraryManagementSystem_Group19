@@ -12,9 +12,12 @@ namespace LibraryManagementSystem.Controllers
     {
         private readonly LibraryDbContext _context;
 
+        /// Number of items shown on each page of results.
+        private const int PageSize = 24;
+
         public SearchController(LibraryDbContext context) => _context = context;
 
-        public async Task<IActionResult> Index(string? query, string? branchCode, string? itemType, string? status, string? category)
+        public async Task<IActionResult> Index(string? query, string? branchCode, string? itemType, string? status, string? category, int page = 1)
         {
             ViewData["Query"] = query;
             ViewData["BranchCode"] = branchCode;
@@ -58,8 +61,21 @@ namespace LibraryManagementSystem.Controllers
                     (i is Toy && ((Toy)i).Type.Contains(c)));
             }
 
-            var results = await items.OrderBy(i => i.Name).ToListAsync();
-            ViewData["ResultCount"] = results.Count;
+            // Show results a page at a time so the catalogue stays fast as it grows.
+            var total = await items.CountAsync();
+            var totalPages = Math.Max(1, (int)Math.Ceiling(total / (double)PageSize));
+            page = Math.Clamp(page, 1, totalPages);
+
+            var results = await items
+                .OrderBy(i => i.Name).ThenBy(i => i.LibraryCode)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
+
+            ViewData["ResultCount"] = total;
+            ViewData["Page"] = page;
+            ViewData["TotalPages"] = totalPages;
+            ViewData["PageSize"] = PageSize;
             return View(results);
         }
     }

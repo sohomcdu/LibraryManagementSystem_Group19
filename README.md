@@ -55,15 +55,25 @@ Members can register from the Register page. Seeded borrowers include Alice Smit
 The public API exposes available catalogue records only and supports optional search/category/branch filters. It does not expose borrower information or staff-only operations.
 
 ## CSV import format
-The importer expects a header row followed by columns in this order:
+Admin → **CSV Importer** (`/Import`) bulk-adds books, music or toys. The importer recognises the file type from the header row and reads columns by name, so their order does not matter. Templates can be downloaded from the importer page, and ready-made sample files are in `docs/sample-data/` (sources in `docs/sample-data/SOURCES.md`).
 
-`Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode`
+| Type | Header row |
+|---|---|
+| Books | `Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode,Description` |
+| Music | `Title,Artist,ReleaseYear,BranchCode,Copies,LibraryCode,Description` |
+| Toys | `Title,Type,MinimumAge,BranchCode,Copies,LibraryCode,Description` |
 
-Use branch codes `CEN`, `NTH`, or `RIV`. ISBN must be 10 or 13 digits. Keep values comma-free unless the importer is upgraded to a quoted CSV parser. Example:
+Rules:
+- Title and BranchCode (`CEN`, `NTH` or `RIV`) are required on every row, plus Author and a 10 or 13 digit ISBN for books, Artist for music, and Type for toys.
+- Toy Type must be one of Board Game, Puzzle, Building Blocks, Action Figure, Plush, Educational or Outdoor.
+- LibraryCode is optional. When it is blank the next free code is generated (`BK-1xxx` books, `MU-2xxx` music, `TY-3xxx` toys). A given code must be unique and needs `Copies` = 1, because every copy has its own code.
+- Values containing commas must be wrapped in double quotes.
+- The whole file is validated first. If any row has an error, nothing is saved and the errors are listed.
+- If an item is already in the catalogue (books match on ISBN, music on title and artist, toys on title), you can choose to skip it, add it again as extra copies, or stop the import.
 
 ```csv
-Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode
-Example Book,Jordan Lee,9781234567890,Technology,CEN,2024,2,
+Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode,Description
+Example Book,Jordan Lee,9780306406157,Fiction,CEN,2024,2,,A short description of the book.
 ```
 
 ## Seeded catalogue additions

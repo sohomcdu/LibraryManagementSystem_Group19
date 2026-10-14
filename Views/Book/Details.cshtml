@@ -1,7 +1,6 @@
 @model LibraryManagementSystem.Models.Book
 
-@* Single book's read-only details (BookController.Details). *@
-
+@* Single book's read-only details (BookController.Details), with its cover from Open Library. *@
 
 @{
     ViewData["Title"] = "Details";
@@ -12,51 +11,45 @@
 <div>
     <h4>Book</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LibraryCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LibraryCode)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+    <div class="row g-4">
+        @if (!string.IsNullOrWhiteSpace(Model.Isbn))
+        {
+            <div class="col-sm-3 col-md-2">
+                <img src="https://covers.openlibrary.org/b/isbn/@(Model.Isbn)-L.jpg?default=false" alt="Cover of @Model.Name"
+                     class="img-fluid rounded shadow-sm" style="max-height:260px" onerror="this.parentElement.remove()" />
+            </div>
+        }
+        <div class="col">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Author)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Author)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Genre)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Genre)</dd>
+
+                <dt class="col-sm-3">ISBN</dt>
+                <dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Isbn) ? "Not recorded" : Model.Isbn)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LibraryCode)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LibraryCode)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Status)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+            </dl>
+            @if (!string.IsNullOrWhiteSpace(Model.Isbn))
+            {
+                <p class="small text-secondary mb-0">Cover image from <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>.</p>
+            }
+        </div>
+    </div>
 </div>
-<div>
+<div class="mt-3">
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
