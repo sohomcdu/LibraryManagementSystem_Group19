@@ -58,6 +58,7 @@
               <li><a class="dropdown-item" asp-controller="BorrowRecord" asp-action="Index"><span class="lh-menu-icon">↔</span>Loans and returns</a></li>
               <li><a class="dropdown-item" asp-controller="Reservation" asp-action="Holds"><span class="lh-menu-icon">◷</span>Hold queue</a></li>
               <li><a class="dropdown-item" asp-controller="Transfer" asp-action="Index"><span class="lh-menu-icon">⇄</span>Item transfers</a></li>
+              <li><a class="dropdown-item" asp-controller="Transfer" asp-action="Requests"><span class="lh-menu-icon">☷</span>Review transfer requests</a></li>
               <li><a class="dropdown-item" asp-controller="Notification" asp-action="Index"><span class="lh-menu-icon">✉</span>Notifications</a></li>
               <li><a class="dropdown-item" asp-controller="Kiosk" asp-action="Activate"><span class="lh-menu-icon">▣</span>Kiosk activation</a></li>
             </ul>
@@ -81,6 +82,7 @@
         }
         @if (isManager) {
           <li class="nav-item"><a class="nav-link @(controller == "Manager" ? "active" : "")" asp-controller="Manager" asp-action="Index"><i class="lh-icon">▥</i>Reports</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "BorrowRequest" ? "active" : "")" asp-controller="BorrowRequest" asp-action="Pending"><i class="lh-icon">☷</i>Borrow requests</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "Transfer" ? "active" : "")" asp-controller="Transfer" asp-action="Requests"><i class="lh-icon">⇄</i>Transfer requests</a></li>
         }
         @if (isMember) {

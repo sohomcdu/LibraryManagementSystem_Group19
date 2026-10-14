@@ -2,12 +2,13 @@
 
 @*
     Staff request queue (BorrowRequestController.Pending).
-    Reception can view its branch's requests; Admin can review all branches
-    and decide requests on this page.
+    Reception can view its branch's requests. Admin reviews all branches;
+    Manager reviews the currently selected branch. Both can decide requests.
 *@
 
 @{
     var isAdmin = User.IsInRole("Admin");
+    var canDecide = isAdmin || User.IsInRole("Manager");
     ViewData["Title"] = "Borrow requests";
 }
 
@@ -19,7 +20,7 @@
             <th>Item</th>
             <th>Requested By</th>
             <th>Requested On</th>
-            @if (isAdmin)
+            @if (canDecide)
             {
                 <th>Decision</th>
             }
@@ -32,7 +33,7 @@
                 <td>@(r.Item?.Name ?? "N/A")</td>
                 <td>@(r.Borrower?.FullName ?? "N/A")</td>
                 <td>@r.RequestDate.ToString("yyyy-MM-dd")</td>
-                @if (isAdmin)
+                @if (canDecide)
                 {
                     <td>
                         <form asp-action="Approve" asp-route-id="@r.Id" method="post" style="display:inline;">

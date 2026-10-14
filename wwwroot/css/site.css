@@ -230,7 +230,7 @@ body{background:var(--lh-bg);color:#203244;font-family:Inter,"Segoe UI",system-u
 .manager-branch-context{display:grid;gap:.1rem;min-width:210px;padding:.8rem 1rem;border:1px solid #dce9e7;border-radius:13px;background:#fff}
 .manager-branch-context span,.manager-branch-context small{color:#687c89;font-size:.78rem}
 .manager-branch-context strong{color:#15364b}
-.manager-kpi-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;margin-bottom:1rem}
+.manager-kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem;margin-bottom:1rem}
 .manager-kpi{display:flex;flex-direction:column;gap:.35rem;min-height:128px;padding:1.1rem 1.2rem;border:1px solid #e2e9ec;border-radius:16px;background:#fff;color:#15364b;text-decoration:none;box-shadow:0 5px 18px rgba(18,50,74,.035)}
 .manager-kpi-label{color:#526778;font-size:.82rem;font-weight:700}
 .manager-kpi strong{font-size:2rem;line-height:1.1;letter-spacing:-.04em}

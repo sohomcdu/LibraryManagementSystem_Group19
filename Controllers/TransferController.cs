@@ -145,7 +145,7 @@ namespace LibraryManagementSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager,Admin")]
         public async Task<IActionResult> Requests()
         {
             var requests = await _context.TransferRequests
@@ -171,7 +171,7 @@ namespace LibraryManagementSystem.Controllers
             return View(rows);
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Approve(int id)
@@ -227,7 +227,7 @@ namespace LibraryManagementSystem.Controllers
                 });
             }
             request.Status = "Approved";
-            request.ReviewedBy = User.Identity?.Name ?? "Manager";
+            request.ReviewedBy = User.Identity?.Name ?? "Staff";
             request.ReviewedAt = now;
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
@@ -236,7 +236,7 @@ namespace LibraryManagementSystem.Controllers
             return RedirectToAction(nameof(Requests));
         }
 
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Reject(int id)
@@ -250,7 +250,7 @@ namespace LibraryManagementSystem.Controllers
             }
 
             request.Status = "Rejected";
-            request.ReviewedBy = User.Identity?.Name ?? "Manager";
+            request.ReviewedBy = User.Identity?.Name ?? "Staff";
             request.ReviewedAt = DateTime.Now;
             await _context.SaveChangesAsync();
             TempData["Success"] = "Transfer request rejected.";
