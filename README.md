@@ -55,7 +55,8 @@ Members can register from the Register page. Seeded borrowers include Alice Smit
 The public API exposes available catalogue records only and supports optional search/category/branch filters. It does not expose borrower information or staff-only operations.
 
 ## CSV import format
-Admin → **CSV Importer** (`/Import`) bulk-adds books, music or toys. The importer recognises the file type from the header row and reads columns by name, so their order does not matter. Templates can be downloaded from the importer page, and ready-made sample files are in `docs/sample-data/` (sources in `docs/sample-data/SOURCES.md`).
+**Sample catalogue on first run:** when the app starts it automatically loads `docs/sample-data/books.csv`, `music.csv` and `toys.csv` (50 books, 50 albums and 50 toys). Items already in the database are skipped, so restarting never creates duplicates. Sources are listed in.
+Admin → **CSV Importer** (`/Import`) bulk-adds books, music or toys. The importer recognises the file type from the header row and reads columns by name, so their order does not matter. Templates can be downloaded from the importer page, and ready-made sample files are in `docs/sample-data/`
 
 | Type | Header row |
 |---|---|
