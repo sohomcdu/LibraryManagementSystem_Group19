@@ -1,0 +1,100 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <section class="auth-card">
+        <div class="auth-heading">
+            <span class="auth-icon" aria-hidden="true">＋</span>
+            <span class="lh-eyebrow">Join your library</span>
+            <h1>Create your account</h1>
+            <p>Set up an account to request items, manage holds, and keep track of your loans.</p>
+        </div>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger auth-feedback" role="alert" aria-live="assertive" tabindex="-1">
+                <strong>Please check the details below.</strong>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+
+        <form asp-action="Register" method="post" class="auth-form">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="fullName" class="form-label">Full name</label>
+                    <input id="fullName" type="text" name="fullName" value="@ViewData["FullName"]" class="form-control" autocomplete="name" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input id="email" type="email" name="email" value="@ViewData["Email"]" class="form-control" autocomplete="email" inputmode="email" autocapitalize="none" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone <span class="text-secondary fw-normal">(optional)</span></label>
+                <input id="phone" type="tel" name="phone" value="@ViewData["Phone"]" class="form-control" autocomplete="tel" />
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <div class="auth-password-field">
+                        <input id="registerPassword" type="password" name="password" class="form-control" autocomplete="new-password" minlength="6" required aria-describedby="passwordHint" />
+                        <button type="button" class="auth-password-toggle" aria-controls="registerPassword" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+                    <div id="passwordHint" class="form-text">Use at least 6 characters.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm password</label>
+                    <div class="auth-password-field">
+                        <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" autocomplete="new-password" minlength="6" required aria-describedby="passwordMatch" />
+                        <button type="button" class="auth-password-toggle" aria-controls="confirmPassword" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+                    <div id="passwordMatch" class="form-text" aria-live="polite">Enter your password again to confirm it.</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit">Create account</button>
+        </form>
+        <div class="auth-switch">Already have an account? <a asp-controller="Account" asp-action="Login">Sign in</a></div>
+      </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll(".auth-password-toggle").forEach(function (button) {
+            button.addEventListener("click", function () {
+                const password = document.getElementById(button.getAttribute("aria-controls"));
+                const showing = password.type === "password";
+                password.type = showing ? "text" : "password";
+                button.textContent = showing ? "Hide" : "Show";
+                button.setAttribute("aria-label", showing ? "Hide password" : "Show password");
+                button.setAttribute("aria-pressed", String(showing));
+            });
+        });
+
+        const password = document.getElementById("registerPassword");
+        const confirmation = document.getElementById("confirmPassword");
+        const matchMessage = document.getElementById("passwordMatch");
+
+        function updatePasswordMatch() {
+            if (!confirmation.value) {
+                matchMessage.textContent = "Enter your password again to confirm it.";
+                matchMessage.classList.remove("is-valid", "is-invalid");
+            } else if (password.value === confirmation.value) {
+                matchMessage.textContent = "Passwords match.";
+                matchMessage.classList.add("is-valid");
+                matchMessage.classList.remove("is-invalid");
+            } else {
+                matchMessage.textContent = "These passwords don't match yet.";
+                matchMessage.classList.add("is-invalid");
+                matchMessage.classList.remove("is-valid");
+            }
+        }
+
+        password.addEventListener("input", updatePasswordMatch);
+        confirmation.addEventListener("input", updatePasswordMatch);
+    </script>
+}

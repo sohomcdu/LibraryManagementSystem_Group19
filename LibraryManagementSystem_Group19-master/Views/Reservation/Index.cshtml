@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Reservation>
+@{
+    ViewData["Title"] = "My Reservations";
+}
+
+<h1>My Reservations</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-striped">
+    <thead><tr><th>Item</th><th>Requested</th><th>Status</th><th>Pickup By</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@(r.Item?.Name ?? "N/A")</td>
+                <td>@r.RequestedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @{
+                        var cls = r.Status switch { "Ready" => "bg-success", "Cancelled" or "Expired" => "bg-secondary", "Fulfilled" => "bg-primary", _ => "bg-warning text-dark" };
+                    }
+                    <span class="badge @cls">@r.Status</span>
+                </td>
+                <td>@(r.PickupExpiresAt?.ToString("yyyy-MM-dd") ?? "-")</td>
+                <td>
+                    @if (r.Status == "Waiting")
+                    {
+                        <form asp-action="Cancel" asp-route-id="@r.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

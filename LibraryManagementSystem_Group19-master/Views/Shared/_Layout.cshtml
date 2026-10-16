@@ -1,0 +1,142 @@
+@{
+    var title = ViewData["Title"]?.ToString() ?? "Library";
+    var isSignedIn = User.Identity?.IsAuthenticated == true;
+    var isAdmin = User.IsInRole("Admin");
+    var isReception = User.IsInRole("Reception");
+    var isManager = User.IsInRole("Manager");
+    var isMember = User.IsInRole("Member");
+    var isKiosk = User.IsInRole("Kiosk");
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var adminAreaActive = new[] { "Branch", "Book", "Music", "Toy", "Import", "ApiKeys", "Borrower", "BorrowRequest", "BorrowRecord", "Reservation", "Transfer", "Notification" }.Contains(controller);
+    var staffAreaActive = new[] { "Staff", "Borrower", "BorrowRequest", "BorrowRecord", "Transfer", "Reservation", "Notification", "Kiosk" }.Contains(controller);
+
+    var isStaff = isAdmin || isReception || isManager || isKiosk;
+    var isPublicPage = controller == "Home" || controller == "Account" || controller == "Search";
+    var showLibraHub = isMember || (isPublicPage && !isStaff);
+    
+    var brandName = showLibraHub ? "LibraHub" : "Library Management System";
+    var brandNameShort = showLibraHub ? "Libra" : "Library";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@title · @brandName</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="lh-site">
+<nav class="navbar navbar-expand-xl navbar-dark lh-topbar mb-0">
+  <div class="container-fluid px-lg-4">
+    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+        <span class="lh-logo">L</span>
+        <span>@brandNameShort<span class="d-none d-sm-inline">@(showLibraHub ? "Hub" : " Management System")</span></span>
+    </a>
+    
+    @if (!isSignedIn) {
+      <a class="btn btn-light btn-sm lh-mobile-signin" asp-controller="Account" asp-action="Login">Sign in</a>
+    }
+    
+    <!-- UPDATED: Only show the hamburger menu if the user IS signed in -->
+    @if (isSignedIn) {
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#libraryNav" aria-controls="libraryNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    }
+    
+    <div class="collapse navbar-collapse" id="libraryNav">
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        @if (isKiosk) { <li class="nav-item"><a class="nav-link @(controller == "Kiosk" ? "active" : "")" asp-controller="Kiosk" asp-action="Index"><i class="lh-icon">▣</i>Self-service</a></li> }
+        
+        @if (isAdmin) {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle @(adminAreaActive ? "active" : "")" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">⚙</i>Administration</a>
+            <ul class="dropdown-menu dropdown-menu-lg-end lh-menu" aria-labelledby="adminMenu">
+              <li><h6 class="dropdown-header">Collection management</h6></li>
+              <li><a class="dropdown-item" asp-controller="Book" asp-action="Index"><span class="lh-menu-icon book-icon">▤</span>Books</a></li>
+              <li><a class="dropdown-item" asp-controller="Music" asp-action="Index"><span class="lh-menu-icon music-icon">♫</span>Music</a></li>
+              <li><a class="dropdown-item" asp-controller="Toy" asp-action="Index"><span class="lh-menu-icon toy-icon">♧</span>Toys</a></li>
+              <li><a class="dropdown-item" asp-controller="Branch" asp-action="Index"><span class="lh-menu-icon branch-icon">⌖</span>Branches</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><h6 class="dropdown-header">Data tools</h6></li>
+              <li><a class="dropdown-item" asp-controller="Import" asp-action="Index"><span class="lh-menu-icon">⇧</span>CSV Importer</a></li>
+              <li><a class="dropdown-item" asp-controller="ApiKeys" asp-action="Index"><span class="lh-menu-icon">⌘</span>REST API keys</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle @(new[] { "Borrower", "BorrowRequest" }.Contains(controller) ? "active" : "")" href="#" id="borrowerAdminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">♙</i>Borrower management</a>
+            <ul class="dropdown-menu lh-menu" aria-labelledby="borrowerAdminMenu">
+              <li><a class="dropdown-item" asp-controller="Borrower" asp-action="Index"><span class="lh-menu-icon">♙</span>Borrower records</a></li>
+              <li><a class="dropdown-item" asp-controller="BorrowRequest" asp-action="Pending"><span class="lh-menu-icon">▤</span>Borrow requests</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle @(new[] { "BorrowRecord", "Reservation", "Transfer", "Notification", "Kiosk" }.Contains(controller) ? "active" : "")" href="#" id="circulationAdminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">▦</i>Circulation</a>
+            <ul class="dropdown-menu lh-menu" aria-labelledby="circulationAdminMenu">
+              <li><a class="dropdown-item" asp-controller="BorrowRecord" asp-action="Index"><span class="lh-menu-icon">↔</span>Loans and returns</a></li>
+              <li><a class="dropdown-item" asp-controller="Reservation" asp-action="Holds"><span class="lh-menu-icon">◷</span>Hold queue</a></li>
+              <li><a class="dropdown-item" asp-controller="Transfer" asp-action="Index"><span class="lh-menu-icon">⇄</span>Item transfers</a></li>
+              <li><a class="dropdown-item" asp-controller="Transfer" asp-action="Requests"><span class="lh-menu-icon">☷</span>Review transfer requests</a></li>
+              <li><a class="dropdown-item" asp-controller="Notification" asp-action="Index"><span class="lh-menu-icon">✉</span>Notifications</a></li>
+              <li><a class="dropdown-item" asp-controller="Kiosk" asp-action="Activate"><span class="lh-menu-icon">▣</span>Kiosk activation</a></li>
+            </ul>
+          </li>
+        }
+        
+        @if (isReception || isAdmin) {
+          <li class="nav-item"><a class="nav-link @(controller == "Staff" ? "active" : "")" asp-controller="Staff" asp-action="Index"><i class="lh-icon">▦</i>Staff workspace</a></li>
+        }
+        
+        @if (isReception) {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle @(staffAreaActive ? "active" : "")" href="#" id="operationsMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">▦</i>Operations</a>
+            <ul class="dropdown-menu lh-menu" aria-labelledby="operationsMenu">
+              <li><a class="dropdown-item" asp-controller="BorrowRecord" asp-action="Create"><span class="lh-menu-icon">↗</span>Check out an item</a></li>
+              <li><a class="dropdown-item" asp-controller="BorrowRecord" asp-action="Index"><span class="lh-menu-icon">↩</span>Check in / loans</a></li>
+              <li><a class="dropdown-item" asp-controller="Kiosk" asp-action="Activate"><span class="lh-menu-icon">▣</span>Kiosk service</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" asp-controller="Borrower" asp-action="Index"><span class="lh-menu-icon">♙</span>Patrons</a></li>
+              <li><a class="dropdown-item" asp-controller="BorrowRequest" asp-action="Pending"><span class="lh-menu-icon">☷</span>Borrow requests</a></li>
+            </ul>
+          </li>
+        }
+        
+        @if (isManager) {
+          <li class="nav-item"><a class="nav-link @(controller == "Manager" ? "active" : "")" asp-controller="Manager" asp-action="Index"><i class="lh-icon">▥</i>Reports</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "BorrowRequest" ? "active" : "")" asp-controller="BorrowRequest" asp-action="Pending"><i class="lh-icon">☷</i>Borrow requests</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "Transfer" ? "active" : "")" asp-controller="Transfer" asp-action="Requests"><i class="lh-icon">⇄</i>Transfer requests</a></li>
+        }
+        
+        @if (isMember) {
+          <li class="nav-item"><a class="nav-link @(controller == "Search" ? "active" : "")" asp-controller="Search" asp-action="Index"><i class="lh-icon">⌕</i>Search Catalogue</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "Kiosk" ? "active" : "")" asp-controller="Kiosk" asp-action="Index"><i class="lh-icon">▣</i>Self checkout</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "Me" ? "active" : "")" asp-controller="Me" asp-action="Index"><i class="lh-icon">◎</i>My Library</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "BorrowRequest" ? "active" : "")" asp-controller="BorrowRequest" asp-action="Index"><i class="lh-icon">▤</i>My Requests</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "Reservation" ? "active" : "")" asp-controller="Reservation" asp-action="Index"><i class="lh-icon">◷</i>My Reservations</a></li>
+        }
+      </ul>
+      <div class="d-flex align-items-center gap-2 py-2 py-xl-0 lh-account">
+        @if (isReception || isManager) { @await Component.InvokeAsync("BranchSelector") }
+        @if (isSignedIn) {
+          <span class="navbar-text small d-none d-xxl-inline">@((User.Identity?.Name ?? "User"))</span>
+          <form asp-controller="Account" asp-action="Logout" method="post" class="m-0"><button type="submit" class="btn btn-outline-light btn-sm">Sign out</button></form>
+        } else {
+          <a class="btn btn-light btn-sm d-none d-xl-inline-block" asp-controller="Account" asp-action="Login">Sign in</a>
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+<main id="main" class="lh-page">
+  @if (TempData["Success"] is string success) { <div class="alert alert-success" role="status">@success</div> }
+  @if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert">@error</div> }
+  @RenderBody()
+</main>
+<footer class="lh-footer">
+  <p class="lh-footer-quote">“A library is where curiosity finds its next adventure.”</p>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

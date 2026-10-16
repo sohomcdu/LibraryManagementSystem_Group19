@@ -1,0 +1,84 @@
+@model LibraryManagementSystem.Models.Item
+@using LibraryManagementSystem.Models
+@{
+    ViewData["Title"] = Model.Name;
+    var typeLabel = Model switch { Book => "Book", Music => "Music", Toy => "Toy", _ => "Library item" };
+}
+
+<section class="item-detail-page">
+    <a asp-action="Index" class="item-detail-back">← Back to catalogue</a>
+    <article class="item-detail-card">
+        <div class="item-detail-cover">
+            @if (Model is Book book && !string.IsNullOrWhiteSpace(book.Isbn))
+            {
+                <img src="https://covers.openlibrary.org/b/isbn/@(book.Isbn)-L.jpg?default=false"
+                     alt="Cover of @Model.Name" onerror="this.remove()" />
+            }
+            else
+            {
+                <span class="item-detail-cover-icon" aria-hidden="true">@(Model is Music ? "♫" : Model is Toy ? "♧" : "▤")</span>
+            }
+        </div>
+        <div class="item-detail-content">
+            <span class="lh-eyebrow">@typeLabel · @Model.LibraryCode</span>
+            <h1>@Model.Name</h1>
+            <div class="item-detail-pills">
+                <span class="status-pill @(Model.Status == "Available" ? "available" : Model.Status == "Borrowed" ? "borrowed" : Model.Status == "Damaged" ? "damaged" : "other")">@Model.Status</span>
+                <span class="branch-pill">⌖ @(Model.Branch?.Name ?? "Unassigned")</span>
+            </div>
+            <p class="item-detail-description">@Model.Description</p>
+            <dl class="item-detail-metadata">
+                @if (Model is Book detailsBook)
+                {
+                    <dt>Author</dt><dd>@detailsBook.Author</dd>
+                    <dt>Genre</dt><dd>@detailsBook.Genre</dd>
+                    <dt>ISBN</dt><dd>@(string.IsNullOrWhiteSpace(detailsBook.Isbn) ? "Not recorded" : detailsBook.Isbn)</dd>
+                }
+                else if (Model is Music detailsMusic)
+                {
+                    <dt>Artist</dt><dd>@detailsMusic.Artist</dd>
+                    <dt>Release year</dt><dd>@detailsMusic.ReleaseYear</dd>
+                }
+                else if (Model is Toy detailsToy)
+                {
+                    <dt>Type</dt><dd>@detailsToy.Type</dd>
+                    <dt>Minimum age</dt><dd>@detailsToy.MinimumAge+</dd>
+                }
+                <dt>Library code</dt><dd>@Model.LibraryCode</dd>
+                <dt>Collection</dt><dd>@typeLabel</dd>
+                <dt>Branch</dt><dd>@(Model.Branch?.Name ?? "Unassigned")</dd>
+            </dl>
+            <div class="item-detail-actions">
+                @if (Model.Status == "Available")
+                {
+                    @if (User.IsInRole("Member"))
+                    {
+                        <form asp-controller="BorrowRequest" asp-action="Create" method="post">
+                            <input type="hidden" name="itemId" value="@Model.Id" />
+                            <button type="submit" class="btn btn-primary">Request to borrow</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Url.Action("Details", new { id = Model.Id })" class="btn btn-primary">Sign in to request</a>
+                    }
+                }
+                else if (Model.Status is "Borrowed" or "Damaged")
+                {
+                    @if (User.IsInRole("Member"))
+                    {
+                        <form asp-controller="Reservation" asp-action="Create" method="post">
+                            <input type="hidden" name="itemId" value="@Model.Id" />
+                            <button type="submit" class="btn btn-outline-primary">Join the waitlist</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Url.Action("Details", new { id = Model.Id })" class="btn btn-outline-primary">Sign in to join waitlist</a>
+                    }
+                }
+                <a asp-controller="Search" asp-action="Index" class="btn btn-outline-secondary">Back to results</a>
+            </div>
+        </div>
+    </article>
+</section>

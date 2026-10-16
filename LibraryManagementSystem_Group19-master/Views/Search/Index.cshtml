@@ -1,0 +1,161 @@
+@model IEnumerable<LibraryManagementSystem.Models.Item>
+@using LibraryManagementSystem.Models
+@{
+    ViewData["Title"] = "Search Catalogue";
+    var branches = (IEnumerable<Branch>)(ViewData["Branches"] ?? new List<Branch>());
+    var selectedType = (string?)ViewData["ItemType"] ?? "";
+    var selectedStatus = (string?)ViewData["StatusFilter"] ?? "";
+    var selectedBranch = (string?)ViewData["BranchCode"] ?? "";
+    var category = (string?)ViewData["Category"] ?? "";
+    var total = (int)(ViewData["ResultCount"] ?? Model.Count());
+    var currentPage = (int)(ViewData["Page"] ?? 1);
+    var totalPages = (int)(ViewData["TotalPages"] ?? 1);
+    var pageSize = (int)(ViewData["PageSize"] ?? 24);
+    var firstShown = total == 0 ? 0 : (currentPage - 1) * pageSize + 1;
+    var lastShown = Math.Min(currentPage * pageSize, total);
+
+    // Keeps the current search and filters when moving between pages.
+    Dictionary<string, string> PageRoute(int p)
+    {
+        var route = new Dictionary<string, string> { ["page"] = p.ToString() };
+        if (!string.IsNullOrWhiteSpace((string?)ViewData["Query"])) route["query"] = (string)ViewData["Query"]!;
+        if (!string.IsNullOrWhiteSpace(selectedBranch)) route["branchCode"] = selectedBranch;
+        if (!string.IsNullOrWhiteSpace(selectedType)) route["itemType"] = selectedType;
+        if (!string.IsNullOrWhiteSpace(selectedStatus)) route["status"] = selectedStatus;
+        if (!string.IsNullOrWhiteSpace(category)) route["category"] = category;
+        return route;
+    }
+}
+<style>
+    .catalogue-pager{display:flex;align-items:center;justify-content:center;gap:.4rem;flex-wrap:wrap;margin:1.6rem 0 .5rem}
+    .catalogue-pager .page-info{font-size:.85rem;color:#6e7f8e;margin:0 .6rem}
+</style>
+<section class="catalogue-hero">
+    <div class="catalogue-hero-copy">
+        <span class="lh-eyebrow">Explore the collection</span>
+        <h1>Find your next favourite.</h1>
+        <p>Browse books, music and toys across our library branches.</p>
+        <div class="catalogue-stats"><span><strong>@total</strong> matching items</span><span><strong>@branches.Count()</strong> active branches</span></div>
+    </div>
+</section>
+@if (TempData["Error"] is string errorMessage)
+{
+    <div class="alert alert-danger" role="alert">@errorMessage</div>
+}
+<section class="catalogue-type-grid" aria-label="Browse by collection type">
+    <a class="type-tile type-books @(selectedType == "Book" ? "selected" : "")" asp-action="Index" asp-route-itemType="Book" asp-route-branchCode="@selectedBranch" asp-route-query="@ViewData["Query"]"><span class="type-art">▤</span><span><strong>Books</strong><small>Stories, learning & more</small></span><span class="tile-arrow">↗</span></a>
+    <a class="type-tile type-music @(selectedType == "Music" ? "selected" : "")" asp-action="Index" asp-route-itemType="Music" asp-route-branchCode="@selectedBranch" asp-route-query="@ViewData["Query"]"><span class="type-art">♫</span><span><strong>Music</strong><small>Artists & recordings</small></span><span class="tile-arrow">↗</span></a>
+    <a class="type-tile type-toys @(selectedType == "Toy" ? "selected" : "")" asp-action="Index" asp-route-itemType="Toy" asp-route-branchCode="@selectedBranch" asp-route-query="@ViewData["Query"]"><span class="type-art">♧</span><span><strong>Toys</strong><small>Play, puzzles & games</small></span><span class="tile-arrow">↗</span></a>
+    <a class="type-tile type-all @(selectedType == "" ? "selected" : "")" asp-action="Index" asp-route-branchCode="@selectedBranch" asp-route-query="@ViewData["Query"]"><span class="type-art">✧</span><span><strong>All items</strong><small>Explore everything</small></span><span class="tile-arrow">↗</span></a>
+</section>
+<section class="catalogue-filters">
+    <div class="filter-heading"><div><span class="lh-eyebrow">Narrow your search</span><h2>Search & filters</h2></div><a class="clear-filters" asp-action="Index">Clear all</a></div>
+    <form asp-action="Index" method="get" class="catalogue-filter-form">
+        <label class="filter-search"><span class="filter-label">Search</span><span class="search-input-wrap"><span aria-hidden="true">⌕</span><input type="text" name="query" value="@ViewData["Query"]" class="form-control" placeholder="Title, library code or description" /></span></label>
+        <label><span class="filter-label">Collection type</span><select name="itemType" class="form-select"><option value="">All types</option><option value="Book" selected="@(selectedType == "Book")">Books</option><option value="Music" selected="@(selectedType == "Music")">Music</option><option value="Toy" selected="@(selectedType == "Toy")">Toys</option></select></label>
+        <label><span class="filter-label">Branch</span><select name="branchCode" class="form-select"><option value="">All branches</option>@foreach (var branch in branches) {
+            <option value="@branch.Code" selected="@(branch.Code == selectedBranch)">@branch.Name</option>
+        }
+    </select></label>
+    <label><span class="filter-label">Availability</span><select name="status" class="form-select"><option value="">Any status</option><option value="Available" selected="@(selectedStatus == "Available")">Available</option><option value="Borrowed" selected="@(selectedStatus == "Borrowed")">Borrowed</option><option value="Reserved" selected="@(selectedStatus == "Reserved")">Reserved</option><option value="Damaged" selected="@(selectedStatus == "Damaged")">Damaged</option></select></label>
+    <label><span class="filter-label">Genre / artist / toy type</span><input type="text" name="category" value="@category" class="form-control" placeholder="e.g. fantasy, jazz, puzzle" /></label>
+    <button type="submit" class="btn btn-primary filter-submit"><span aria-hidden="true">⌕</span> Apply filters</button>
+</form>
+</section>
+<div class="catalogue-results-heading"><div><h2>Catalogue results</h2><p>Use the filters above to find a specific item or collection.</p></div><span class="result-count">@(total == 0 ? "0 items" : $"Showing {firstShown}–{lastShown} of {total}")</span></div>
+<div class="status-legend mb-3"><span><span class="dot dot-available"></span>Available</span><span><span class="dot dot-borrowed"></span>Borrowed</span><span><span class="dot dot-reserved"></span>Reserved</span><span><span class="dot dot-damaged"></span>Damaged</span></div>
+@if (!Model.Any())
+{
+    <div class="catalogue-empty"><span class="empty-icon">⌕</span><h3>No matching items</h3><p>Try changing the collection type, branch or search terms.</p><a asp-action="Index" class="btn btn-outline-primary">Reset filters</a></div>
+}
+else
+{
+    <div class="catalogue-results-grid">
+        @foreach (var item in Model)
+        {
+            var typeLabel = item switch { Book => "Book", Music => "Music", Toy => "Toy", _ => "Item" };
+            var typeIcon = item switch { Book => "▤", Music => "♫", Toy => "♧", _ => "▦" };
+            var typeClass = item switch { Book => "book", Music => "music", Toy => "toy", _ => "other" };
+            var statusClass = item.Status switch { "Available" => "available", "Borrowed" => "borrowed", "Reserved" => "reserved", "Damaged" => "damaged", _ => "other" };
+            <article class="catalogue-card">
+                <a class="catalogue-card-link" asp-action="Details" asp-route-id="@item.Id" aria-label="View full details for @item.Name"></a>
+                <div class="catalogue-card-cover @typeClass">
+                    <span class="cover-icon">@typeIcon</span>
+                    @if (item is Book coverBook && !string.IsNullOrWhiteSpace(coverBook.Isbn))
+                    {
+                        <img class="cover-img" src="https://covers.openlibrary.org/b/isbn/@(coverBook.Isbn)-M.jpg?default=false" alt="Cover of @item.Name" loading="lazy"
+                             onload="this.parentElement.classList.add('has-cover')" onerror="this.remove()" />
+                    }
+                    <span class="cover-type">@typeLabel</span><span class="cover-code">@item.LibraryCode</span>
+                </div>
+                <div class="catalogue-card-body">
+                    <div class="card-badges"><span class="status-pill @statusClass"><span class="status-pip"></span>@item.Status</span><span class="branch-pill">⌖ @(item.Branch?.Name ?? "Unassigned")</span></div>
+                    <h3>@item.Name</h3><p class="item-description">@item.Description</p>
+                    @if (item is Book book)
+                    {
+                        <p class="item-meta"><strong>@book.Author</strong><span>@book.Genre</span></p>
+                    }
+                    else if (item is Music music)
+                    {
+
+                        <p class="item-meta"><strong>@music.Artist</strong><span>@music.ReleaseYear</span></p>
+                    }
+                    else if (item is Toy toy)
+                    {
+
+                        <p class="item-meta"><strong>@toy.Type</strong><span>Ages @toy.MinimumAge+</span></p>
+                    }
+                    <div class="catalogue-card-action">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="catalogue-details-link">Full details</a>
+                        @if (item.Status == "Available")
+                        {
+                            @if (User.IsInRole("Member"))
+                            {
+                                <a asp-controller="BorrowRequest" asp-action="Create" asp-route-itemId="@item.Id" class="btn btn-primary btn-sm">Request to borrow <span aria-hidden="true">→</span></a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-sm">Sign in to request <span aria-hidden="true">→</span></a>
+                            }
+                        }
+                        else if (item.Status == "Borrowed" || item.Status == "Damaged")
+                        {
+                            @if (User.IsInRole("Member"))
+                            {
+                                <form asp-controller="Reservation" asp-action="Create" method="post">
+                                    <input type="hidden" name="itemId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Join waitlist <span aria-hidden="true">→</span></button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-sm">Sign in to join waitlist <span aria-hidden="true">→</span></a>
+                            }
+                        }
+                        else
+                        {
+                            <span class="unavailable-note">Currently not available</span>
+                        }
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+    @if (totalPages > 1)
+    {
+        <nav class="catalogue-pager" aria-label="Catalogue pages">
+            @if (currentPage > 1)
+            {
+                <a class="btn btn-outline-primary btn-sm" asp-action="Index" asp-all-route-data="PageRoute(1)">« First</a>
+                <a class="btn btn-outline-primary btn-sm" asp-action="Index" asp-all-route-data="PageRoute(currentPage - 1)">‹ Previous</a>
+            }
+            <span class="page-info">Page @currentPage of @totalPages</span>
+            @if (currentPage < totalPages)
+            {
+                <a class="btn btn-outline-primary btn-sm" asp-action="Index" asp-all-route-data="PageRoute(currentPage + 1)">Next ›</a>
+                <a class="btn btn-outline-primary btn-sm" asp-action="Index" asp-all-route-data="PageRoute(totalPages)">Last »</a>
+            }
+        </nav>
+    }
+    <p class="text-center small text-secondary mt-2">Book covers from <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>.</p>
+}

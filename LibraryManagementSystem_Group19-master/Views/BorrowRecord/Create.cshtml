@@ -1,0 +1,185 @@
+@model LibraryManagementSystem.Models.BorrowRecord
+@{
+    ViewData["Title"] = "Check out an Item";
+}
+
+<section class="lh-section-head">
+    <div>
+        <div class="lh-eyebrow">Reception desk</div>
+        <h1>Check out an item</h1>
+        <p>Choose a collection, find an available item by library code or name, and select the matching borrower.</p>
+    </div>
+</section>
+
+<div class="card p-4" style="max-width: 760px;">
+    <form asp-action="Create" method="post" id="checkoutForm">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label for="itemCategory" class="form-label">Item category</label>
+            <select id="itemCategory" class="form-select" required>
+                <option value="">-- Select a category --</option>
+                <option value="Book">Books</option>
+                <option value="Music">Music</option>
+                <option value="Toy">Toys</option>
+            </select>
+            <div class="form-text">Only currently available items at this branch are shown.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="itemSearch" class="form-label">Find item</label>
+            <input id="itemSearch" type="search" class="form-control" placeholder="Search by library code or item name" autocomplete="off" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ItemId" class="form-label">Available item</label>
+            <select asp-for="ItemId" class="form-select" required disabled>
+                <option value="">-- Select a category first --</option>
+            </select>
+            <span asp-validation-for="ItemId" class="text-danger"></span>
+            <div id="itemStatus" class="form-text" role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="mb-3 position-relative">
+            <label for="borrowerSearch" class="form-label">Borrower name</label>
+            <input id="borrowerSearch" type="search" class="form-control" placeholder="Start typing a name (e.g. A or AC)" autocomplete="off" aria-autocomplete="list" aria-controls="borrowerSuggestions" aria-expanded="false" required />
+            <input asp-for="BorrowerId" type="hidden" />
+            <div id="borrowerSuggestions" class="list-group position-absolute w-100 shadow-sm" role="listbox" style="z-index: 5; display:none; max-height: 260px; overflow-y:auto;"></div>
+            <span asp-validation-for="BorrowerId" class="text-danger"></span>
+            <div id="borrowerStatus" class="form-text" role="status" aria-live="polite">Type a name prefix to see matching borrowers.</div>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="DueDate" class="form-label">Due date</label>
+            <input asp-for="DueDate" type="date" class="form-control" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Confirm checkout</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const category = document.getElementById("itemCategory");
+            const itemSearch = document.getElementById("itemSearch");
+            const itemSelect = document.getElementById("ItemId");
+            const itemStatus = document.getElementById("itemStatus");
+            const borrowerSearch = document.getElementById("borrowerSearch");
+            const borrowerId = document.getElementById("BorrowerId");
+            const borrowerSuggestions = document.getElementById("borrowerSuggestions");
+            const borrowerStatus = document.getElementById("borrowerStatus");
+            let items = [];
+            let borrowerTimer;
+            let borrowerRequest;
+
+            const hideSuggestions = () => {
+                borrowerSuggestions.replaceChildren();
+                borrowerSuggestions.style.display = "none";
+                borrowerSearch.setAttribute("aria-expanded", "false");
+            };
+
+            const updateItemOptions = () => {
+                const term = itemSearch.value.trim().toLocaleLowerCase();
+                const filtered = items.filter(item =>
+                    `${item.id} ${item.libraryCode} ${item.name}`.toLocaleLowerCase().includes(term));
+                itemSelect.replaceChildren(new Option(
+                    filtered.length ? "-- Select an item --" : "-- No matching available items --", ""));
+                filtered.forEach(item => {
+                    itemSelect.add(new Option(
+                        `${item.libraryCode} · ${item.name} (ID ${item.id})${item.categoryDetails ? ` · ${item.categoryDetails}` : ""}`,
+                        String(item.id)));
+                });
+                itemSelect.disabled = filtered.length === 0;
+                itemStatus.textContent = items.length
+                    ? `${filtered.length} of ${items.length} available item(s) shown.`
+                    : "No available items in this category at this branch.";
+            };
+
+            category.addEventListener("change", async () => {
+                itemSearch.value = "";
+                items = [];
+                itemSelect.disabled = true;
+                itemSelect.replaceChildren(new Option(
+                    category.value ? "Loading available items..." : "-- Select a category first --", ""));
+                itemSearch.disabled = !category.value;
+                itemStatus.textContent = "";
+                if (!category.value) return;
+
+                try {
+                    const response = await fetch(`/BorrowRecord/AvailableItems?category=${encodeURIComponent(category.value)}`, {
+                        headers: { "Accept": "application/json" }
+                    });
+                    if (!response.ok) throw new Error(`Item lookup failed (${response.status}).`);
+                    items = await response.json();
+                    updateItemOptions();
+                } catch (error) {
+                    itemSelect.replaceChildren(new Option("-- Items could not be loaded --", ""));
+                    itemStatus.textContent = error.message;
+                }
+            });
+
+            itemSearch.addEventListener("input", updateItemOptions);
+            borrowerSearch.addEventListener("input", () => {
+                clearTimeout(borrowerTimer);
+                if (borrowerRequest) borrowerRequest.abort();
+                borrowerId.value = "";
+                const term = borrowerSearch.value.trim();
+                hideSuggestions();
+                if (!term) {
+                    borrowerStatus.textContent = "Type a name prefix to see matching borrowers.";
+                    return;
+                }
+
+                borrowerStatus.textContent = "Searching borrowers...";
+                borrowerTimer = setTimeout(async () => {
+                    borrowerRequest = new AbortController();
+                    try {
+                        const response = await fetch(`/BorrowRecord/BorrowerSuggestions?term=${encodeURIComponent(term)}`, {
+                            headers: { "Accept": "application/json" },
+                            signal: borrowerRequest.signal
+                        });
+                        if (!response.ok) throw new Error(`Borrower lookup failed (${response.status}).`);
+                        const borrowers = await response.json();
+                        hideSuggestions();
+                        if (!borrowers.length) {
+                            borrowerStatus.textContent = "No borrowers found with that name prefix.";
+                            return;
+                        }
+
+                        borrowers.forEach(borrower => {
+                            const option = document.createElement("button");
+                            option.type = "button";
+                            option.className = "list-group-item list-group-item-action";
+                            option.setAttribute("role", "option");
+                            option.textContent = `${borrower.fullName} · ${borrower.email}`;
+                            option.addEventListener("click", () => {
+                                borrowerSearch.value = borrower.fullName;
+                                borrowerId.value = borrower.id;
+                                borrowerStatus.textContent = `Selected ${borrower.fullName}.`;
+                                hideSuggestions();
+                            });
+                            borrowerSuggestions.append(option);
+                        });
+                        borrowerSuggestions.style.display = "block";
+                        borrowerSearch.setAttribute("aria-expanded", "true");
+                        borrowerStatus.textContent = `${borrowers.length} matching borrower(s). Select one from the list.`;
+                    } catch (error) {
+                        if (error.name !== "AbortError") {
+                            borrowerStatus.textContent = error.message;
+                        }
+                    }
+                }, 180);
+            });
+
+            document.addEventListener("click", event => {
+                if (!borrowerSuggestions.contains(event.target) && event.target !== borrowerSearch) {
+                    hideSuggestions();
+                }
+            });
+        })();
+    </script>
+}

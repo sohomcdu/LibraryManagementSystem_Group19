@@ -1,0 +1,263 @@
+@model LibraryManagementSystem.Controllers.ManagerDashboardViewModel
+@{
+    ViewData["Title"] = "Manager Statistics";
+    var availableShare = Model.TotalItems == 0 ? 0 : (int)Math.Round(100d * Model.AvailableItems / Model.TotalItems);
+    var maxMonthlyBorrows = Math.Max(1, Model.BorrowingTrend.Max(m => m.Count));
+}
+
+<section class="manager-dashboard-hero">
+    <div class="manager-dashboard-heading">
+        <span class="lh-eyebrow">Library overview</span>
+        <h1>Manager dashboard</h1>
+        <p>A clear view of branch activity, inventory, and open work.</p>
+    </div>
+    <div class="manager-dashboard-context">
+        <div class="manager-context-item">
+            <span>Selected branch</span>
+            <strong>@Model.BranchName</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.BranchCode))
+            {
+                <small>@Model.BranchCode · Change using the branch selector</small>
+            }
+        </div>
+        <div class="manager-context-item">
+            <span>Reporting period</span>
+            <strong>Current snapshot</strong>
+            <small>Borrowing trend: @Model.TrendStartDate.ToString("MMM yyyy")–@DateTime.Today.ToString("MMM yyyy")</small>
+        </div>
+    </div>
+    <a asp-action="Workload" class="btn btn-outline-primary manager-report-link">Workload &amp; backlog report <span aria-hidden="true">→</span></a>
+</section>
+
+<section class="manager-kpi-grid" aria-label="Selected branch key statistics">
+    <a class="manager-kpi manager-kpi-overdue" asp-action="Workload">
+        <span class="manager-kpi-label">Overdue loans</span>
+        <strong>@Model.OverdueBorrows</strong>
+        <small>Open the workload report →</small>
+    </a>
+    <a class="manager-kpi manager-kpi-transfers" asp-controller="Transfer" asp-action="Requests">
+        <span class="manager-kpi-label">Pending transfer requests</span>
+        <strong>@Model.PendingTransferRequests</strong>
+        <small>Waiting for your stock review →</small>
+    </a>
+    <a class="manager-kpi" asp-controller="BorrowRequest" asp-action="Pending">
+        <span class="manager-kpi-label">Pending borrow requests</span>
+        <strong>@Model.PendingBorrowRequests</strong>
+        <small>Review requests for this branch →</small>
+    </a>
+    <article class="manager-kpi manager-kpi-borrowed">
+        <span class="manager-kpi-label">Currently borrowed</span>
+        <strong>@Model.BorrowedItems</strong>
+        <small>@Model.ActiveBorrows active loans</small>
+    </article>
+    <article class="manager-kpi manager-kpi-available">
+        <span class="manager-kpi-label">Available</span>
+        <strong>@Model.AvailableItems</strong>
+        <small>@availableShare% of this branch's inventory</small>
+    </article>
+    <article class="manager-kpi">
+        <span class="manager-kpi-label">Total inventory</span>
+        <strong>@Model.TotalItems</strong>
+        <small>Items at @Model.BranchName</small>
+    </article>
+</section>
+
+<section class="manager-panel manager-attention-panel" aria-labelledby="attentionHeading">
+    <div class="manager-panel-heading">
+        <div>
+            <span class="lh-eyebrow">Priority follow-up</span>
+            <h2 id="attentionHeading">Needs attention</h2>
+        </div>
+        <a asp-action="Workload" class="manager-panel-link">Open workload report <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="manager-attention-grid">
+        <section class="manager-attention-group manager-attention-overdue" aria-labelledby="overdueHeading">
+            <div class="manager-attention-title">
+                <h3 id="overdueHeading">Overdue loans</h3>
+                <span class="manager-attention-count">@Model.OverdueBorrows</span>
+            </div>
+            @if (Model.OverdueLoanAttention.Count == 0)
+            {
+                <p class="manager-attention-empty">No overdue loans at this branch.</p>
+            }
+            else
+            {
+                <ul class="manager-attention-list">
+                    @foreach (var loan in Model.OverdueLoanAttention)
+                    {
+                        <li>
+                            <div><strong>@loan.Description</strong><small>@loan.Reference · Due @loan.Date.ToString("d MMM yyyy")</small></div>
+                            <span class="manager-age-badge is-overdue">@loan.AgeDays d overdue</span>
+                        </li>
+                    }
+                </ul>
+                @if (Model.OverdueBorrows > Model.OverdueLoanAttention.Count)
+                {
+                    <p class="manager-attention-more">Showing @Model.OverdueLoanAttention.Count of @Model.OverdueBorrows overdue loans.</p>
+                }
+            }
+        </section>
+
+        <section class="manager-attention-group manager-attention-transit" aria-labelledby="transitHeading">
+            <div class="manager-attention-title">
+                <h3 id="transitHeading">Transfers in transit over 3 days</h3>
+                <span class="manager-attention-count">@Model.AgingTransferCount</span>
+            </div>
+            @if (Model.AgingTransferAttention.Count == 0)
+            {
+                <p class="manager-attention-empty">No aging transfers at this branch.</p>
+            }
+            else
+            {
+                <ul class="manager-attention-list">
+                    @foreach (var transfer in Model.AgingTransferAttention)
+                    {
+                        <li>
+                            <div><strong>@transfer.Description</strong><small>@transfer.Reference · Started @transfer.Date.ToString("d MMM yyyy")</small></div>
+                            <span class="manager-age-badge is-transit">@transfer.AgeDays d in transit</span>
+                        </li>
+                    }
+                </ul>
+                @if (Model.AgingTransferCount > Model.AgingTransferAttention.Count)
+                {
+                    <p class="manager-attention-more">Showing @Model.AgingTransferAttention.Count of @Model.AgingTransferCount aging transfers.</p>
+                }
+            }
+        </section>
+    </div>
+</section>
+
+<div class="manager-dashboard-grid">
+    <section class="manager-panel">
+        <div class="manager-panel-heading">
+            <div><span class="lh-eyebrow">Inventory health</span><h2>Item availability</h2></div>
+            <span class="manager-panel-total">@Model.TotalItems items</span>
+        </div>
+        <div class="manager-donut-layout">
+            <div class="manager-donut" role="img" aria-label="@Model.AvailableItems available items and @(Model.TotalItems - Model.AvailableItems) not currently available"
+                 style="--available-share: @availableShare%;">
+                <div><strong>@availableShare%</strong><span>available</span></div>
+            </div>
+            <div class="manager-chart-legend">
+                <div><span class="manager-legend-dot is-available"></span><span>Available</span><strong>@Model.AvailableItems</strong></div>
+                <div><span class="manager-legend-dot is-borrowed"></span><span>Borrowed</span><strong>@Model.BorrowedItems</strong></div>
+                @foreach (var status in Model.ItemStatusCounts.Where(s => s.Status is not ("Available" or "Borrowed")))
+                {
+                    <div><span class="manager-legend-dot is-other"></span><span>@status.Status</span><strong>@status.Count</strong></div>
+                }
+            </div>
+        </div>
+        <div class="manager-export-links">
+            <a asp-action="ExportInventoryCsv" class="btn btn-sm btn-outline-secondary">Export inventory CSV</a>
+            <a asp-action="ExportInventoryPdf" class="btn btn-sm btn-outline-secondary">Export inventory PDF</a>
+        </div>
+    </section>
+
+    <section class="manager-panel">
+        <div class="manager-panel-heading">
+            <div><span class="lh-eyebrow">Collection mix</span><h2>Inventory by category</h2></div>
+        </div>
+        <div class="manager-category-list">
+            @foreach (var category in Model.CategoryInventory)
+            {
+                var categoryShare = Model.TotalItems == 0 ? 0 : (int)Math.Round(100d * category.TotalItems / Model.TotalItems);
+                <div class="manager-category-row">
+                    <div class="manager-category-label"><strong>@category.Category</strong><span>@category.TotalItems items · @category.AvailableItems available</span></div>
+                    <div class="manager-category-track" role="img" aria-label="@category.Category: @category.TotalItems items, @category.AvailableItems available">
+                        <span style="width: @categoryShare%"></span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="manager-export-links">
+            <span class="manager-muted">Percentages show each category's share of this branch's total inventory.</span>
+        </div>
+    </section>
+
+    <section class="manager-panel manager-branch-panel">
+        <div class="manager-panel-heading">
+            <div><span class="lh-eyebrow">Branch comparison</span><h2>Inventory across branches</h2></div>
+            <span class="manager-panel-total">@Model.BranchInventory.Count active branches</span>
+        </div>
+        @if (Model.BranchInventory.Count == 0)
+        {
+            <p class="manager-muted">No active branches are available.</p>
+        }
+        else
+        {
+            <div class="manager-branch-list">
+                @foreach (var branch in Model.BranchInventory)
+                {
+                    var availableWidth = branch.TotalItems == 0 ? 0 : 100d * branch.AvailableItems / branch.TotalItems;
+                    var borrowedWidth = branch.TotalItems == 0 ? 0 : 100d * branch.BorrowedItems / branch.TotalItems;
+                    var transitWidth = branch.TotalItems == 0 ? 0 : 100d * branch.InTransitItems / branch.TotalItems;
+                    var otherWidth = Math.Max(0, 100d - availableWidth - borrowedWidth - transitWidth);
+                    <div class="manager-branch-row">
+                        <div class="manager-branch-label">
+                            <strong>@branch.BranchName</strong><span>@branch.BranchCode</span>
+                            <b>@branch.TotalItems <small>items</small></b>
+                        </div>
+                        <div class="manager-branch-track" role="img" aria-label="@branch.BranchName: @branch.TotalItems total, @branch.AvailableItems available, @branch.BorrowedItems borrowed, @branch.InTransitItems in transit">
+                            <span class="is-available" style="width: @availableWidth.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span>
+                            <span class="is-borrowed" style="width: @borrowedWidth.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span>
+                            <span class="is-transit" style="width: @transitWidth.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span>
+                            <span class="is-other" style="width: @otherWidth.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span>
+                        </div>
+                        <div class="manager-branch-stats">
+                            <span>@branch.AvailableItems available</span>
+                            <span>@branch.BorrowedItems borrowed</span>
+                            <span>@branch.InTransitItems in transit</span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="manager-chart-legend manager-branch-legend">
+                <div><span class="manager-legend-dot is-available"></span><span>Available</span></div>
+                <div><span class="manager-legend-dot is-borrowed"></span><span>Borrowed</span></div>
+                <div><span class="manager-legend-dot is-transit"></span><span>In transit</span></div>
+                <div><span class="manager-legend-dot is-other"></span><span>Other</span></div>
+            </div>
+        }
+    </section>
+
+    <section class="manager-panel">
+        <div class="manager-panel-heading">
+            <div><span class="lh-eyebrow">Six-month activity</span><h2>Borrowing trend</h2><p class="manager-chart-caption">Items checked out per month</p></div>
+            <span class="manager-panel-total">@Model.TotalBorrows all-time borrows</span>
+        </div>
+        <div class="manager-trend-chart" role="img" aria-label="Monthly borrow count for the last six months at @Model.BranchName">
+            @foreach (var month in Model.BorrowingTrend)
+            {
+                var barHeight = month.Count == 0 ? 2 : Math.Max(8, 100d * month.Count / maxMonthlyBorrows);
+                <div class="manager-trend-column" aria-label="@month.Month: @month.Count borrows">
+                    <strong>@month.Count</strong>
+                    <div class="manager-trend-track"><span style="height: @barHeight.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span></div>
+                    <span class="manager-trend-month">@month.Month</span>
+                </div>
+            }
+        </div>
+        <div class="manager-export-links">
+            <a asp-action="ExportBorrowingCsv" class="btn btn-sm btn-outline-secondary">Export borrowing CSV</a>
+            <a asp-action="ExportBorrowingPdf" class="btn btn-sm btn-outline-secondary">Export borrowing PDF</a>
+        </div>
+    </section>
+
+    <section class="manager-panel">
+        <div class="manager-panel-heading">
+            <div><span class="lh-eyebrow">Loan outcomes</span><h2>Borrowing &amp; fines</h2></div>
+        </div>
+        <div class="manager-metric-list">
+            <div><span>Total borrows</span><strong>@Model.TotalBorrows</strong></div>
+            <div><span>Currently out</span><strong>@Model.ActiveBorrows</strong></div>
+            <div><span>Overdue</span><strong class="manager-text-danger">@Model.OverdueBorrows</strong></div>
+            <div><span>Returned on time</span><strong class="manager-text-success">@Model.ReturnedOnTime</strong></div>
+            <div><span>Fines issued</span><strong>@Model.TotalFinesIssued.ToString("C")</strong></div>
+            <div><span>Outstanding (estimated)</span><strong class="manager-text-danger">@Model.OutstandingFines.ToString("C")</strong></div>
+            <div><span>Fines collected</span><strong class="manager-text-success">@Model.CollectedFines.ToString("C")</strong></div>
+        </div>
+        <div class="manager-export-links">
+            <a asp-action="ExportFinesCsv" class="btn btn-sm btn-outline-secondary">Export fines CSV</a>
+            <a asp-action="ExportFinesPdf" class="btn btn-sm btn-outline-secondary">Export fines PDF</a>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,58 @@
+@{
+    var isAdmin = User.IsInRole("Admin");
+    ViewData["Title"] = isAdmin ? "Administration workspace" : "Reception workspace";
+}
+<section class="staff-hero">
+    <div>
+        @if (isAdmin)
+        {
+            <span class="lh-eyebrow">Administration</span>
+            <h1>Administration workspace</h1>
+            <p>Manage the collection, borrower records, requests, circulation, branches, imports and API integrations.</p>
+        }
+        else
+        {
+            <span class="lh-eyebrow">Borrower services</span>
+            <h1>Reception workspace</h1>
+            <p>Serve customers at your branch: check items out, record returns, help members, and activate the self-service kiosk.</p>
+            <span class="badge rounded-pill text-bg-light">Current branch: @ViewBag.CurrentBranch</span>
+        }
+    </div>
+</section>
+@if (!isAdmin)
+{
+    <section class="me-stat-grid staff-stat-grid">
+        <article class="me-stat"><span class="me-stat-icon loans-icon">♙</span><span class="me-stat-label">Borrower records</span><strong>@ViewBag.BorrowerCount</strong><small>Registered library borrowers</small></article>
+        <article class="me-stat"><span class="me-stat-icon holds-icon">▤</span><span class="me-stat-label">Pending requests</span><strong>@ViewBag.PendingRequests</strong><small>Requests awaiting Admin review</small></article>
+        <article class="me-stat"><span class="me-stat-icon loans-icon">↔</span><span class="me-stat-label">Active loans</span><strong>@ViewBag.ActiveLoans</strong><small>Items currently out at this branch</small></article>
+    </section>
+}
+<div class="staff-shortcuts">
+    <h2>@(isAdmin ? "Administration tools" : "Desk quick actions")</h2>
+    <div class="staff-shortcut-grid">
+        @if (isAdmin)
+        {
+            <a class="staff-shortcut" asp-controller="Book" asp-action="Index"><span class="shortcut-icon">▤</span><strong>Manage books</strong><small>Add and maintain book records</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Music" asp-action="Index"><span class="shortcut-icon">♫</span><strong>Manage music</strong><small>Add and maintain music records</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Toy" asp-action="Index"><span class="shortcut-icon">♧</span><strong>Manage toys</strong><small>Add and maintain toy records</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Branch" asp-action="Index"><span class="shortcut-icon">⌖</span><strong>Manage branches</strong><small>Maintain branches and service desks</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Import" asp-action="Index"><span class="shortcut-icon">⇧</span><strong>Import catalogue</strong><small>Validate and import catalogue data</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="ApiKeys" asp-action="Index"><span class="shortcut-icon">⌘</span><strong>REST API keys</strong><small>Manage read-only API integrations</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Borrower" asp-action="Index"><span class="shortcut-icon">♙</span><strong>Manage borrowers</strong><small>Create and update borrower records</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="BorrowRequest" asp-action="Pending"><span class="shortcut-icon">▤</span><strong>Manage borrow requests</strong><small>Review, approve and reject requests</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="BorrowRecord" asp-action="Index"><span class="shortcut-icon">↔</span><strong>Loans and returns</strong><small>Manage checkouts and returned items</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Reservation" asp-action="Holds"><span class="shortcut-icon">◷</span><strong>Hold queue</strong><small>Fulfil ready holds and review the queue</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Transfer" asp-action="Index"><span class="shortcut-icon">⇄</span><strong>Item transfers</strong><small>Move items between branches</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Notification" asp-action="Index"><span class="shortcut-icon">✉</span><strong>Notifications</strong><small>Review notices and run due-date checks</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Kiosk" asp-action="Activate"><span class="shortcut-icon">▣</span><strong>Kiosk activation</strong><small>Prepare a supervised self-service terminal</small><span class="shortcut-arrow">→</span></a>
+        }
+        else
+        {
+            <a class="staff-shortcut" asp-controller="BorrowRecord" asp-action="Create"><span class="shortcut-icon">↗</span><strong>Check out an item</strong><small>Issue an available branch item to a borrower</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="BorrowRecord" asp-action="Index"><span class="shortcut-icon">↩</span><strong>Check in / manage loans</strong><small>Record item returns and view active loans</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Kiosk" asp-action="Activate"><span class="shortcut-icon">▣</span><strong>Kiosk service</strong><small>Activate the self-service terminal for this branch</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="Borrower" asp-action="Index"><span class="shortcut-icon">♙</span><strong>Borrower records</strong><small>View registered borrowers</small><span class="shortcut-arrow">→</span></a>
+            <a class="staff-shortcut" asp-controller="BorrowRequest" asp-action="Pending"><span class="shortcut-icon">▤</span><strong>Borrow requests</strong><small>View requests awaiting Admin review</small><span class="shortcut-arrow">→</span></a>
+        }
+    </div>
+</div>
