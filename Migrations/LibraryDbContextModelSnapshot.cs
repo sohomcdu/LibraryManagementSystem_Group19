@@ -194,8 +194,48 @@ namespace LibraryManagementSystem.Migrations
                     b.Property<string>("KeyHash").IsRequired().HasColumnType("nvarchar(max)");
                     b.Property<bool>("IsActive").HasColumnType("bit");
                     b.Property<DateTime>("CreatedAt").HasColumnType("datetime2");
+                    b.Property<DateTime?>("LastUsedAt").HasColumnType("datetime2");
+                    b.Property<int>("RequestCount").HasColumnType("int");
                     b.HasKey("Id");
                     b.ToTable("ApiKeys");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Models.ApiRequestLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ApiKeyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Channel")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("RequestedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SearchTerm")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("StatusCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedAt");
+
+                    b.ToTable("ApiRequestLogs");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Models.Branch", b =>

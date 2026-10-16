@@ -42,6 +42,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Notification service
 builder.Services.AddScoped<NotificationService>();
 
+// REST API key check + usage logging (see Services/ApiAccessFilter.cs)
+builder.Services.AddScoped<ApiAccessFilter>();
+
 // ------------------------------------------------------------
 // BUILD APPLICATION
 // ------------------------------------------------------------
@@ -88,32 +91,8 @@ app.UseAuthentication();
 // Enable role-based authorization
 app.UseAuthorization();
 
-// Versioned integration API requires an active X-API-Key. Public read-only
-// /api/public endpoints remain available for basic discovery without a key.
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path.StartsWithSegments("/api/v1", StringComparison.OrdinalIgnoreCase))
-    {
-        var suppliedKey = context.Request.Headers["X-API-Key"].FirstOrDefault();
-        if (string.IsNullOrWhiteSpace(suppliedKey))
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.WriteAsJsonAsync(new { error = "Missing X-API-Key header." });
-            return;
-        }
-        var hash = LibraryManagementSystem.Controllers.ApiKeysController.Hash(suppliedKey);
-        using var scope = context.RequestServices.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
-        var valid = await db.ApiKeys.AsNoTracking().AnyAsync(k => k.IsActive && k.KeyHash == hash);
-        if (!valid)
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.WriteAsJsonAsync(new { error = "Invalid or revoked API key." });
-            return;
-        }
-    }
-    await next();
-});
+// REST API security (X-API-Key for /api/v1) and request logging are handled by
+// Services/ApiAccessFilter.cs, which is attached to Controllers/Api/CatalogueApiController.cs.
 
 // Kiosk access is controlled by KioskController authorization. Public catalogue
 // and home links remain usable from a kiosk session; staff-only routes stay protected.

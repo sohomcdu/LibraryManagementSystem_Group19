@@ -1,0 +1,110 @@
+@model LibraryManagementSystem.Controllers.ApiUsageViewModel
+@{
+    ViewData["Title"] = "API usage";
+    var maxDay = Math.Max(1, Model.PerDay.Count == 0 ? 1 : Model.PerDay.Max(d => d.Count));
+    var rejectedShare = Model.TotalRequests == 0 ? 0 : (int)Math.Round(Model.RejectedRequests * 100.0 / Model.TotalRequests);
+}
+
+<section class="lh-section-head">
+    <div>
+        <div class="lh-eyebrow">INTEGRATIONS</div>
+        <h1>API usage</h1>
+        <p class="text-secondary">How external applications use the read-only REST API over the last @Model.Days days.</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap align-items-center">
+        <div class="btn-group" role="group" aria-label="Reporting period">
+            @foreach (var d in new[] { 7, 30, 90 })
+            {
+                <a class="btn btn-sm @(Model.Days == d ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-days="@d">@d days</a>
+            }
+        </div>
+        <a class="btn btn-sm btn-outline-secondary" asp-action="ExportCsv" asp-route-days="@Model.Days">Download CSV</a>
+        <a class="btn btn-sm btn-outline-secondary" asp-controller="ApiDocs" asp-action="Index">API documentation</a>
+    </div>
+</section>
+
+<div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100"><div class="small text-secondary">Total requests</div><div class="fs-3 fw-semibold">@Model.TotalRequests</div></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100"><div class="small text-secondary">With an API key</div><div class="fs-3 fw-semibold">@Model.KeyedRequests</div><div class="small text-secondary">@Model.PublicRequests public</div></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100"><div class="small text-secondary">Rejected (401)</div><div class="fs-3 fw-semibold @(Model.RejectedRequests > 0 ? "text-danger" : "")">@Model.RejectedRequests</div><div class="small text-secondary">@rejectedShare% of requests</div></div></div>
+    <div class="col-6 col-lg-3"><div class="card p-3 h-100"><div class="small text-secondary">Active API keys</div><div class="fs-3 fw-semibold">@Model.ActiveKeys</div></div></div>
+</div>
+
+<section class="card p-4 mb-4">
+    <h2 class="h5">Requests per day</h2>
+    @if (Model.TotalRequests == 0)
+    {
+        <p class="text-secondary mb-0">No API requests in this period yet. Open <a asp-controller="ApiDocs" asp-action="Index">API documentation</a> and click an example link to create some.</p>
+    }
+    else
+    {
+        <div class="d-flex align-items-end gap-1" style="height:160px" role="img" aria-label="API requests per day">
+            @foreach (var day in Model.PerDay)
+            {
+                var height = (int)Math.Round(day.Count * 140.0 / maxDay);
+                <div class="flex-fill text-center" title="@day.Day.ToString("ddd d MMM"): @day.Count requests">
+                    <div class="small text-secondary">@(day.Count > 0 ? day.Count.ToString() : "")</div>
+                    <div class="bg-primary rounded-top mx-auto" style="height:@(Math.Max(day.Count > 0 ? 3 : 0, height))px; width:70%"></div>
+                </div>
+            }
+        </div>
+        <div class="d-flex gap-1 mt-1">
+            @foreach (var day in Model.PerDay)
+            {
+                <div class="flex-fill text-center small text-secondary">@day.Day.ToString("d/M")</div>
+            }
+        </div>
+    }
+</section>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <section class="card p-4 h-100">
+            <h2 class="h5">Integrations</h2>
+            <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                    <thead><tr><th>Client</th><th class="text-end">Requests</th><th class="text-end">Failed</th><th>Last used</th></tr></thead>
+                    <tbody>
+                        @if (!Model.Clients.Any())
+                        {
+                            <tr><td colspan="4" class="text-secondary">No API keys have been issued yet.</td></tr>
+                        }
+                        @foreach (var c in Model.Clients)
+                        {
+                            <tr>
+                                <td>@c.ClientName @if (!c.IsActive) { <span class="badge text-bg-secondary">Revoked</span> }</td>
+                                <td class="text-end">@c.Requests</td>
+                                <td class="text-end">@c.Failed</td>
+                                <td>@(c.LastUsedAt.HasValue ? c.LastUsedAt.Value.ToLocalTime().ToString("dd MMM HH:mm") : "Never")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3">
+        <section class="card p-4 h-100">
+            <h2 class="h5">Most used endpoints</h2>
+            @if (!Model.TopEndpoints.Any()) { <p class="text-secondary small mb-0">No data yet.</p> }
+            <ul class="list-unstyled small mb-0">
+                @foreach (var e in Model.TopEndpoints)
+                {
+                    <li class="d-flex justify-content-between border-bottom py-1"><code>@e.Name</code><span>@e.Count</span></li>
+                }
+            </ul>
+        </section>
+    </div>
+    <div class="col-lg-3">
+        <section class="card p-4 h-100">
+            <h2 class="h5">Top searches</h2>
+            @if (!Model.TopSearches.Any()) { <p class="text-secondary small mb-0">No searches yet.</p> }
+            <ul class="list-unstyled small mb-0">
+                @foreach (var s in Model.TopSearches)
+                {
+                    <li class="d-flex justify-content-between border-bottom py-1"><span>@s.Name</span><span>@s.Count</span></li>
+                }
+            </ul>
+        </section>
+    </div>
+</div>

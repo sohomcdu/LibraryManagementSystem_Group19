@@ -43,16 +43,30 @@ Members can register from the Register page. Seeded borrowers include Alice Smit
 - Simulated notifications dashboard: `/Notification` (Admin)
 - CSV importer: `/Import` (Admin)
 - Manager analytics and CSV/PDF export: `/Manager` (Manager)
-- Public read-only API: `GET /api/public/items`, `GET /api/public/categories`, `GET /api/public/status`
+- Read-only REST API: `/api/public/*` (open) and `/api/v1/*` (needs `X-API-Key`). Documentation at `/ApiDocs`.
+- API keys: `/ApiKeys` (Admin). API usage report: `/ApiUsage` (Manager and Admin).
 
-### Public API examples
-- `/api/public/items`
-- `/api/public/items?q=chess`
-- `/api/public/items?category=toy&branch=NTH`
-- `/api/public/categories`
-- `/api/public/status`
+### REST API
+The same five read-only endpoints are served on two routes that return identical JSON:
 
-The public API exposes available catalogue records only and supports optional search/category/branch filters. It does not expose borrower information or staff-only operations.
+| Route | For | Key |
+|---|---|---|
+| `/api/public/...` | Open discovery, e.g. a website widget | Not needed |
+| `/api/v1/...` | Registered integrations | `X-API-Key` header, issued by an Admin |
+
+| Endpoint | Returns |
+|---|---|
+| `GET /items` | Catalogue search, paged. Options: `q`, `type` (book/music/toy), `category`, `branch` (CEN/NTH/RIV), `status` (available/all), `page`, `pageSize` (max 100) |
+| `GET /items/{id}` | One item in full (ISBN, release year or minimum age), or 404 |
+| `GET /categories` | Item types and their categories with available counts |
+| `GET /branches` | Branches, open/closed, and available items per branch |
+| `GET /status` | Service status and a catalogue summary |
+
+Examples: `/api/public/items?q=code`, `/api/public/items?type=toy&branch=NTH`, `/api/public/items/1`, `/api/public/branches`.
+
+Errors use `application/problem+json`: 400 for an invalid option, 401 for a missing, invalid or revoked key on `/api/v1`, 404 for an unknown item, 405 for anything other than GET. The API never exposes borrower information and cannot change data.
+
+Every API call is logged (`ApiRequestLogs` table). Admins see each key's last-used time and request count at `/ApiKeys`; Managers see request volume, integrations, rejected calls, top endpoints and top searches at `/ApiUsage`, with CSV export.
 
 ## CSV import format
 **Sample catalogue on first run:** when the app starts it automatically loads `docs/sample-data/books.csv`, `music.csv` and `toys.csv` (50 books, 50 albums and 50 toys). Items already in the database are skipped, so restarting never creates duplicates. Sources are listed in.
@@ -113,25 +127,22 @@ Admin can open **Kiosk activation** from the Circulation menu to reach `/Kiosk/A
 
 For production, replace shared demo credentials with per-device secrets and stronger patron card/PIN verification. The demonstration patron lookup still uses registered email and is not intended as production-grade identity verification.
 
-### Public read-only API
+### REST API
 
-- `GET /api/public/items` (optional `q` and `category` filters)
-- `GET /api/public/categories`
-- `GET /api/public/status`
-
-These endpoints return read-only JSON and do not expose create/update/delete operations.
+See the **REST API** section above, or open `/ApiDocs` in the running app.
 
 
 ## LibraHub-style workflows added in this MVC version
 
 - **Branch context:** Reception and Manager can switch the active branch from the top navigation. The selection is stored in a secure, HTTP-only cookie; Reception request views and Manager reports use it to scope the view. Admin circulation tools operate across all branches. Clear the `LMS.BranchCode` cookie to return to the default branch.
 - **Kiosk:** activate a shared device once with a seeded kiosk account. The kiosk account is limited by controller role checks; the application no longer traps the kiosk account on `/Kiosk`, so public Home and Catalogue links work. The device is assigned to its home branch and cannot check out another branch's item.
-- **REST API:** anonymous read-only discovery remains at `/api/public/items`, `/api/public/categories`, `/api/public/status`. Versioned integration routes `/api/v1/items`, `/api/v1/categories`, `/api/v1/status` require `X-API-Key`. Admins manage keys at `/ApiKeys`; raw keys are displayed once and only SHA-256 hashes are stored.
+- **REST API:** `/api/public/*` (open) and `/api/v1/*` (requires `X-API-Key`) serve the same read-only endpoints: items, items/{id}, categories, branches, status. Key checking and request logging live in `Services/ApiAccessFilter.cs`. Admins manage keys at `/ApiKeys`; raw keys are displayed once and only SHA-256 hashes are stored.
 
 ### Test API key flow
 1. Sign in as `admin@library.local` (demo password `Admin@12345`).
 2. Open Administration → REST API keys and generate a key for a named client. Copy the key when shown.
-3. Call `GET /api/v1/items` with header `X-API-Key: <copied-key>`. Missing, invalid or revoked keys return HTTP 401.
+3. Use the **Try the API** panel on the same page (paste the key, pick an endpoint, Send), or call it from PowerShell: `Invoke-RestMethod "https://localhost:7202/api/v1/items" -Headers @{ "X-API-Key" = "<copied-key>" }`. Missing, invalid or revoked keys return HTTP 401.
 4. Revoke the key in the admin screen and confirm it no longer works.
+5. Sign in as `manager@library.local` (demo password `Manager@12345`) and open **API usage** to see the calls you just made.
 
-The application applies migrations at startup, including `AddApiKeys`. Review demo credentials and rotate them before any deployment beyond local coursework use.
+The application applies migrations at startup, including `AddApiKeys` and `AddApiUsageTracking`. Review demo credentials and rotate them before any deployment beyond local coursework use.

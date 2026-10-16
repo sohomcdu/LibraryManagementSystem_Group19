@@ -7,7 +7,7 @@
     var isMember = User.IsInRole("Member");
     var isKiosk = User.IsInRole("Kiosk");
     var controller = ViewContext.RouteData.Values["controller"]?.ToString();
-    var adminAreaActive = new[] { "Branch", "Book", "Music", "Toy", "Import", "ApiKeys", "Borrower", "BorrowRequest", "BorrowRecord", "Reservation", "Transfer", "Notification" }.Contains(controller);
+    var adminAreaActive = new[] { "Branch", "Book", "Music", "Toy", "Import", "ApiKeys", "ApiUsage", "Borrower", "BorrowRequest", "BorrowRecord", "Reservation", "Transfer", "Notification" }.Contains(controller);
     var staffAreaActive = new[] { "Staff", "Borrower", "BorrowRequest", "BorrowRecord", "Transfer", "Reservation", "Notification", "Kiosk" }.Contains(controller);
 
     var isStaff = isAdmin || isReception || isManager || isKiosk;
@@ -61,6 +61,7 @@
               <li><h6 class="dropdown-header">Data tools</h6></li>
               <li><a class="dropdown-item" asp-controller="Import" asp-action="Index"><span class="lh-menu-icon">⇧</span>CSV Importer</a></li>
               <li><a class="dropdown-item" asp-controller="ApiKeys" asp-action="Index"><span class="lh-menu-icon">⌘</span>REST API keys</a></li>
+              <li><a class="dropdown-item" asp-controller="ApiUsage" asp-action="Index"><span class="lh-menu-icon">▥</span>API usage</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -105,6 +106,7 @@
           <li class="nav-item"><a class="nav-link @(controller == "Manager" ? "active" : "")" asp-controller="Manager" asp-action="Index"><i class="lh-icon">▥</i>Reports</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "BorrowRequest" ? "active" : "")" asp-controller="BorrowRequest" asp-action="Pending"><i class="lh-icon">☷</i>Borrow requests</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "Transfer" ? "active" : "")" asp-controller="Transfer" asp-action="Requests"><i class="lh-icon">⇄</i>Transfer requests</a></li>
+          <li class="nav-item"><a class="nav-link @(controller == "ApiUsage" ? "active" : "")" asp-controller="ApiUsage" asp-action="Index"><i class="lh-icon">⌘</i>API usage</a></li>
         }
         
         @if (isMember) {
@@ -131,8 +133,9 @@
   @if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert">@error</div> }
   @RenderBody()
 </main>
-<footer class="lh-footer">
+<footer class="lh-footer" style="flex-direction: column; gap: .25rem;">
   <p class="lh-footer-quote">“A library is where curiosity finds its next adventure.”</p>
+  <p class="small mb-0"><a class="link-secondary" asp-controller="ApiDocs" asp-action="Index">Developers: REST API documentation</a></p>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

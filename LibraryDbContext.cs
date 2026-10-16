@@ -57,6 +57,10 @@ namespace LibraryManagementSystem.Data
                 .WithMany()
                 .HasForeignKey(i => i.ItemId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            // API usage reports filter by date, so index the request time.
+            modelBuilder.Entity<ApiRequestLog>()
+                .HasIndex(l => l.RequestedAt);
         }
 
         public DbSet<Item> Items { get; set; } = null!;
@@ -77,5 +81,6 @@ namespace LibraryManagementSystem.Data
         public DbSet<Notification> Notifications { get; set; } = null!;
         public DbSet<ImportJob> ImportJobs { get; set; } = null!;
         public DbSet<ApiKey> ApiKeys { get; set; } = null!;
+        public DbSet<ApiRequestLog> ApiRequestLogs { get; set; } = null!;
     }
 }

@@ -1,0 +1,102 @@
+@{
+    ViewData["Title"] = "API documentation";
+    var baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host}";
+}
+
+<section class="lh-section-head">
+    <div>
+        <div class="lh-eyebrow">DEVELOPERS</div>
+        <h1>REST API documentation</h1>
+        <p class="text-secondary">A read-only JSON API that lets other applications look up the catalogue, categories, branches and service status. It cannot change any library data.</p>
+    </div>
+</section>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <section class="card p-4 h-100">
+            <h2 class="h5">Two ways in</h2>
+            <table class="table table-sm align-middle mb-3">
+                <thead><tr><th>Base URL</th><th>Who it is for</th><th>Key needed?</th></tr></thead>
+                <tbody>
+                    <tr><td><code>/api/public</code></td><td>Quick, open discovery (e.g. a library website widget)</td><td>No</td></tr>
+                    <tr><td><code>/api/v1</code></td><td>Registered integrations (e.g. a partner app)</td><td><strong>Yes</strong>, <code>X-API-Key</code> header</td></tr>
+                </tbody>
+            </table>
+            <p class="small text-secondary mb-0">Both return exactly the same JSON. Keys are issued and revoked by a library Admin. Every call is logged so staff can see how the API is used.</p>
+        </section>
+    </div>
+    <div class="col-lg-6">
+        <section class="card p-4 h-100">
+            <h2 class="h5">Responses and errors</h2>
+            <ul class="small mb-0">
+                <li><strong>200</strong>: success, JSON body.</li>
+                <li><strong>400</strong>: a query option is invalid (for example <code>pageSize=500</code>).</li>
+                <li><strong>401</strong>: <code>/api/v1</code> called without a key, or with a wrong or revoked key.</li>
+                <li><strong>404</strong>: the item id does not exist.</li>
+                <li><strong>405</strong>: anything other than GET. The API is read-only.</li>
+                <li>Errors use the standard <code>application/problem+json</code> format with <code>title</code> and <code>detail</code>.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<section class="card p-4 mt-4">
+    <h2 class="h5">Endpoints</h2>
+    <p class="small text-secondary">The links use the open <code>/api/public</code> route so you can click them right now. Swap in <code>/api/v1</code> and add your key for integrations.</p>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead><tr><th>Endpoint</th><th>What it returns</th><th>Try it</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><code>GET /items</code></td>
+                    <td>
+                        Search the catalogue (available items by default), 20 per page.<br />
+                        <span class="small text-secondary">Options: <code>q</code> text · <code>type</code> book|music|toy · <code>category</code> genre or toy type · <code>branch</code> CEN|NTH|RIV · <code>status</code> available|all · <code>page</code> · <code>pageSize</code> (max 100)</span>
+                    </td>
+                    <td class="small">
+                        <a href="/api/public/items" target="_blank">/items</a><br />
+                        <a href="/api/public/items?q=code" target="_blank">?q=code</a><br />
+                        <a href="/api/public/items?type=toy&amp;branch=NTH" target="_blank">?type=toy&amp;branch=NTH</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>GET /items/{id}</code></td>
+                    <td>Full details of one item, including ISBN, release year or minimum age.</td>
+                    <td class="small"><a href="/api/public/items/1" target="_blank">/items/1</a></td>
+                </tr>
+                <tr>
+                    <td><code>GET /categories</code></td>
+                    <td>Item types (Book, Music, Toy) and their categories, with available counts.</td>
+                    <td class="small"><a href="/api/public/categories" target="_blank">/categories</a></td>
+                </tr>
+                <tr>
+                    <td><code>GET /branches</code></td>
+                    <td>Library branches, whether each is open, and how many items are available there.</td>
+                    <td class="small"><a href="/api/public/branches" target="_blank">/branches</a></td>
+                </tr>
+                <tr>
+                    <td><code>GET /status</code></td>
+                    <td>Whether the service is operational, plus a catalogue summary.</td>
+                    <td class="small"><a href="/api/public/status" target="_blank">/status</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="card p-4 mt-4">
+    <h2 class="h5">Example: calling the keyed API</h2>
+    <p class="small text-secondary">PowerShell (Windows):</p>
+    <pre class="bg-light border rounded p-3 small mb-3">Invoke-RestMethod "@baseUrl/api/v1/items?q=code" -Headers @@{ "X-API-Key" = "YOUR-KEY" }</pre>
+    <p class="small text-secondary">curl:</p>
+    <pre class="bg-light border rounded p-3 small mb-3">curl -H "X-API-Key: YOUR-KEY" "@baseUrl/api/v1/items?q=code"</pre>
+    <p class="small text-secondary">Example response (shortened):</p>
+    <pre class="bg-light border rounded p-3 small mb-0">{
+  "page": 1, "pageSize": 20, "total": 1, "totalPages": 1,
+  "items": [
+    { "id": 1, "libraryCode": "BK-1001", "name": "Clean Code", "type": "Book",
+      "category": "Technical", "creator": "Robert C. Martin", "status": "Available",
+      "branch": { "code": "CEN", "name": "Central Library" } }
+  ]
+}</pre>
+</section>
