@@ -9,27 +9,45 @@
     var controller = ViewContext.RouteData.Values["controller"]?.ToString();
     var adminAreaActive = new[] { "Branch", "Book", "Music", "Toy", "Import", "ApiKeys", "Borrower", "BorrowRequest", "BorrowRecord", "Reservation", "Transfer", "Notification" }.Contains(controller);
     var staffAreaActive = new[] { "Staff", "Borrower", "BorrowRequest", "BorrowRecord", "Transfer", "Reservation", "Notification", "Kiosk" }.Contains(controller);
+
+    var isStaff = isAdmin || isReception || isManager || isKiosk;
+    var isPublicPage = controller == "Home" || controller == "Account" || controller == "Search";
+    var showLibraHub = isMember || (isPublicPage && !isStaff);
+    
+    var brandName = showLibraHub ? "LibraHub" : "Library Management System";
+    var brandNameShort = showLibraHub ? "Libra" : "Library";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@title · Library Management System</title>
+    <title>@title · @brandName</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="lh-site">
 <nav class="navbar navbar-expand-xl navbar-dark lh-topbar mb-0">
   <div class="container-fluid px-lg-4">
-    <a class="navbar-brand" asp-controller="Home" asp-action="Index"><span class="lh-logo">L</span><span>Library<span class="d-none d-sm-inline"> Management System</span></span></a>
+    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+        <span class="lh-logo">L</span>
+        <span>@brandNameShort<span class="d-none d-sm-inline">@(showLibraHub ? "Hub" : " Management System")</span></span>
+    </a>
+    
     @if (!isSignedIn) {
       <a class="btn btn-light btn-sm lh-mobile-signin" asp-controller="Account" asp-action="Login">Sign in</a>
     }
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#libraryNav" aria-controls="libraryNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    
+    <!-- UPDATED: Only show the hamburger menu if the user IS signed in -->
+    @if (isSignedIn) {
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#libraryNav" aria-controls="libraryNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    }
+    
     <div class="collapse navbar-collapse" id="libraryNav">
       <ul class="navbar-nav me-auto mb-2 mb-xl-0">
         @if (isKiosk) { <li class="nav-item"><a class="nav-link @(controller == "Kiosk" ? "active" : "")" asp-controller="Kiosk" asp-action="Index"><i class="lh-icon">▣</i>Self-service</a></li> }
+        
         @if (isAdmin) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle @(adminAreaActive ? "active" : "")" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">⚙</i>Administration</a>
@@ -63,9 +81,11 @@
             </ul>
           </li>
         }
+        
         @if (isReception || isAdmin) {
           <li class="nav-item"><a class="nav-link @(controller == "Staff" ? "active" : "")" asp-controller="Staff" asp-action="Index"><i class="lh-icon">▦</i>Staff workspace</a></li>
         }
+        
         @if (isReception) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle @(staffAreaActive ? "active" : "")" href="#" id="operationsMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="lh-icon">▦</i>Operations</a>
@@ -79,11 +99,14 @@
             </ul>
           </li>
         }
+        
         @if (isManager) {
           <li class="nav-item"><a class="nav-link @(controller == "Manager" ? "active" : "")" asp-controller="Manager" asp-action="Index"><i class="lh-icon">▥</i>Reports</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "Transfer" ? "active" : "")" asp-controller="Transfer" asp-action="Requests"><i class="lh-icon">⇄</i>Transfer requests</a></li>
         }
+        
         @if (isMember) {
+          <li class="nav-item"><a class="nav-link @(controller == "Search" ? "active" : "")" asp-controller="Search" asp-action="Index"><i class="lh-icon">⌕</i>Search Catalogue</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "Me" ? "active" : "")" asp-controller="Me" asp-action="Index"><i class="lh-icon">◎</i>My Library</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "BorrowRequest" ? "active" : "")" asp-controller="BorrowRequest" asp-action="Index"><i class="lh-icon">▤</i>My Requests</a></li>
           <li class="nav-item"><a class="nav-link @(controller == "Reservation" ? "active" : "")" asp-controller="Reservation" asp-action="Index"><i class="lh-icon">◷</i>My Reservations</a></li>

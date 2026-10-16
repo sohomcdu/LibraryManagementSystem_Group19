@@ -11,15 +11,16 @@
             <div class="home-search-field"><span aria-hidden="true">⌕</span><input id="homeCatalogueQuery" type="search" name="query" class="form-control" placeholder="Search books, music and more" /></div>
             <button type="submit" class="btn btn-primary">Search catalogue</button>
         </form>
-        <div class="home-hero-actions"><span class="home-browse-note">Browse freely—no account needed.</span></div>
     </div>
 </section>
+
 <section class="home-section-heading"><div><span class="lh-eyebrow">Start exploring</span><h2>More than bookshelves.</h2><p>One catalogue, several collections, and helpful tools for every visitor.</p></div></section>
 <div class="home-feature-grid">
     <a asp-controller="Search" asp-action="Index" asp-route-itemType="Book" class="home-feature home-feature-book"><span class="home-feature-icon">▤</span><div><h3>Books</h3><p>Stories, learning and new perspectives.</p></div><span class="home-feature-arrow">↗</span></a>
     <a asp-controller="Search" asp-action="Index" asp-route-itemType="Music" class="home-feature home-feature-music"><span class="home-feature-icon">♫</span><div><h3>Music</h3><p>Discover artists and recordings.</p></div><span class="home-feature-arrow">↗</span></a>
     <a asp-controller="Search" asp-action="Index" asp-route-itemType="Toy" class="home-feature home-feature-toy"><span class="home-feature-icon">♧</span><div><h3>Toys & games</h3><p>Play, puzzles and family fun.</p></div><span class="home-feature-arrow">↗</span></a>
 </div>
+
 <section class="home-member-callout">
     <div>
         <span class="lh-eyebrow">Make it yours</span>
@@ -39,3 +40,103 @@
         <div class="home-member-actions"><a asp-controller="Manager" asp-action="Index" class="btn btn-primary">Open reports →</a></div>
     }
 </section>
+
+<!-- ========================================== -->
+<!-- NEW INFORMATIVE SECTION ADDED AT THE BOTTOM -->
+<!-- ========================================== -->
+
+<section class="home-section-heading mt-5">
+    <div>
+        <span class="lh-eyebrow">Why we're here</span>
+        <h2>How your library helps.</h2>
+        <p>We are more than just a place to borrow items. We are a hub for learning, connection, and growth.</p>
+    </div>
+</section>
+
+<div class="home-feature-grid">
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">📚</span>
+        <div>
+            <h3>Fuel Lifelong Learning</h3>
+            <p>Whether you are studying for a degree, learning a new hobby, or just curious about the world, our collection supports your personal and professional growth.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">🤝</span>
+        <div>
+            <h3>Connect the Community</h3>
+            <p>Libraries are the heart of the community. We provide a welcoming space where people of all ages and backgrounds can come together, share ideas, and connect.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">🌱</span>
+        <div>
+            <h3>Support Wellbeing</h3>
+            <p>Reading and music have been proven to reduce stress and improve mental wellbeing. We offer a quiet escape and a chance to recharge your mind.</p>
+        </div>
+    </div>
+</div>
+
+<section class="home-section-heading mt-5">
+    <div>
+        <span class="lh-eyebrow">Member Benefits</span>
+        <h2>What you get with a free account.</h2>
+        <p>Signing up is quick, free, and unlocks a world of convenience.</p>
+    </div>
+</section>
+
+<div class="home-feature-grid">
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">🔖</span>
+        <div>
+            <h3>Request & Reserve</h3>
+            <p>Found something you like? Request it online and join the waitlist. We will notify you as soon as it's ready for pickup.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">📱</span>
+        <div>
+            <h3>Manage Your Loans</h3>
+            <p>Keep track of everything you have borrowed, view your due dates, and manage your reservations all in one place from your personal dashboard.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">🔔</span>
+        <div>
+            <h3>Stay Notified</h3>
+            <p>Never miss a due date again. Get helpful notifications about upcoming returns, available holds, and new items added to the catalogue.</p>
+        </div>
+    </div>
+</div>
+
+<section class="home-section-heading mt-5">
+    <div>
+        <span class="lh-eyebrow">Our Promise</span>
+        <h2>What we provide to the community.</h2>
+        <p>LibraHub is committed to being an inclusive, accessible, and valuable resource for everyone.</p>
+    </div>
+</section>
+
+<div class="home-feature-grid">
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">🌍</span>
+        <div>
+            <h3>Inclusive Access</h3>
+            <p>We believe knowledge should be free and accessible to all. Our doors are open to everyone, regardless of background or ability.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">💡</span>
+        <div>
+            <h3>Curated Collections</h3>
+            <p>Our team carefully selects books, music, and toys to ensure a diverse, high-quality range of materials that reflect our community's interests.</p>
+        </div>
+    </div>
+    <div class="home-feature" style="cursor: default;">
+        <span class="home-feature-icon">♻️</span>
+        <div>
+            <h3>Sustainable Sharing</h3>
+            <p>By borrowing instead of buying, you are helping to reduce waste and support a more sustainable way of consuming media and information.</p>
+        </div>
+    </div>
+</div>
