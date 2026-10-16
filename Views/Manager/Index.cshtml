@@ -40,6 +40,11 @@
         <strong>@Model.PendingTransferRequests</strong>
         <small>Waiting for your stock review →</small>
     </a>
+    <a class="manager-kpi" asp-controller="BorrowRequest" asp-action="Pending">
+        <span class="manager-kpi-label">Pending borrow requests</span>
+        <strong>@Model.PendingBorrowRequests</strong>
+        <small>Review requests for this branch →</small>
+    </a>
     <article class="manager-kpi manager-kpi-borrowed">
         <span class="manager-kpi-label">Currently borrowed</span>
         <strong>@Model.BorrowedItems</strong>

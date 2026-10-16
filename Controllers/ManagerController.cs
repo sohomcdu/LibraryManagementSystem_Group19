@@ -111,6 +111,8 @@ namespace LibraryManagementSystem.Controllers
             var pendingTransferRequests = selectedBranch == null
                 ? 0
                 : await _context.TransferRequests.CountAsync(r => r.ToBranchId == selectedBranch.Id && r.Status == "Pending");
+            var pendingBorrowRequests = await _context.BorrowRequests.CountAsync(r => r.Status == "Pending"
+                && r.Item != null && r.Item.Branch != null && r.Item.Branch.Code == branchCode);
 
             return View(new ManagerDashboardViewModel
             {
@@ -132,6 +134,7 @@ namespace LibraryManagementSystem.Controllers
                 BorrowingTrend = borrowingTrend,
                 TrendStartDate = trendStart,
                 PendingTransferRequests = pendingTransferRequests,
+                PendingBorrowRequests = pendingBorrowRequests,
                 // Show the oldest overdue loans first so the most urgent cases are visible immediately.
                 OverdueLoanAttention = overdueActiveRecords
                     .OrderBy(r => r.DueDate)
@@ -630,6 +633,7 @@ namespace LibraryManagementSystem.Controllers
         public List<MonthlyBorrowingSummary> BorrowingTrend { get; set; } = new();
         public DateTime TrendStartDate { get; set; }
         public int PendingTransferRequests { get; set; }
+        public int PendingBorrowRequests { get; set; }
         public List<ManagerAttentionItem> OverdueLoanAttention { get; set; } = new();
         public List<ManagerAttentionItem> AgingTransferAttention { get; set; } = new();
         public int AgingTransferCount { get; set; }

@@ -1,0 +1,6 @@
+Title,Author,ISBN,Category,BranchCode,Year,Copies,LibraryCode
+Valid Example Book,Sam Writer,9780306406157,Fiction,CEN,2020,1,
+,No Title Author,9780306406157,Fiction,CEN,2020,1,
+Bad ISBN Book,Alex Author,12345,Fiction,NTH,2019,1,
+Unknown Branch Book,Jo Author,9780306406157,Fiction,XYZ,2018,1,
+Too Many Copies,Lee Author,9780306406157,Fiction,RIV,2017,50,

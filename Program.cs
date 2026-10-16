@@ -55,6 +55,8 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
     await db.Database.MigrateAsync();
     await SeedData.InitializeAsync(scope.ServiceProvider);
+    // Load the sample books, music and toys from docs/sample-data (skips anything already there).
+    await SampleDataSeeder.SeedAsync(db, app.Environment.ContentRootPath, app.Logger);
 }
 
 // ------------------------------------------------------------

@@ -95,11 +95,11 @@ namespace LibraryManagementSystem.Controllers
 
         /// GET: BorrowRequest/Pending - staff queue of every request still awaiting a decision, oldest first.
         /// Reception can view requests for its branch; Admin can review all branches and make decisions.
-        [Authorize(Roles = "Reception,Admin")]
+        [Authorize(Roles = "Reception,Admin,Manager")]
         public async Task<IActionResult> Pending()
         {
             var query = _context.BorrowRequests.Include(r => r.Item).Include(r => r.Borrower).Where(r => r.Status == "Pending").AsQueryable();
-            if (User.IsInRole("Reception"))
+            if (User.IsInRole("Reception") || User.IsInRole("Manager"))
             {
                 var branchCode = Request.Cookies["LMS.BranchCode"] ?? "CEN";
                 if (!string.IsNullOrWhiteSpace(branchCode)) query = query.Where(r => r.Item != null && r.Item.Branch != null && r.Item.Branch.Code == branchCode);
@@ -114,7 +114,7 @@ namespace LibraryManagementSystem.Controllers
         /// a real loan, flips the item's status and links both records.
         /// 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Manager")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Approve(int id)
         {
@@ -122,7 +122,7 @@ namespace LibraryManagementSystem.Controllers
                 .Include(r => r.Item).ThenInclude(i => i!.Branch)
                 .FirstOrDefaultAsync(r => r.Id == id);
 
-            if (request == null || request.Status != "Pending") return NotFound();
+            if (request == null || request.Status != "Pending" || !CanReviewAtCurrentBranch(request.Item)) return NotFound();
             if (request.Item == null || request.Item.Status != "Available")
             {
                 ModelState.AddModelError(string.Empty, "Item is no longer available.");
@@ -154,12 +154,12 @@ namespace LibraryManagementSystem.Controllers
 
         /// POST: BorrowRequest/Reject/5 - marks a Pending request as Rejected without creating any loan.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Manager")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Reject(int id)
         {
             var request = await _context.BorrowRequests.Include(r => r.Item).ThenInclude(i => i!.Branch).FirstOrDefaultAsync(r => r.Id == id);
-            if (request == null || request.Status != "Pending") return NotFound();
+            if (request == null || request.Status != "Pending" || !CanReviewAtCurrentBranch(request.Item)) return NotFound();
             request.Status = "Rejected";
             await _context.SaveChangesAsync();
 
@@ -192,5 +192,9 @@ namespace LibraryManagementSystem.Controllers
             var userId = _userManager.GetUserId(User);
             return await _context.Borrowers.FirstOrDefaultAsync(b => b.ApplicationUserId == userId);
         }
+
+        private bool CanReviewAtCurrentBranch(Item? item) =>
+            !User.IsInRole("Manager") ||
+            item?.Branch?.Code == (Request.Cookies["LMS.BranchCode"] ?? "CEN");
     }
 }

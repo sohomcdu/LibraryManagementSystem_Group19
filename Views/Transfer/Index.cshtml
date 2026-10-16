@@ -7,7 +7,7 @@
     <div>
         <div class="lh-eyebrow">Branch circulation</div>
         <h1>Branch transfers</h1>
-        <p>Request category transfers and track manager decisions and items in transit.</p>
+        <p>Request category transfers and track review decisions and items in transit.</p>
     </div>
     <a asp-action="Create" class="btn btn-primary">Request a transfer</a>
 </section>
@@ -53,7 +53,7 @@
                     <td>
                         @if (request.Status == "Pending")
                         {
-                            <span class="badge bg-warning text-dark">Awaiting Manager</span>
+                            <span class="badge bg-warning text-dark">Awaiting review</span>
                         }
                         else if (request.Status == "Approved")
                         {
